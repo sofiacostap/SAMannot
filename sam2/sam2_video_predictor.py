@@ -30,6 +30,7 @@ class SAM2VideoPredictor(SAM2Base):
         # if `add_all_frames_to_correct_as_cond` is True, we also append to the conditioning frame list any frame that receives a later correction click
         # if `add_all_frames_to_correct_as_cond` is False, we conditioning frame list to only use those initial conditioning frames
         add_all_frames_to_correct_as_cond=False,
+        memory_window_size=16, #new change 
         **kwargs,
     ):
         super().__init__(**kwargs)
@@ -37,6 +38,7 @@ class SAM2VideoPredictor(SAM2Base):
         self.non_overlap_masks = non_overlap_masks
         self.clear_non_cond_mem_around_input = clear_non_cond_mem_around_input
         self.add_all_frames_to_correct_as_cond = add_all_frames_to_correct_as_cond
+        self.memory_window_size = memory_window_size #new change
 
     @torch.inference_mode()
     def init_state(
@@ -615,7 +617,7 @@ class SAM2VideoPredictor(SAM2Base):
 
                 storage_key, obj_key = "non_cond_frame_outputs", "output_dict_per_obj"
 
-                oldest_allowed_idx = frame_idx - 16
+                oldest_allowed_idx = frame_idx - self.memory_window_size #new change 
                 all_frame_idxs = obj_output_dict[storage_key].keys()
                 old_frame_idxs = [idx for idx in all_frame_idxs if idx < oldest_allowed_idx]
 
