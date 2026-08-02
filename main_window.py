@@ -842,8 +842,11 @@ class MainWindow:
                             )  
             if current_label.name == selected_label.name:
                 if point_selection[0] != -1:
+                    current_pts = current_label.pts[self.backend.get_current_block()]
                     for pt_idx in point_selection:
-                        pt = current_label.pts[self.backend.get_current_block()][pt_idx]
+                        if pt_idx >= len(current_pts):
+                            continue
+                        pt = current_pts[pt_idx]
                         if pt.idx != self.backend.get_current_img_idx():
                             continue
                         canvas_x = int(pt.x * self.scale_factor) + self.current_img_x + 1
@@ -857,8 +860,11 @@ class MainWindow:
                         )
                         self.label_markers[selected_label_idx].append(marker_id)
                 if box_selection[0] != -1:
+                    current_boxes = current_label.boxes[self.backend.get_current_block()]
                     for box_idx in box_selection:
-                        box = current_label.boxes[self.backend.get_current_block()][box_idx]
+                        if box_idx >= len(current_boxes):
+                            continue
+                        box = current_boxes[box_idx]
                         if box.idx != self.backend.get_current_img_idx():
                             continue
                         f_canvas_x = int(box.fx * self.scale_factor) + self.current_img_x
@@ -1272,6 +1278,13 @@ class MainWindow:
         success = self.backend.load_model(status_callback=self.update_loading)
         if not success:
             self.root.after(0, lambda: self.update_status("Failed to load SAM2 model"))
+        else:
+            self.root.after(0, self.refresh_tracking_controls)
+    def refresh_tracking_controls(self):
+        if self.backend.model_status() and self.backend.has_prompts(self.backend.get_current_block()):
+            self.enable_tracking_controls()
+        else:
+            self.disable_tracking_controls()
     def update_loading(self, message, is_final=False):
         if threading.current_thread() is threading.main_thread():
             if not self.status_frame.winfo_ismapped():
