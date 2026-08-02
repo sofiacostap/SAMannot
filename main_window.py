@@ -755,10 +755,7 @@ class MainWindow:
                 self.canvas.delete(marker_id)
             cumulative_pt_correction += 1
         self.refresh_prompt_timeline()
-        if self.backend.model_status() and self.backend.has_prompts(self.backend.get_current_block()):
-            self.enable_tracking_controls()
-        else:
-            self.disable_tracking_controls()
+        self.refresh_tracking_controls()
         self.update_pts_list()
         self.update_box_list()
         self.update_status(f"Deleted points {str(selection)}")
@@ -781,10 +778,7 @@ class MainWindow:
                 self.canvas.delete(marker_id)
             cumulative_pt_correction += 1
         self.refresh_prompt_timeline()
-        if self.backend.model_status() and self.backend.has_prompts(self.backend.get_current_block()):
-            self.enable_tracking_controls()
-        else:
-            self.disable_tracking_controls()
+        self.refresh_tracking_controls()
         self.update_box_list()
         self.update_status(f"Deleted boxes {str(selection)}")
         self.update_canvas()
@@ -1004,10 +998,7 @@ class MainWindow:
         self.update_pts_list()
         self.update_box_list()
         self.refresh_prompt_timeline()
-        if self.backend.model_status():
-            self.enable_tracking_controls()
-        else:
-            self.disable_tracking_controls()
+        self.refresh_tracking_controls()
         self.update_status(f"Added point at ({orig_x}, {orig_y})")
     def place_box(self,current_label,canvas_x, canvas_y,f_orig_x, f_orig_y, orig_x, orig_y):
         marker_id = self.canvas.create_rectangle(
@@ -1025,10 +1016,7 @@ class MainWindow:
         self.refresh_prompt_timeline()
         self.placing_prompt = False
         self.first_point = None
-        if self.backend.model_status():
-            self.enable_tracking_controls()
-        else:
-            self.disable_tracking_controls()
+        self.refresh_tracking_controls()
         self.update_status(f"Added box at ({orig_x}, {orig_y})")
     def on_canvas_click(self, event):
         if not self.backend.has_frames() or self.backend.get_current_img_idx() < 0:
@@ -1281,6 +1269,10 @@ class MainWindow:
         else:
             self.root.after(0, self.refresh_tracking_controls)
     def refresh_tracking_controls(self):
+        print(f"DEBUG refresh_tracking_controls called")
+        print(f"DEBUG model_status: {self.backend.model_status()}")
+        print(f"DEBUG current_block: {self.backend.get_current_block()}")
+        print(f"DEBUG has_prompts: {self.backend.has_prompts(self.backend.get_current_block())}")
         if self.backend.model_status() and self.backend.has_prompts(self.backend.get_current_block()):
             self.enable_tracking_controls()
         else:
@@ -1474,10 +1466,7 @@ class MainWindow:
             self.prev_block_btn.config(state=tk.DISABLED)
         else:
             self.prev_block_btn.config(state=tk.NORMAL)
-        if self.backend.model_status() and self.backend.has_prompts(self.backend.get_current_block()):
-            self.enable_tracking_controls()
-        else:
-            self.disable_tracking_controls()
+        self.refresh_tracking_controls()
         if self.backend.get_current_block() >= ((self.max_frame // self.block_size) if self.max_frame % self.block_size != 0 else ((self.max_frame // self.block_size) - 1)):
             self.next_block_btn.config(state=tk.DISABLED)
         else:
