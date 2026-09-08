@@ -41,6 +41,14 @@ LABEL_COLORS = {i: pascal_voc_color(i) for i in range(1, 5)}
 # GT bird IDs present in this video
 GT_BIRD_IDS = [14, 38, 75, 113]
 
+# GT_MIVOS PNG "N" may not depict the same video instant as SAM2/video frame
+# "N" — the external annotation tool can use a different frame numbering
+# convention (e.g. 1-indexed export vs cv2.VideoCapture's 0-indexed frames).
+# GT PNG "N" is treated as depicting video/SAM2 frame "N - GT_FRAME_OFFSET".
+# Determine the correct value with calibrate_gt_frame_offset.py before
+# trusting overlay alignment.
+GT_FRAME_OFFSET = 0
+
 # ── Load worst IoU records ────────────────────────────────────────────────────
 print("Loading IoU records...")
 records = []
@@ -119,18 +127,22 @@ for rec in selected:
         print(f"  Frame {frame_idx}: SAM2 mask not found — skipping")
         continue
 
-    # Read GT mask PNG
-    gt_path = GT_DIR / f'{frame_idx:06d}.png'
+    # Read GT mask PNG — GT frame numbering may be offset from video/SAM2
+    # frame numbering (see GT_FRAME_OFFSET above).
+    gt_frame_idx = frame_idx + GT_FRAME_OFFSET
+    gt_path = GT_DIR / f'{gt_frame_idx:06d}.png'
     gt_img = cv2.imread(str(gt_path))
     if gt_img is None:
-        print(f"  Frame {frame_idx}: GT mask not found — skipping")
+        print(f"  Frame {frame_idx}: GT mask not found (looked for gt frame {gt_frame_idx}) — skipping")
         continue
 
-    # Resize everything
+    # Resize everything. GT is a label-ID image (pixel value = bird ID), so it
+    # must use nearest-neighbor interpolation — linear (cv2's default) blends
+    # adjacent bird IDs at mask boundaries and corrupts the exact-value match
+    # done below (gt_gray == gt_id).
     raw      = resize(raw)
     sam2_img = resize(sam2_img)
-    gt_gray  = resize(cv2.imread(str(gt_path))[:,:,0].reshape(*cv2.imread(str(gt_path)).shape[:2], 1)
-                      .squeeze(), TARGET_W, TARGET_H)
+    gt_gray  = cv2.resize(gt_img[:, :, 0], (TARGET_W, TARGET_H), interpolation=cv2.INTER_NEAREST)
 
     H, W = raw.shape[:2]
 
@@ -182,7 +194,8 @@ for rec in selected:
     caption_h = 52
     caption = np.zeros((caption_h, combined.shape[1], 3), dtype=np.uint8)
     caption[:] = (30, 45, 70)
-    caption_text = f"Frame {frame_idx:,}  |  IoU = {iou_val:.3f}  |  SAM2 label {sam_label} vs GT bird {gt_id}  |  Low IoU = tracking error"
+    offset_note = f" (offset {GT_FRAME_OFFSET:+d})" if GT_FRAME_OFFSET else ""
+    caption_text = f"Frame {frame_idx:,} | GT frame {gt_frame_idx:,}{offset_note}  |  IoU = {iou_val:.3f}  |  SAM2 label {sam_label} vs GT bird {gt_id}  |  Low IoU = tracking error"
     cv2.putText(caption, caption_text, (14, 34), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (200, 220, 255), 2)
 
     final = np.vstack([combined, caption])
