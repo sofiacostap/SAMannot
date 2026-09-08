@@ -136,7 +136,7 @@ def match_sam2_to_gt(sam2_masks, gt_masks):
 # ─────────────────────────────────────────────────────────────────────────────
 
 def run_validation(sam2_dir, gt_dir, quality_scores_csv, output_dir,
-                   iou_threshold=0.5, n_labels=4, gt_frame_offset=0):
+                   iou_threshold=0.5, n_labels=4):
 
     sam2_dir  = Path(sam2_dir)
     gt_dir    = Path(gt_dir)
@@ -165,15 +165,10 @@ def run_validation(sam2_dir, gt_dir, quality_scores_csv, output_dir,
     print(f"GT bird IDs found: {gt_bird_ids}")
 
     # ── Find matching frames ──────────────────────────────────────────────────
-    # gt_frame_offset corrects for GT_MIVOS using a different frame numbering
-    # convention than the SAM2 pipeline (e.g. 1-indexed export vs 0-indexed
-    # cv2.VideoCapture reads). GT PNG "N" is treated as depicting the same
-    # video instant as SAM2 frame "N - gt_frame_offset". Use
-    # calibrate_gt_frame_offset.py to determine the right value before trusting
-    # IoU numbers near frame boundaries or bird motion.
+    # GT_MIVOS frame numbering matches the SAM2 pipeline's exactly — no offset.
     sam2_files = {int(f.stem): f for f in sam2_dir.glob("*.png")
                   if f.stem.isdigit()}
-    gt_files   = {int(f.stem) - gt_frame_offset: f for f in gt_dir.glob("*.png")
+    gt_files   = {int(f.stem): f for f in gt_dir.glob("*.png")
                   if f.stem.isdigit()}
 
     common_frames = sorted(set(sam2_files.keys()) & set(gt_files.keys()))
@@ -376,9 +371,6 @@ if __name__ == "__main__":
     parser.add_argument("--output_dir",      default="./iou_validation")
     parser.add_argument("--iou_threshold",   type=float, default=0.5)
     parser.add_argument("--n_labels",        type=int, default=4)
-    parser.add_argument("--gt_frame_offset", type=int, default=0,
-                         help="GT PNG 'N' depicts SAM2/video frame 'N - offset'. "
-                              "Determine with calibrate_gt_frame_offset.py.")
     args = parser.parse_args()
 
     run_validation(
@@ -388,5 +380,4 @@ if __name__ == "__main__":
         output_dir=args.output_dir,
         iou_threshold=args.iou_threshold,
         n_labels=args.n_labels,
-        gt_frame_offset=args.gt_frame_offset,
     )
