@@ -17,11 +17,15 @@ import numpy as np
 from pathlib import Path
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
-SAM2_DIR  = Path('/media/hbvcai/HBVCSSD/samannot/headless_output_lek4_v2')
-GT_DIR    = Path('/media/hbvcai/HATTER_4TB/MPI_data/MaxPlanckData/ruffs_2022/males_annotation/test_data/GT_MIVOS/cut_Lek4_right_2021_604_00-00-00_00-02-32/upscaled_masks')
-VID_PATH  = '/media/hbvcai/HATTER_4TB/MPI_data/MaxPlanckData/ruffs_2022/males_annotation/test_data/vids/cut_Lek4_right_2021_604_a_lek_00_00_00_to_00_02_32.mp4'
-IOU_CSV   = '/media/hbvcai/HBVCSSD/samannot/iou_validation_v4/iou_per_frame.csv'
-OUT_DIR   = Path('/home/hbvcai/Desktop/visual_proof')
+SAM2_DIR    = Path('/media/hbvcai/HBVCSSD/samannot/headless_output_lek4_v2')
+GT_DIR      = Path('/media/hbvcai/HATTER_4TB/MPI_data/MaxPlanckData/ruffs_2022/males_annotation/test_data/GT_MIVOS/cut_Lek4_right_2021_604_00-00-00_00-02-32/upscaled_masks')
+# GT masks were annotated on these pre-extracted PNG frames, not on the raw
+# video — decoding the video directly (cv2.VideoCapture) yields a spatially
+# different frame (codec differences, max pixel diff observed = 207), which
+# broke overlay alignment. Read background frames from here instead.
+FRAMES_DIR  = Path('/media/hbvcai/HATTER_4TB/MPI_data/MaxPlanckData/ruffs_2022/males_annotation/test_data/FRAMES/cut_Lek4_right_2021_604_00-00-00_00-02-32')
+IOU_CSV     = '/media/hbvcai/HBVCSSD/samannot/iou_validation_v4/iou_per_frame.csv'
+OUT_DIR     = Path('/home/hbvcai/Desktop/visual_proof')
 OUT_DIR.mkdir(exist_ok=True)
 
 # ── Pascal VOC colormap — matches SAMannot output ─────────────────────────────
@@ -40,14 +44,6 @@ LABEL_COLORS = {i: pascal_voc_color(i) for i in range(1, 5)}
 
 # GT bird IDs present in this video
 GT_BIRD_IDS = [14, 38, 75, 113]
-
-# GT_MIVOS PNG "N" may not depict the same video instant as SAM2/video frame
-# "N" — the external annotation tool can use a different frame numbering
-# convention (e.g. 1-indexed export vs cv2.VideoCapture's 0-indexed frames).
-# GT PNG "N" is treated as depicting video/SAM2 frame "N - GT_FRAME_OFFSET".
-# Determine the correct value with calibrate_gt_frame_offset.py before
-# trusting overlay alignment.
-GT_FRAME_OFFSET = 0
 
 # ── Load worst IoU records ────────────────────────────────────────────────────
 print("Loading IoU records...")
@@ -89,12 +85,6 @@ print(f"Selected {len(selected)} frames:")
 for s in selected:
     print(f"  frame={s['frame']:5d}  gt_bird={s['gt_id']:3d}  sam_label={s['sam_label']}  IoU={s['iou']:.3f}")
 
-# ── Open video ────────────────────────────────────────────────────────────────
-cap = cv2.VideoCapture(VID_PATH)
-if not cap.isOpened():
-    print("ERROR: Could not open video. Is HATTER drive mounted?")
-    exit(1)
-
 TARGET_W = 960
 TARGET_H = 540
 
@@ -113,11 +103,12 @@ for rec in selected:
     sam_label = rec['sam_label']
     iou_val   = rec['iou']
 
-    # Read raw frame
-    cap.set(cv2.CAP_PROP_POS_FRAMES, frame_idx)
-    ret, raw = cap.read()
-    if not ret:
-        print(f"  Frame {frame_idx}: could not read from video — skipping")
+    # Read raw background frame — must come from the same PNG frames the GT
+    # was annotated on (see FRAMES_DIR note above), not the video.
+    frame_path = FRAMES_DIR / f'{frame_idx:06d}.png'
+    raw = cv2.imread(str(frame_path))
+    if raw is None:
+        print(f"  Frame {frame_idx}: could not read from FRAMES dir — skipping")
         continue
 
     # Read SAM2 mask PNG
@@ -127,13 +118,12 @@ for rec in selected:
         print(f"  Frame {frame_idx}: SAM2 mask not found — skipping")
         continue
 
-    # Read GT mask PNG — GT frame numbering may be offset from video/SAM2
-    # frame numbering (see GT_FRAME_OFFSET above).
-    gt_frame_idx = frame_idx + GT_FRAME_OFFSET
-    gt_path = GT_DIR / f'{gt_frame_idx:06d}.png'
+    # Read GT mask PNG — GT frame numbering matches FRAMES/SAM2 numbering
+    # exactly, no offset needed.
+    gt_path = GT_DIR / f'{frame_idx:06d}.png'
     gt_img = cv2.imread(str(gt_path))
     if gt_img is None:
-        print(f"  Frame {frame_idx}: GT mask not found (looked for gt frame {gt_frame_idx}) — skipping")
+        print(f"  Frame {frame_idx}: GT mask not found — skipping")
         continue
 
     # Resize everything. GT is a label-ID image (pixel value = bird ID), so it
@@ -194,8 +184,7 @@ for rec in selected:
     caption_h = 52
     caption = np.zeros((caption_h, combined.shape[1], 3), dtype=np.uint8)
     caption[:] = (30, 45, 70)
-    offset_note = f" (offset {GT_FRAME_OFFSET:+d})" if GT_FRAME_OFFSET else ""
-    caption_text = f"Frame {frame_idx:,} | GT frame {gt_frame_idx:,}{offset_note}  |  IoU = {iou_val:.3f}  |  SAM2 label {sam_label} vs GT bird {gt_id}  |  Low IoU = tracking error"
+    caption_text = f"Frame {frame_idx:,}  |  IoU = {iou_val:.3f}  |  SAM2 label {sam_label} vs GT bird {gt_id}  |  Low IoU = tracking error"
     cv2.putText(caption, caption_text, (14, 34), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (200, 220, 255), 2)
 
     final = np.vstack([combined, caption])
@@ -205,5 +194,4 @@ for rec in selected:
     print(f"  Saved: {fname.name}")
     saved += 1
 
-cap.release()
 print(f"\nDone — {saved} images saved to {OUT_DIR}")
