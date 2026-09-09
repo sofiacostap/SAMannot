@@ -1,0 +1,82 @@
+{
+  "all_frames": {
+    "rows": 15252,
+    "evaluated": 14410,
+    "statuses": {
+      "evaluated": 13346,
+      "gt_absent_prediction_present": 481,
+      "both_absent": 317,
+      "missing_prediction": 1064,
+      "gt_file_missing": 44
+    },
+    "mean_iou": 0.3301830708977318,
+    "error_rate": 0.6068008327550313
+  },
+  "excluding_identity_calibration_frames": {
+    "rows": 15228,
+    "evaluated": 14389,
+    "statuses": {
+      "evaluated": 13325,
+      "gt_absent_prediction_present": 478,
+      "both_absent": 317,
+      "missing_prediction": 1064,
+      "gt_file_missing": 44
+    },
+    "mean_iou": 0.32998506076672823,
+    "error_rate": 0.6070609493362986
+  },
+  "by_bird": {
+    "darkest": {
+      "rows": 3807,
+      "evaluated": 3567,
+      "statuses": {
+        "evaluated": 3560,
+        "gt_absent_prediction_present": 222,
+        "missing_prediction": 7,
+        "both_absent": 7,
+        "gt_file_missing": 11
+      },
+      "mean_iou": 0.32917004732263316,
+      "error_rate": 0.6156433978132885
+    },
+    "brownish": {
+      "rows": 3807,
+      "evaluated": 3726,
+      "statuses": {
+        "evaluated": 3690,
+        "gt_absent_prediction_present": 68,
+        "both_absent": 2,
+        "missing_prediction": 36,
+        "gt_file_missing": 11
+      },
+      "mean_iou": 0.3542885712860239,
+      "error_rate": 0.5748792270531401
+    },
+    "orange": {
+      "rows": 3807,
+      "evaluated": 3341,
+      "statuses": {
+        "evaluated": 3189,
+        "gt_absent_prediction_present": 182,
+        "both_absent": 273,
+        "missing_prediction": 152,
+        "gt_file_missing": 11
+      },
+      "mean_iou": 0.31251687132346995,
+      "error_rate": 0.6530978748877582
+    },
+    "spotted": {
+      "rows": 3807,
+      "evaluated": 3755,
+      "statuses": {
+        "evaluated": 2886,
+        "missing_prediction": 869,
+        "gt_absent_prediction_present": 6,
+        "both_absent": 35,
+        "gt_file_missing": 11
+      },
+      "mean_iou": 0.3221857248652947,
+      "error_rate": 0.5898801597869507
+    }
+  }
+}

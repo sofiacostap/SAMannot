@@ -1,0 +1,20 @@
+{
+  "sam_count": 3813,
+  "gt_count": 3802,
+  "frames_count": 3802,
+  "gt_missing_sam": [],
+  "sam_without_gt": [
+    3802,
+    3803,
+    3804,
+    3805,
+    3806,
+    3807,
+    3808,
+    3809,
+    3810,
+    3811,
+    3812
+  ],
+  "gt_missing_background": []
+}

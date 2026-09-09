@@ -1,0 +1,37 @@
+{
+  "status": "completed_provisional",
+  "limitations": [
+    "Historical masks: generating code/current_block provenance not certified.",
+    "Equal numeric filenames assumed to identify corresponding FRAMES and video images; visual review required.",
+    "Identity mapping calibrated on prompt masks; proposal requires review.",
+    "No recoverable raw logits: B and historical three-signal combined scores are not recomputed.",
+    "Raw target GT pixels retained; GT absence is not scored as successful tracking."
+  ],
+  "inputs": {
+    "session": {
+      "path": "/media/hbvcai/HBVCSSD/samannot/Session_Lek4_baseline.pkl",
+      "sha256": "51acbf5900bb3cf12fad50e262331d5ae3c16600cf3ec1136ccea74a7e0fa63c"
+    },
+    "legacy_quality": {
+      "path": "/media/hbvcai/HBVCSSD/samannot/headless_output_lek4_v2/headless_window16_quality_scores.csv",
+      "sha256": "1fa618a682f7299c8f24cd2c930965e1ea7d74b152c5f54da0a44c9eea4eeae4"
+    },
+    "masks": "/media/hbvcai/HBVCSSD/samannot/headless_output_lek4_v2",
+    "gt": "/media/hbvcai/HATTER 4TB/MPI_data/MaxPlanckData/ruffs_2022/males_annotation/test_data/GT_MIVOS/cut_Lek4_right_2021_604_00-00-00_00-02-32/upscaled_masks",
+    "frames": "/media/hbvcai/HATTER 4TB/MPI_data/MaxPlanckData/ruffs_2022/males_annotation/test_data/FRAMES/cut_Lek4_right_2021_604_00-00-00_00-02-32",
+    "legacy_iou": {
+      "path": "/media/hbvcai/HBVCSSD/samannot/iou_validation_v4/iou_per_frame.csv",
+      "sha256": "76ab36f3ec7ec20f2f2b1888063074f562bbed7f274d7fb0c6193c1b72dac9b1"
+    }
+  },
+  "mapping": {
+    "1": 75,
+    "2": 113,
+    "3": 38,
+    "4": 14
+  },
+  "mapping_margin": 0.15202840308772297,
+  "mask_gt_content_digest": "cf376aeff2d0cd8cdeac7a3097f3235a184c5c409f871c29b31a423fc1389b27",
+  "score_definition": "Chronological A reset at block/gaps; spatial reference C; AC equal weights; no B",
+  "source_sha256": "7452ab8bf81a27a1300bdb563457a1ea89d221a104b62668169f0e88a2988d0b"
+}

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="430"><rect width="100%" height="100%" fill="white"/>
+<text x="40" y="25">Provisional fixed-identity IoU by signed distance from prompt (50-frame bins)</text>
+<path d="M60 50 V350 H960" fill="none" stroke="black"/>
+<text x="360" y="410">Frames from annotation (negative = before)</text>
+<polyline points="60.0,350.0 120.0,217.9 180.0,197.6 240.0,177.1 300.0,175.4 360.0,205.2 420.0,223.5 480.0,200.7 540.0,219.6 600.0,257.7 660.0,250.3 720.0,291.8 780.0,319.4 840.0,327.6 900.0,319.0 960.0,291.9" fill="none" stroke="#c44" stroke-width="2"/>
+<text x="80" y="380" fill="#c44">brownish</text>
+<polyline points="120.0,204.2 180.0,229.1 240.0,237.7 300.0,261.2 360.0,232.1 420.0,222.6 480.0,252.6 540.0,228.8 600.0,235.7 660.0,244.3 720.0,271.1 780.0,270.3 840.0,284.6 900.0,300.4 960.0,277.1" fill="none" stroke="#087" stroke-width="2"/>
+<text x="300" y="380" fill="#087">darkest</text>
+<polyline points="60.0,230.2 120.0,216.4 180.0,221.6 240.0,229.4 300.0,215.3 360.0,272.6 420.0,255.3 480.0,273.0 540.0,226.3 600.0,282.2 660.0,285.8 720.0,264.6 780.0,271.3 840.0,297.8 900.0,272.1 960.0,282.7" fill="none" stroke="#36c" stroke-width="2"/>
+<text x="520" y="380" fill="#36c">orange</text>
+<polyline points="60.0,350.0 120.0,263.0 180.0,231.9 240.0,250.0 300.0,239.9 360.0,233.3 420.0,244.4 480.0,256.0 540.0,226.0 600.0,225.9 660.0,242.5 720.0,271.6 780.0,286.2 840.0,284.1 900.0,277.3 960.0,264.8" fill="none" stroke="#a70" stroke-width="2"/>
+<text x="740" y="380" fill="#a70">spotted</text>
+<text x="60.0" y="366">-50</text>
+<text x="120.0" y="366">0</text>
+<text x="960.0" y="366">700</text>
+<text x="25" y="55">1.0</text><text x="25" y="350">0.0</text>
+</svg>

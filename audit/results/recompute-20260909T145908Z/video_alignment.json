@@ -1,0 +1,112 @@
+{
+  "status": "requires_visual_review",
+  "video": "/media/hbvcai/HATTER_4TB/MPI_data/MaxPlanckData/ruffs_2022/males_annotation/test_data/vids/cut_Lek4_right_2021_604_a_lek_00_00_00_to_00_02_32.mp4",
+  "reported_frame_count": 3814,
+  "samples": [
+    {
+      "frame": 0,
+      "video_shape": [
+        1520,
+        2688,
+        3
+      ],
+      "frames_shape": [
+        1520,
+        2688,
+        3
+      ],
+      "mean_absolute_pixel_difference": 0.0,
+      "max_pixel_difference": 0
+    },
+    {
+      "frame": 750,
+      "video_shape": [
+        1520,
+        2688,
+        3
+      ],
+      "frames_shape": [
+        1520,
+        2688,
+        3
+      ],
+      "mean_absolute_pixel_difference": 0.5700240183792815,
+      "max_pixel_difference": 187
+    },
+    {
+      "frame": 1500,
+      "video_shape": [
+        1520,
+        2688,
+        3
+      ],
+      "frames_shape": [
+        1520,
+        2688,
+        3
+      ],
+      "mean_absolute_pixel_difference": 0.688733226294904,
+      "max_pixel_difference": 191
+    },
+    {
+      "frame": 2251,
+      "video_shape": [
+        1520,
+        2688,
+        3
+      ],
+      "frames_shape": [
+        1520,
+        2688,
+        3
+      ],
+      "mean_absolute_pixel_difference": 1.0158280629960317,
+      "max_pixel_difference": 182
+    },
+    {
+      "frame": 3000,
+      "video_shape": [
+        1520,
+        2688,
+        3
+      ],
+      "frames_shape": [
+        1520,
+        2688,
+        3
+      ],
+      "mean_absolute_pixel_difference": 3.9584573412698414,
+      "max_pixel_difference": 163
+    },
+    {
+      "frame": 3750,
+      "video_shape": [
+        1520,
+        2688,
+        3
+      ],
+      "frames_shape": [
+        1520,
+        2688,
+        3
+      ],
+      "mean_absolute_pixel_difference": 1.4236212275480367,
+      "max_pixel_difference": 211
+    },
+    {
+      "frame": 3801,
+      "video_shape": [
+        1520,
+        2688,
+        3
+      ],
+      "frames_shape": [
+        1520,
+        2688,
+        3
+      ],
+      "mean_absolute_pixel_difference": 3.4914158769319132,
+      "max_pixel_difference": 213
+    }
+  ]
+}

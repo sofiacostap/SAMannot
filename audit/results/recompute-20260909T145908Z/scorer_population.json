@@ -1,0 +1,5 @@
+{
+  "eligible_noncalibration": 14389,
+  "common_ac_population": 14328,
+  "note": "Exploratory in-sample calibration, not held-out performance. B omitted because raw logits are unavailable."
+}
