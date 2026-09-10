@@ -220,7 +220,7 @@ def summarize(rows):
                 error_rate=float(np.mean([r['is_error'] for r in valid])) if valid else None)
 
 
-def proof(path, raw_path, sam, gt, index, bird, caption):
+def proof(path, raw_path, sam, gt, index, bird, caption, prompts=None):
     with Image.open(raw_path) as image:
         raw = image.convert('RGB')
     if (raw.height, raw.width) != sam.shape or gt.shape != sam.shape:
@@ -233,7 +233,12 @@ def proof(path, raw_path, sam, gt, index, bird, caption):
         panels.append(Image.fromarray(panel).resize((672, 380)))
     result = Image.new('RGB', (1344, 415), 'white')
     result.paste(panels[0], (0, 35)); result.paste(panels[1], (672, 35))
-    ImageDraw.Draw(result).text((8, 8), caption + ' | prediction (left), raw GT (right)', fill='black')
+    draw=ImageDraw.Draw(result)
+    draw.text((8, 8), caption + ' | prediction (left), raw GT (right)', fill='black')
+    for point in prompts or []:
+        x,y=point['x']*672/raw.width,35+point['y']*380/raw.height
+        for shift in [0,672]:
+            draw.ellipse((x+shift-5,y-5,x+shift+5,y+5),outline='yellow' if point['positive'] else 'cyan',width=2)
     result.save(path, quality=90)
 
 
@@ -306,6 +311,39 @@ def check_video(video, raw_files, sample_frames, output):
     return result
 
 
+def load_correspondence(directory, raw_files):
+    """Validate a complete, unique mapping; return video -> FRAMES index."""
+    directory=Path(directory)
+    verification=json.loads((directory/'verification.json').read_text())
+    rows=json.loads((directory/'frame_mapping.json').read_text())
+    if verification.get('status')!='verified_image_correspondence':
+        raise ValueError('Correspondence has unresolved images; review it before evaluation')
+    result={};seen=set();last_video=-1
+    for row in sorted(rows,key=lambda r:r['frames_index']):
+        frame,video=row['frames_index'],row['video_index']
+        if row['status']!='unique_exact' or video is None or row['candidate_video_indices']!=[video]:
+            raise ValueError('Non-unique correspondence entry')
+        if frame in seen or video in result or video<=last_video:
+            raise ValueError('Duplicate/nonmonotonic correspondence')
+        seen.add(frame);result[video]=frame;last_video=video
+    if seen!=set(raw_files):
+        raise ValueError('FRAMES inventory differs from verified correspondence')
+    # Recheck actual input image pixels; never apply a stale map to changed files.
+    from verify_correspondence import fingerprint
+    for number,row in enumerate(rows,1):
+        with Image.open(raw_files[row['frames_index']]) as image:
+            if fingerprint(np.asarray(image.convert('RGB')))!=row['rgb_sha256']:
+                raise ValueError(f"FRAMES image changed: {row['frames_index']}")
+        if number%250==0:
+            print(f'Verifying mapped FRAMES inputs: {number}/{len(rows)}',flush=True)
+    return result,verification
+
+
+def missing_file_observation(gt_area):
+    return dict(iou=None,is_error=None,status='prediction_file_missing',
+                pred_area=None,gt_area=gt_area)
+
+
 def run(args):
     output = args.output.resolve()
     workspace = args.workspace.resolve()
@@ -314,7 +352,7 @@ def run(args):
     output.mkdir(parents=True, exist_ok=False)
     manifest = dict(status='in_progress', limitations=[
         'Historical masks: generating code/current_block provenance not certified.',
-        'Equal numeric filenames assumed to identify corresponding FRAMES and video images; visual review required.',
+        'Historical prediction filenames are interpreted as video indices, based on inspected export code; historical run provenance remains uncertain.',
         'Identity mapping calibrated on prompt masks; proposal requires review.',
         'No recoverable raw logits: B and historical three-signal combined scores are not recomputed.',
         'Raw target GT pixels retained; GT absence is not scored as successful tracking.'], inputs={})
@@ -322,6 +360,24 @@ def run(args):
         session = load_session(args.session)
         write_json(output/'session.json', session)
         sam_files, gt_files, raw_files = indexed(args.masks), indexed(args.gt), indexed(args.frames)
+        correspondence=getattr(args,'correspondence',None)
+        if correspondence is not None:
+            video_to_gt,verified=load_correspondence(correspondence,raw_files)
+            if set(gt_files)!=set(raw_files):
+                raise ValueError('GT and FRAMES inventories differ; resolve coverage before evaluation')
+            if getattr(args,'video',None) is None or sha(args.video)!=verified['video_file_sha256']:
+                raise ValueError('Video file differs from verified correspondence or was not supplied')
+            gt_files={v:gt_files[g] for v,g in video_to_gt.items()}
+            raw_files={v:raw_files[g] for v,g in video_to_gt.items()}
+            manifest['correspondence']=dict(path=str(Path(correspondence).resolve()),
+                mapping_sha256=sha(Path(correspondence)/'frame_mapping.json'),
+                video_sha256=verified['video_file_sha256'],
+                verified_pairs=len(video_to_gt),prediction_index_basis='video_index_from_inspected_exporter')
+            manifest['index_convention']='frame_idx and block ownership are video indices; gt_frame_idx is the mapped FRAMES index'
+        else:
+            # Kept for synthetic tests only. Production CLI requires correspondence.
+            video_to_gt={v:v for v in gt_files}
+            manifest['index_convention']='Synthetic identity mapping; not for the historical Lek4 evaluation'
         coverage = dict(sam_count=len(sam_files), gt_count=len(gt_files), frames_count=len(raw_files),
                         gt_missing_sam=sorted(set(gt_files)-set(sam_files)),
                         sam_without_gt=sorted(set(sam_files)-set(gt_files)),
@@ -355,12 +411,33 @@ def run(args):
             duplicate_rows=sum(n-1 for n in keys.values()), duplicate_keys=[list(k)+[n] for k,n in keys.items() if n>1],
             logit_distribution=dict(Counter(r.get('logit_score','') for r in legacy))))
         candidates, calibration, margin = calibrate(sam_files, gt_files, session, args.gt_ids)
+        for pair in calibration:
+            pair['video_frame_idx']=pair['frame']
+            pair['gt_frame_idx']=video_to_gt.get(pair['frame'])
         write_json(output/'video_alignment.json', check_video(getattr(args,'video',None), raw_files,
                    set(session['best'].values()) | {min(gt_files),max(gt_files)}, output))
         write_json(output/'mapping_proposal.json', dict(candidates=candidates, margin=margin,
             session_palette_order=session['names'], supplied_name_to_gt={'darkest':14,'brownish':38,'orange':75,'spotted':113}))
         write_csv(output/'calibration_pairs.csv', calibration)
         mapping = candidates[0]['mapping']
+        block_identity=[];click_evidence=[]
+        for block,frame in session['best'].items():
+            per_label={i:next((r['iou'] for r in calibration if r['frame']==frame and r['sam2_label']==i and r['gt_bird_id']==mapping[i]),None) for i in range(1,5)}
+            block_identity.append(dict(block_id=block,annotation_video_frame=frame,
+                annotation_gt_frame=video_to_gt.get(frame),proposed_mapping_iou=per_label,
+                needs_review=any(value is None or value<.5 for value in per_label.values())))
+            if frame in gt_files and frame in sam_files:
+                annotation_gt=gt_labels(gt_files[frame]);annotation_sam=sam_labels(sam_files[frame])
+                for point in session['prompts']:
+                    if point['abs_frame']!=frame: continue
+                    x,y=round(point['x']),round(point['y'])
+                    inside=0<=x<annotation_gt.shape[1] and 0<=y<annotation_gt.shape[0]
+                    click_evidence.append(dict(point,gt_frame_idx=video_to_gt.get(frame),
+                        gt_id_at_rounded_click=int(annotation_gt[y,x]) if inside else None,
+                        exported_palette_at_rounded_click=int(annotation_sam[y,x]) if inside else None))
+        write_json(output/'identity_review.json',dict(status='requires_human_review',blocks=block_identity,
+            click_evidence=click_evidence,
+            note='Even an aggregate mapping with a strong margin does not certify identity consistency in each block.'))
         manifest['mapping'] = mapping
         manifest['mapping_margin'] = margin
         for frame in session['best'].values():
@@ -368,14 +445,13 @@ def run(args):
                 sam, gt = sam_labels(sam_files[frame]), gt_labels(gt_files[frame])
                 for index, name in enumerate(session['names'], 1):
                     proof(output/f'calibration_{frame:06d}_label{index}.jpg', raw_files[frame],
-                          sam, gt, index, mapping[index], f'IDENTITY PROPOSAL frame {frame}, {name}, GT {mapping[index]}')
+                          sam, gt, index, mapping[index], f'IDENTITY PROPOSAL video {frame} / GT frame {video_to_gt[frame]}, {name}, GT bird {mapping[index]}',
+                          prompts=[p for p in session['prompts'] if p['abs_frame']==frame and p['sam2_label']==index])
         # Ambiguous mapping still yields evidence, but no misleading chosen-identity metrics.
         if margin < .05 or min(candidates[0]['per_label_iou']) < .2:
             manifest['status'] = 'needs_identity_review'
             return
-        if coverage['gt_missing_sam']:
-            manifest['status'] = 'missing_mask_files'
-            return
+        manifest['missing_prediction_files_policy']='Retain explicit missing-file rows, exclude unknown masks from IoU; report incomplete export coverage. Empty masks in existing files still count as misses for GT-present birds.'
         refs = {}
         for block, frame in session['best'].items():
             if frame not in sam_files:
@@ -387,13 +463,12 @@ def run(args):
         proof_count = 0
         all_frames = sorted(set(sam_files) | set(gt_files))
         for position, frame in enumerate(all_frames):
-            if frame not in sam_files:
-                continue
-            sam = sam_labels(sam_files[frame])
             gt = gt_labels(gt_files[frame]) if frame in gt_files else None
-            input_hash.update(f'{frame}:sam:{sha(sam_files[frame])}\n'.encode())
+            file_missing=frame not in sam_files
+            sam = sam_labels(sam_files[frame]) if not file_missing else None
+            input_hash.update(f'{frame}:sam:{sha(sam_files[frame]) if not file_missing else "MISSING"}\n'.encode())
             if gt is not None:
-                if sam.shape != gt.shape:
+                if sam is not None and sam.shape != gt.shape:
                     raise ValueError(f'Frame {frame}: unequal mask dimensions; no automatic resizing')
                 input_hash.update(f'{frame}:gt:{sha(gt_files[frame])}\n'.encode())
                 unexpected = set(int(v) for v in np.unique(gt))-set(args.gt_ids)-{0}
@@ -405,25 +480,26 @@ def run(args):
             prompt = session['best'][block]
             adjacent = previous_frame == frame-1 and previous_frame//session['block_size']==block
             for index, name in enumerate(session['names'], 1):
-                mask = sam == index
-                a, area, ratio, jump, reason = continuity(mask, previous == index if adjacent else None)
+                mask = sam == index if sam is not None else None
+                a, area, ratio, jump, reason = continuity(mask, previous == index if adjacent else None) if mask is not None else (None,None,None,None,'prediction_file_missing')
                 ref = refs[block] == index
-                c = overlap(mask, ref) if ref.any() else None
+                c = overlap(mask, ref) if mask is not None and ref.any() else None
                 # Equal-weight AC is a newly defined score, explicitly not the historical ABC score.
                 ac = .5*a+.5*c if a is not None and c is not None else None
-                truth = observation(mask, gt == mapping[index]) if gt is not None else dict(iou=None,is_error=None,status='gt_file_missing',pred_area=area,gt_area=None)
-                row = dict(frame_idx=frame, block_id=block, local_frame=frame%session['block_size'],
+                truth = missing_file_observation(int(np.count_nonzero(gt==mapping[index])) if gt is not None else None) if file_missing else observation(mask, gt == mapping[index]) if gt is not None else dict(iou=None,is_error=None,status='gt_file_missing',pred_area=area,gt_area=None)
+                row = dict(frame_idx=frame, video_frame_idx=frame,gt_frame_idx=video_to_gt.get(frame),block_id=block, local_frame=frame%session['block_size'],
                     label=name, sam2_label=index, gt_bird_id=mapping[index], annotation_frame=prompt,
+                    annotation_gt_frame=video_to_gt.get(prompt),
                     distance_from_prompt=frame-prompt, is_calibration_frame=int(frame in session['best'].values()),
                     **truth, continuity_score=a, ref_iou_score=c, ac_score=ac,
                     area_ratio=ratio, centroid_jump=jump, reason=reason,
                     gt_has_other_ids=int(bool(unexpected)), gt_tiny_target=int(0 < (truth['gt_area'] or 0) < 50))
                 records.append(row)
-                if frame in sample_frames and frame in raw_files and proof_count < 32:
+                if not file_missing and frame in sample_frames and frame in raw_files and proof_count < 32:
                     proof(output/f'proof_{frame:06d}_label{index}.jpg',raw_files[frame],sam,gt if gt is not None else np.zeros_like(sam),index,mapping[index],
-                          f'PROVISIONAL frame {frame}, {name}, GT {mapping[index]}, IoU {truth["iou"]}')
+                          f'PROVISIONAL video {frame} / GT frame {video_to_gt[frame]}, {name}, GT bird {mapping[index]}, IoU {truth["iou"]}')
                     proof_count += 1
-            previous, previous_frame = sam, frame
+            previous, previous_frame = sam, frame if sam is not None else None
             if position % 250 == 0:
                 print(f'Processed {position}/{len(all_frames)} image indices', flush=True)
         write_csv(output/'recomputed.csv', records)
@@ -461,6 +537,7 @@ def main():
     p.add_argument('--gt-ids', type=int, nargs=4, default=[14,38,75,113])
     p.add_argument('--video', type=Path, help='Optional source video for alignment diagnostics')
     p.add_argument('--legacy-iou', type=Path, help='Historical IoU CSV to audit and preserve for comparison')
+    p.add_argument('--correspondence',type=Path,required=True,help='Directory containing verified frame_mapping.json and verification.json')
     args = p.parse_args()
     if len(set(args.gt_ids)) != 4:
         p.error('GT IDs must be unique')

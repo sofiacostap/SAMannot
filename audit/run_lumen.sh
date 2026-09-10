@@ -18,10 +18,12 @@ if [[ ! -f "$SESSION_PATH" ]]; then
     echo "Session_Lek4_baseline.pkl not found in the two documented locations. Paste this message back."
     exit 1
 fi
-RUN_DIR="$AUDIT_DIR/results/recompute-$(date -u +%Y%m%dT%H%M%SZ)"
+CORRESPONDENCE_DIR="$AUDIT_DIR/results/recompute-20260909T145908Z-full-correspondence"
+RUN_DIR="$AUDIT_DIR/results/aligned-$(date -u +%Y%m%dT%H%M%SZ)"
 python -m unittest discover -s "$AUDIT_DIR" -p 'test_*.py'
 python "$AUDIT_DIR/recompute.py" \
     --workspace "$WORKSPACE_DIR" \
+    --correspondence "$CORRESPONDENCE_DIR" \
     --session "$SESSION_PATH" \
     --masks "$DATA_ROOT/headless_output_lek4_v2" \
     --gt "$GT_ROOT/GT_MIVOS/$CLIP/upscaled_masks" \

@@ -1,5 +1,17 @@
 # Corrected recomputation workflow
 
+## Update: verified frame correspondence is now required
+
+The production command now requires `--correspondence` pointing to the verified full-correspondence directory. `run_lumen.sh` supplies it and writes a new `aligned-TIMESTAMP` result folder. Original files are not renamed or edited. The evaluator rechecks FRAMES pixel fingerprints and the video file hash before using the mapping; uncertain or duplicate mappings are rejected.
+
+Prediction filenames and annotation/block indices remain on the video timeline. GT/FRAMES files are paired through the verified table: FRAMES 0–2 map to video 0–2; FRAMES 3–3801 map to video 15–3813. This rule is loaded from evidence, not hard-coded into evaluation. Output rows include `video_frame_idx`, `gt_frame_idx`, and `annotation_gt_frame`; `frame_idx` remains a video index for compatibility. Annotation video frame 750, for example, is checked against GT frame 738. GT frame 750 is evaluated against prediction video frame 762.
+
+The expected final missing prediction file produces four explicit `prediction_file_missing` rows with unavailable IoU. It is an export gap, not an observed empty mask. Empty bird masks in existing prediction files still receive IoU zero for GT-present birds. Video frames with no GT correspondence remain explicit unscored rows. Coverage totals must accompany any resulting accuracy figure.
+
+Identity calibration now uses aligned annotation images and records every block's proposed-pair IoUs. `identity_review.json` also reports GT and predicted IDs at rounded manual click coordinates. Calibration JPGs display the original click (yellow positive, cyan negative). These are evidence for human review, not automatic correction of bird identities or GT. Even a strong aggregate mapping is provisional if block identities disagree.
+
+The historical mask filename convention is supported by inspected exporter code, but generating-code provenance is not fully recoverable. The new aligned evaluation continues to report that limitation. Correctly paired source images do not by themselves certify mask quality, GT quality, or label identity.
+
 Run `bash audit/run_lumen.sh` inside the nested audit clone with the existing `samannot` environment active. It runs CPU regression tests, reads the original session/masks/GT/FRAMES, and creates a fresh timestamped folder under `audit/results/`. It does not launch SAM2 or modify the original scripts, masks, or metrics. Temporary test files stay under `audit/.tmp/` on Lumen.
 
 ## Corrections implemented
