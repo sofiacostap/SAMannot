@@ -8,17 +8,20 @@ from types import SimpleNamespace
 from unittest.mock import patch
 import numpy as np
 from PIL import Image
-from check_alignment import run
+from check_alignment import run,coverage
 
 
 class AlignmentTests(unittest.TestCase):
+    def test_coverage_reports_gaps_without_assuming_their_cause(self):
+        self.assertEqual(coverage([0,1,3])['missing_numeric_indices'],[2])
+        self.assertEqual(coverage([])['count'],0)
     def test_recovers_known_one_frame_offset_without_modifying_input(self):
         images=[np.full((20,30,3),value,np.uint8) for value in [10,40,90,150]]
         class Capture:
             def __init__(self,*args): self.position=0
             def isOpened(self): return True
             def get(self,prop): return len(images)
-            def set(self,prop,value): self.position=value
+            def set(self,prop,value): raise AssertionError('Must not seek')
             def read(self):
                 if self.position>=len(images): return False,None
                 value=images[self.position].copy(); self.position+=1
@@ -38,6 +41,8 @@ class AlignmentTests(unittest.TestCase):
             report=json.loads((root/'run-alignment'/'alignment_search.json').read_text())
             self.assertEqual([r['best']['offset_video_minus_frames'] for r in report['samples']],[1,1])
             self.assertEqual([r['exact_video_matches'] for r in report['samples']],[[1],[2]])
+            self.assertEqual(report['video_sequentially_decoded_count'],4)
+            self.assertEqual(report['count_difference_video_minus_frames'],2)
             self.assertEqual((frames/'000000.png').read_bytes(),before)
 
 
