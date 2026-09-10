@@ -1,0 +1,60 @@
+{
+  "status": "verified_image_correspondence",
+  "video": "/media/hbvcai/HATTER_4TB/MPI_data/MaxPlanckData/ruffs_2022/males_annotation/test_data/vids/cut_Lek4_right_2021_604_a_lek_00_00_00_to_00_02_32.mp4",
+  "frame_source": "/media/hbvcai/HATTER 4TB/MPI_data/MaxPlanckData/ruffs_2022/males_annotation/test_data/FRAMES/cut_Lek4_right_2021_604_00-00-00_00-02-32",
+  "method": "SHA-256 of RGB shape and full decoded pixel bytes; sequential decode, no seeking",
+  "source_sha256": "a393f6ee1410e2a504a7262d2afa43e1330e9d312ac27c28504045d2c8acf8aa",
+  "limitations": [
+    "Pixel identity establishes image correspondence, not why frames were omitted.",
+    "Duplicate images retain all candidates and are not assigned automatically.",
+    "Historical SAM PNGs still require verification that their filenames refer to these video indices."
+  ],
+  "frames_count": 3802,
+  "video_reported_count": 3814,
+  "video_decoded_count": 3814,
+  "match_status_counts": {
+    "unique_exact": 3802
+  },
+  "unique_mapping_monotonic": true,
+  "unresolved_frames": [],
+  "constant_offset_intervals": [
+    {
+      "frames_first": 0,
+      "frames_last": 2,
+      "video_first": 0,
+      "video_last": 2,
+      "offset": 0
+    },
+    {
+      "frames_first": 3,
+      "frames_last": 3801,
+      "video_first": 15,
+      "video_last": 3813,
+      "offset": 12
+    }
+  ],
+  "video_indices_without_any_identical_FRAMES_image": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "gt_indices_without_frames": [],
+  "frames_indices_without_gt": [],
+  "gt_frames_dimension_mismatch_indices": [],
+  "proposed_video_index_prediction_missing": [
+    {
+      "frames_index": 3801,
+      "video_index": 3813
+    }
+  ],
+  "video_file_sha256": "f6a4c9adb80384e60d3134359aa96a320aead4e3efc40ca5d93e75b6bcfe0d1d"
+}
