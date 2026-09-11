@@ -1,0 +1,32 @@
+{
+  "status": "completed",
+  "experiment": "GT-assisted human reannotation",
+  "annotations_sha256": "77d5f8f14da928eab4ae6458b124ed1ad1c01017b4217e7a8c08e4c810c362fb",
+  "source_directory": "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/results/verified-source-20260911T164528649441Z",
+  "checkpoint_sha256": "2647878d5dfa5098f2f8649825738a9345572bae2d4350a2468587ece47dd318",
+  "config": "sam2.1_hiera_l.yaml",
+  "source_sha256": "e53e6aa973b2283b46c6260598d873af236b4e9bf522a6201fc0ec1535ff9c18",
+  "predictor_sha256": "a95eed6a2e01a1ab10c4c5a7ce058e1b303f660ebd7a27173022e56df30fc14b",
+  "torch": "2.12.0.dev20260408+cu128",
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "window": 16,
+  "direction_method": "Separate states. Later: ascending source indices. Earlier: descending source indices. Both call forward predictor starting at local 0.",
+  "palette_to_gt": {
+    "1": 14,
+    "2": 38,
+    "3": 75,
+    "4": 113
+  },
+  "mask_policy": "Independent per-ID binary masks are authoritative; combined RGB PNG uses higher palette index for overlaps.",
+  "confidence_definition": "Mean sigmoid of positive foreground logits. Empty foreground is unavailable. Not calibrated probability of correctness.",
+  "frames_written": 3814,
+  "completed_blocks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "note": "No GT supplied to predictor. No final IoU or error-rate calculation."
+}
