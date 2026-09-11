@@ -1,0 +1,262 @@
+{
+  "names": [
+    "darkest",
+    "brownish",
+    "orange",
+    "spotted"
+  ],
+  "block_size": 750,
+  "num_blocks": 6,
+  "best": {
+    "0": 0,
+    "1": 750,
+    "2": 1500,
+    "3": 2251,
+    "4": 3000,
+    "5": 3750
+  },
+  "prompts": [
+    {
+      "block_id": 0,
+      "local_frame": 0,
+      "abs_frame": 0,
+      "label": "darkest",
+      "sam2_label": 1,
+      "x": 1558.0,
+      "y": 550.0,
+      "positive": true
+    },
+    {
+      "block_id": 0,
+      "local_frame": 0,
+      "abs_frame": 0,
+      "label": "brownish",
+      "sam2_label": 2,
+      "x": 1625.0,
+      "y": 538.0,
+      "positive": true
+    },
+    {
+      "block_id": 0,
+      "local_frame": 0,
+      "abs_frame": 0,
+      "label": "orange",
+      "sam2_label": 3,
+      "x": 697.0,
+      "y": 892.0,
+      "positive": true
+    },
+    {
+      "block_id": 0,
+      "local_frame": 0,
+      "abs_frame": 0,
+      "label": "spotted",
+      "sam2_label": 4,
+      "x": 2012.0,
+      "y": 666.0,
+      "positive": true
+    },
+    {
+      "block_id": 1,
+      "local_frame": 0,
+      "abs_frame": 750,
+      "label": "darkest",
+      "sam2_label": 1,
+      "x": 1143.0,
+      "y": 700.0,
+      "positive": true
+    },
+    {
+      "block_id": 1,
+      "local_frame": 0,
+      "abs_frame": 750,
+      "label": "brownish",
+      "sam2_label": 2,
+      "x": 1461.0,
+      "y": 527.0,
+      "positive": true
+    },
+    {
+      "block_id": 1,
+      "local_frame": 0,
+      "abs_frame": 750,
+      "label": "orange",
+      "sam2_label": 3,
+      "x": 178.0,
+      "y": 818.0,
+      "positive": true
+    },
+    {
+      "block_id": 1,
+      "local_frame": 0,
+      "abs_frame": 750,
+      "label": "spotted",
+      "sam2_label": 4,
+      "x": 1530.0,
+      "y": 673.0,
+      "positive": true
+    },
+    {
+      "block_id": 2,
+      "local_frame": 0,
+      "abs_frame": 1500,
+      "label": "darkest",
+      "sam2_label": 1,
+      "x": 1403.0,
+      "y": 550.0,
+      "positive": true
+    },
+    {
+      "block_id": 2,
+      "local_frame": 0,
+      "abs_frame": 1500,
+      "label": "brownish",
+      "sam2_label": 2,
+      "x": 993.0,
+      "y": 625.0,
+      "positive": true
+    },
+    {
+      "block_id": 2,
+      "local_frame": 0,
+      "abs_frame": 1500,
+      "label": "orange",
+      "sam2_label": 3,
+      "x": 404.0,
+      "y": 1353.0,
+      "positive": true
+    },
+    {
+      "block_id": 2,
+      "local_frame": 0,
+      "abs_frame": 1500,
+      "label": "spotted",
+      "sam2_label": 4,
+      "x": 1463.0,
+      "y": 581.0,
+      "positive": true
+    },
+    {
+      "block_id": 3,
+      "local_frame": 1,
+      "abs_frame": 2251,
+      "label": "darkest",
+      "sam2_label": 1,
+      "x": 1546.0,
+      "y": 581.0,
+      "positive": true
+    },
+    {
+      "block_id": 3,
+      "local_frame": 1,
+      "abs_frame": 2251,
+      "label": "brownish",
+      "sam2_label": 2,
+      "x": 1517.0,
+      "y": 135.0,
+      "positive": true
+    },
+    {
+      "block_id": 3,
+      "local_frame": 1,
+      "abs_frame": 2251,
+      "label": "orange",
+      "sam2_label": 3,
+      "x": 272.0,
+      "y": 877.0,
+      "positive": true
+    },
+    {
+      "block_id": 3,
+      "local_frame": 1,
+      "abs_frame": 2251,
+      "label": "spotted",
+      "sam2_label": 4,
+      "x": 793.0,
+      "y": 1492.0,
+      "positive": true
+    },
+    {
+      "block_id": 4,
+      "local_frame": 0,
+      "abs_frame": 3000,
+      "label": "darkest",
+      "sam2_label": 1,
+      "x": 1571.0,
+      "y": 554.0,
+      "positive": true
+    },
+    {
+      "block_id": 4,
+      "local_frame": 0,
+      "abs_frame": 3000,
+      "label": "brownish",
+      "sam2_label": 2,
+      "x": 1745.0,
+      "y": 594.0,
+      "positive": true
+    },
+    {
+      "block_id": 4,
+      "local_frame": 0,
+      "abs_frame": 3000,
+      "label": "orange",
+      "sam2_label": 3,
+      "x": 254.0,
+      "y": 924.0,
+      "positive": true
+    },
+    {
+      "block_id": 4,
+      "local_frame": 0,
+      "abs_frame": 3000,
+      "label": "spotted",
+      "sam2_label": 4,
+      "x": 1661.0,
+      "y": 545.0,
+      "positive": true
+    },
+    {
+      "block_id": 5,
+      "local_frame": 0,
+      "abs_frame": 3750,
+      "label": "darkest",
+      "sam2_label": 1,
+      "x": 1551.0,
+      "y": 576.0,
+      "positive": true
+    },
+    {
+      "block_id": 5,
+      "local_frame": 0,
+      "abs_frame": 3750,
+      "label": "brownish",
+      "sam2_label": 2,
+      "x": 1004.0,
+      "y": 549.0,
+      "positive": true
+    },
+    {
+      "block_id": 5,
+      "local_frame": 0,
+      "abs_frame": 3750,
+      "label": "orange",
+      "sam2_label": 3,
+      "x": 305.0,
+      "y": 926.0,
+      "positive": true
+    },
+    {
+      "block_id": 5,
+      "local_frame": 0,
+      "abs_frame": 3750,
+      "label": "spotted",
+      "sam2_label": 4,
+      "x": 1792.0,
+      "y": 570.0,
+      "positive": true
+    }
+  ],
+  "video_name": "/media/hbvcai/HATTER 4TB/MPI_data/MaxPlanckData/ruffs_2022/males_annotation/test_data/vids/cut_Lek4_right_2021_604_a_lek_00_00_00_to_00_02_32.mp4",
+  "session_sha256": "51acbf5900bb3cf12fad50e262331d5ae3c16600cf3ec1136ccea74a7e0fa63c"
+}

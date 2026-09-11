@@ -1,0 +1,112 @@
+{
+  "status": "requires_visual_review",
+  "video": "/media/hbvcai/HATTER_4TB/MPI_data/MaxPlanckData/ruffs_2022/males_annotation/test_data/vids/cut_Lek4_right_2021_604_a_lek_00_00_00_to_00_02_32.mp4",
+  "reported_frame_count": 3814,
+  "samples": [
+    {
+      "frame": 0,
+      "video_shape": [
+        1520,
+        2688,
+        3
+      ],
+      "frames_shape": [
+        1520,
+        2688,
+        3
+      ],
+      "mean_absolute_pixel_difference": 0.0,
+      "max_pixel_difference": 0
+    },
+    {
+      "frame": 750,
+      "video_shape": [
+        1520,
+        2688,
+        3
+      ],
+      "frames_shape": [
+        1520,
+        2688,
+        3
+      ],
+      "mean_absolute_pixel_difference": 1.609995937108396,
+      "max_pixel_difference": 206
+    },
+    {
+      "frame": 1500,
+      "video_shape": [
+        1520,
+        2688,
+        3
+      ],
+      "frames_shape": [
+        1520,
+        2688,
+        3
+      ],
+      "mean_absolute_pixel_difference": 4.0465814601608185,
+      "max_pixel_difference": 248
+    },
+    {
+      "frame": 2251,
+      "video_shape": [
+        1520,
+        2688,
+        3
+      ],
+      "frames_shape": [
+        1520,
+        2688,
+        3
+      ],
+      "mean_absolute_pixel_difference": 1.599945664943609,
+      "max_pixel_difference": 202
+    },
+    {
+      "frame": 3000,
+      "video_shape": [
+        1520,
+        2688,
+        3
+      ],
+      "frames_shape": [
+        1520,
+        2688,
+        3
+      ],
+      "mean_absolute_pixel_difference": 0.7239685313544277,
+      "max_pixel_difference": 180
+    },
+    {
+      "frame": 3750,
+      "video_shape": [
+        1520,
+        2688,
+        3
+      ],
+      "frames_shape": [
+        1520,
+        2688,
+        3
+      ],
+      "mean_absolute_pixel_difference": 0.0,
+      "max_pixel_difference": 0
+    },
+    {
+      "frame": 3813,
+      "video_shape": [
+        1520,
+        2688,
+        3
+      ],
+      "frames_shape": [
+        1520,
+        2688,
+        3
+      ],
+      "mean_absolute_pixel_difference": 0.0,
+      "max_pixel_difference": 0
+    }
+  ]
+}
