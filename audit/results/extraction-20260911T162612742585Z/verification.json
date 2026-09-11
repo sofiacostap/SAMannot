@@ -1,0 +1,121 @@
+{
+  "status": "completed",
+  "video": "/media/hbvcai/HATTER_4TB/MPI_data/MaxPlanckData/ruffs_2022/males_annotation/test_data/vids/cut_Lek4_right_2021_604_a_lek_00_00_00_to_00_02_32.mp4",
+  "opencv": "4.13.0",
+  "source_sha256": "3d872cb1d653e6c880f26d05c702d75f431ab2becb7b091b498729e313fd6b3e",
+  "video_sha256": "f6a4c9adb80384e60d3134359aa96a320aead4e3efc40ca5d93e75b6bcfe0d1d",
+  "limitations": [
+    "Reproduces captured extract_block_frames lines 84-98 before JPEG encoding; does not run SAM2.",
+    "Current decoder behaviour cannot certify historical run provenance.",
+    "Saved coordinates are displayed unchanged; original GUI coordinate transforms still need review."
+  ],
+  "backend": "FFMPEG",
+  "sequential_count": 3814,
+  "match_counts": {
+    "unique_exact": 3824
+  },
+  "blocks": [
+    {
+      "block": 0,
+      "offset_counts": {
+        "0": 752
+      },
+      "annotation": [
+        {
+          "block": 0,
+          "intended_video_index": 0,
+          "actual_video_index": 0,
+          "offset": 0,
+          "candidates": "0",
+          "seek_return": true,
+          "status": "unique_exact"
+        }
+      ]
+    },
+    {
+      "block": 1,
+      "offset_counts": {
+        "11": 752
+      },
+      "annotation": [
+        {
+          "block": 1,
+          "intended_video_index": 750,
+          "actual_video_index": 761,
+          "offset": 11,
+          "candidates": "761",
+          "seek_return": true,
+          "status": "unique_exact"
+        }
+      ]
+    },
+    {
+      "block": 2,
+      "offset_counts": {
+        "9": 752
+      },
+      "annotation": [
+        {
+          "block": 2,
+          "intended_video_index": 1500,
+          "actual_video_index": 1509,
+          "offset": 9,
+          "candidates": "1509",
+          "seek_return": true,
+          "status": "unique_exact"
+        }
+      ]
+    },
+    {
+      "block": 3,
+      "offset_counts": {
+        "6": 752
+      },
+      "annotation": [
+        {
+          "block": 3,
+          "intended_video_index": 2251,
+          "actual_video_index": 2257,
+          "offset": 6,
+          "candidates": "2257",
+          "seek_return": true,
+          "status": "unique_exact"
+        }
+      ]
+    },
+    {
+      "block": 4,
+      "offset_counts": {
+        "3": 752
+      },
+      "annotation": [
+        {
+          "block": 4,
+          "intended_video_index": 3000,
+          "actual_video_index": 3003,
+          "offset": 3,
+          "candidates": "3003",
+          "seek_return": true,
+          "status": "unique_exact"
+        }
+      ]
+    },
+    {
+      "block": 5,
+      "offset_counts": {
+        "0": 64
+      },
+      "annotation": [
+        {
+          "block": 5,
+          "intended_video_index": 3750,
+          "actual_video_index": 3750,
+          "offset": 0,
+          "candidates": "3750",
+          "seek_return": true,
+          "status": "unique_exact"
+        }
+      ]
+    }
+  ]
+}
