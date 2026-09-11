@@ -14,39 +14,39 @@
   "label_policy": "Numeric GT identities only; original descriptive names are not assumed.",
   "blocks": {
     "0": {
-      "video_frame": 324,
-      "gt_frame": 312,
-      "local_frame": 324,
+      "video_frame": 449,
+      "gt_frame": 437,
+      "local_frame": 449,
       "points": [
         {
           "gt_id": 14,
-          "x": 1623.7999135847392,
-          "y": 539.9055493579098,
+          "x": 1652.9002704590177,
+          "y": 562.8946837364127,
           "positive": true
         },
         {
           "gt_id": 38,
-          "x": 855.5504921037874,
-          "y": 161.60304579074165,
+          "x": 2013.744695700071,
+          "y": 562.8946837364127,
           "positive": true
         },
         {
           "gt_id": 75,
-          "x": 1425.9174868396456,
-          "y": 510.80535677581986,
+          "x": 1542.3189143367595,
+          "y": 510.51433708865096,
           "positive": true
         },
         {
           "gt_id": 113,
-          "x": 1594.699556710461,
-          "y": 481.70516419373,
+          "x": 1641.2601277093065,
+          "y": 516.334375605069,
           "positive": true
         }
       ],
-      "gt_sha256": "fb52efadd7f5d5e6351842ae4b97e5675d39e37a8fbbbf3ddc8be302c90c35c2",
-      "rgb_sha256": "f85a905a9d62e54a869839be0d803f3f0aefb6e77d0235c470c4e009a6d5e7fd",
+      "gt_sha256": "45057c2a14f932625bf4dceb665297adcbc9bb732aec8e376eefba63b2817608",
+      "rgb_sha256": "2b747980dfe96d171580343a8f24e5bf9d9f90750c8f0552401e66a5cca8a4c7",
       "human_reviewed": true,
-      "reviewed_at": "2026-09-11T17:26:29.220816+00:00"
+      "reviewed_at": "2026-09-11T17:52:05.642802+00:00"
     },
     "1": {
       "video_frame": 1124,
