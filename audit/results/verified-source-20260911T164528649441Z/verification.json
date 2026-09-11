@@ -1,0 +1,25 @@
+{
+  "status": "verified",
+  "video": "/media/hbvcai/HATTER_4TB/MPI_data/MaxPlanckData/ruffs_2022/males_annotation/test_data/vids/cut_Lek4_right_2021_604_a_lek_00_00_00_to_00_02_32.mp4",
+  "video_sha256": "f6a4c9adb80384e60d3134359aa96a320aead4e3efc40ca5d93e75b6bcfe0d1d",
+  "source_sha256": "1d8dc719a14d7ce4c691c99a8ba30b15cdc24d6e207fd8392e9b563359202081",
+  "opencv": "4.13.0",
+  "frames_directory": "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/results/verified-source-20260911T164528649441Z/frames",
+  "note": "Sequential video indices. Saved clicks are unreviewed session coordinates, not new prompts. No inference or GT edits.",
+  "count": 3814,
+  "gt_matched_count": 3802,
+  "without_gt": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ]
+}
