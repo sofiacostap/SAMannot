@@ -1,0 +1,45 @@
+{
+  "status": "completed_requires_visual_review",
+  "experiment": "GT-assisted human reannotation",
+  "annotations_sha256": "3b0eeda5149992157ccc5d045bb7bcb74792b0ab0476fb1cb21fce624ff39643",
+  "annotations": "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/results/reannotation-20260911T171602510451Z/annotations.json",
+  "checkpoint_sha256": "2647878d5dfa5098f2f8649825738a9345572bae2d4350a2468587ece47dd318",
+  "config": "sam2.1_hiera_l.yaml",
+  "torch": "2.12.0.dev20260408+cu128",
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "predictor_sha256": "a95eed6a2e01a1ab10c4c5a7ce058e1b303f660ebd7a27173022e56df30fc14b",
+  "source_sha256": "b0d9bfb849f442364484abd8973230aa9831f5c49b998bfb7da143827fc66606",
+  "palette_to_gt": {
+    "1": 14,
+    "2": 38,
+    "3": 75,
+    "4": 113
+  },
+  "note": "GT is used for validation and pictures only. Model receives RGB images and reviewed point prompts. No temporal propagation or final IoU evaluation.",
+  "blocks": [
+    {
+      "block": 0,
+      "video_frame": 324
+    },
+    {
+      "block": 1,
+      "video_frame": 1124
+    },
+    {
+      "block": 2,
+      "video_frame": 1874
+    },
+    {
+      "block": 3,
+      "video_frame": 2624
+    },
+    {
+      "block": 4,
+      "video_frame": 3324
+    },
+    {
+      "block": 5,
+      "video_frame": 3781
+    }
+  ]
+}
