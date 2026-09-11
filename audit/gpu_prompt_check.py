@@ -36,7 +36,7 @@ def validate_structure(data):
             raise ValueError('This experiment requires positive clicks')
 
 
-def run(args):
+def validate_inputs(args):
     data=json.loads(args.annotations.read_text());validate_structure(data)
     source=Path(data['source_directory'])
     if sha(source/'verification.json')!=data['source_verification_sha256']:
@@ -62,6 +62,11 @@ def run(args):
         points=validate_points(record['points'],gt)
         prepared.append((int(block),frame,path,gtpath,points))
     print('All 24 clicks and six source/GT pairs passed validation.',flush=True)
+    return data,prepared
+
+
+def run(args):
+    data,prepared=validate_inputs(args)
     repo=Path(__file__).resolve().parent.parent
     sys.path.insert(0,str(repo))
     import torch
