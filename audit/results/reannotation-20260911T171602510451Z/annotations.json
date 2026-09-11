@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "experiment": "GT-assisted human reannotation",
+  "source_directory": "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/results/verified-source-20260911T164528649441Z",
+  "source_verification_sha256": "f0e9d5b9012673aadeb1bcbfed1bd3093e7bbe501ebb3ed4131f5eb4eccb73b5",
+  "block_size": 750,
+  "total_frames": 3814,
+  "gt_ids": [
+    14,
+    38,
+    75,
+    113
+  ],
+  "label_policy": "Numeric GT identities only; original descriptive names are not assumed.",
+  "blocks": {
+    "0": {
+      "video_frame": 324,
+      "gt_frame": 312,
+      "local_frame": 324,
+      "points": [
+        {
+          "gt_id": 14,
+          "x": 1623.7999135847392,
+          "y": 539.9055493579098,
+          "positive": true
+        },
+        {
+          "gt_id": 38,
+          "x": 855.5504921037874,
+          "y": 161.60304579074165,
+          "positive": true
+        },
+        {
+          "gt_id": 75,
+          "x": 1425.9174868396456,
+          "y": 510.80535677581986,
+          "positive": true
+        },
+        {
+          "gt_id": 113,
+          "x": 1594.699556710461,
+          "y": 481.70516419373,
+          "positive": true
+        }
+      ],
+      "gt_sha256": "fb52efadd7f5d5e6351842ae4b97e5675d39e37a8fbbbf3ddc8be302c90c35c2",
+      "rgb_sha256": "f85a905a9d62e54a869839be0d803f3f0aefb6e77d0235c470c4e009a6d5e7fd",
+      "human_reviewed": true,
+      "reviewed_at": "2026-09-11T17:26:29.220816+00:00"
+    },
+    "1": {
+      "video_frame": 1124,
+      "gt_frame": 1112,
+      "local_frame": 374,
+      "points": [
+        {
+          "gt_id": 14,
+          "x": 721.6888504821063,
+          "y": 685.1154925811901,
+          "positive": true
+        },
+        {
+          "gt_id": 38,
+          "x": 308.46378286735194,
+          "y": 970.2973798856707,
+          "positive": true
+        },
+        {
+          "gt_id": 75,
+          "x": 1047.6128474740253,
+          "y": 597.8149148349205,
+          "positive": true
+        },
+        {
+          "gt_id": 113,
+          "x": 1047.6128474740253,
+          "y": 981.9374569185067,
+          "positive": true
+        }
+      ],
+      "gt_sha256": "3a4274846568e9746cb26534cc61b674a78ce46f7804d4126177119b32062e1c",
+      "rgb_sha256": "d4756cb861c5da2f59a71971a2c0b96a713fd451d7163a1931beaa9168d18172",
+      "human_reviewed": true,
+      "reviewed_at": "2026-09-11T17:27:16.933853+00:00"
+    },
+    "2": {
+      "video_frame": 1874,
+      "gt_frame": 1862,
+      "local_frame": 374,
+      "points": [
+        {
+          "gt_id": 14,
+          "x": 1478.298129213347,
+          "y": 628.3701170461148,
+          "positive": true
+        },
+        {
+          "gt_id": 38,
+          "x": 168.7820698708152,
+          "y": 861.1716577028337,
+          "positive": true
+        },
+        {
+          "gt_id": 75,
+          "x": 1484.1182005882026,
+          "y": 535.2495007834274,
+          "positive": true
+        },
+        {
+          "gt_id": 113,
+          "x": 843.910349354076,
+          "y": 674.9304251774587,
+          "positive": true
+        }
+      ],
+      "gt_sha256": "c552042e8968d27fbe032399ebc8e4da254f837cfc274420f84397eb44980f6d",
+      "rgb_sha256": "ae71b5faaa75e6019f12de06ea2b2a6570f8ce546d14e1a7ecf309841552ab07",
+      "human_reviewed": true,
+      "reviewed_at": "2026-09-11T17:28:07.567247+00:00"
+    },
+    "3": {
+      "video_frame": 2624,
+      "gt_frame": 2612,
+      "local_frame": 374,
+      "points": [
+        {
+          "gt_id": 14,
+          "x": 1652.9002704590177,
+          "y": 562.8946837364127,
+          "positive": true
+        },
+        {
+          "gt_id": 38,
+          "x": 168.7820698708152,
+          "y": 743.3158777453698,
+          "positive": true
+        },
+        {
+          "gt_id": 75,
+          "x": 1070.8931329734482,
+          "y": 580.3547992856667,
+          "positive": true
+        },
+        {
+          "gt_id": 113,
+          "x": 1949.7239105766582,
+          "y": 621.0950689005924,
+          "positive": true
+        }
+      ],
+      "gt_sha256": "eea028a886a8c7b99cc0eb1345b8745cf7e9e76d98b754b4ded8c20240a26e20",
+      "rgb_sha256": "09114d837e1d6594fc316fb2b72e2dd9e6007aeaa4c7e5a127dd695efd63128b",
+      "human_reviewed": true,
+      "reviewed_at": "2026-09-11T17:28:58.806860+00:00"
+    },
+    "4": {
+      "video_frame": 3324,
+      "gt_frame": 3312,
+      "local_frame": 324,
+      "points": [
+        {
+          "gt_id": 14,
+          "x": 1623.7999135847392,
+          "y": 539.6145296707408,
+          "positive": true
+        },
+        {
+          "gt_id": 38,
+          "x": 296.82364011764054,
+          "y": 807.3363014259675,
+          "positive": true
+        },
+        {
+          "gt_id": 75,
+          "x": 285.18349736792914,
+          "y": 1022.6777265334324,
+          "positive": true
+        },
+        {
+          "gt_id": 113,
+          "x": 1786.7619120806987,
+          "y": 583.8467896951475,
+          "positive": true
+        }
+      ],
+      "gt_sha256": "3696e7b7780c9068bf6f670ada6ff1fc06993455d2a41649790313e570a44da6",
+      "rgb_sha256": "d8edd5b88f147417650985e069a4a165c6ffe7ad2d469315e6717684cebcf96a",
+      "human_reviewed": true,
+      "reviewed_at": "2026-09-11T17:31:00.522539+00:00"
+    },
+    "5": {
+      "video_frame": 3781,
+      "gt_frame": 3769,
+      "local_frame": 31,
+      "points": [
+        {
+          "gt_id": 14,
+          "x": 1530.6787715870482,
+          "y": 552.4186209015986,
+          "positive": true
+        },
+        {
+          "gt_id": 38,
+          "x": 1222.2149887196963,
+          "y": 540.7785452289169,
+          "positive": true
+        },
+        {
+          "gt_id": 75,
+          "x": 174.6021412456709,
+          "y": 727.0197559918251,
+          "positive": true
+        },
+        {
+          "gt_id": 113,
+          "x": 1780.941840705843,
+          "y": 552.4186209015986,
+          "positive": true
+        }
+      ],
+      "gt_sha256": "36f188eac9752e62d62efe553f57c1824927ba663a5c7c3d2f6feb67f9e3bc1a",
+      "rgb_sha256": "a636acc8ecb4b7442c737ba2e51afadc9ffbe6140ec0e6b3681de6cb26f8714e",
+      "human_reviewed": true,
+      "reviewed_at": "2026-09-11T17:32:02.891562+00:00"
+    }
+  },
+  "status": "ready_for_integration"
+}
