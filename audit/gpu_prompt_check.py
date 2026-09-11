@@ -120,5 +120,6 @@ if __name__=='__main__':
     parser.add_argument('--annotations',required=True,type=Path)
     parser.add_argument('--prior',required=True,type=Path)
     parser.add_argument('--checkpoint',required=True,type=Path)
-    parser.add_argument('--config',default='configs/sam2.1/sam2.1_hiera_l.yaml')
+    # This checkout initializes Hydra with pkg://sam2_configs (sam2/__init__.py).
+    parser.add_argument('--config',default='sam2.1_hiera_l.yaml')
     run(parser.parse_args())
