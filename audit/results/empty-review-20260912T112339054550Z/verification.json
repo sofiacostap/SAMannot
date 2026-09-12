@@ -1,0 +1,19 @@
+{
+  "status": "completed",
+  "propagation": "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/results/propagation-20260911T180552787557Z",
+  "source_sha256": "5e95fef493d5cfcb3e0cde9c56f7e6195972c37b20d826de8da5bd8492d3fdeb",
+  "propagation_report_sha256": "c06da75717e359e419c93314c1cab2052005a7a11dc92c727d67faba82ab0718",
+  "note": "Empty means zero foreground pixels in a saved per-ID mask. A review flag, not a confirmed biological tracking error. No GT needed to detect emptiness.",
+  "issues": [],
+  "empty_records": 1042,
+  "mask_records_checked": 15256,
+  "interval_count": 19,
+  "previews": 97,
+  "empty_by_block": {
+    "0": 534,
+    "1": 24,
+    "2": 75,
+    "3": 139,
+    "4": 270
+  }
+}
