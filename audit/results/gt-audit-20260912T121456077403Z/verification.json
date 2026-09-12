@@ -1,0 +1,36 @@
+{
+  "status": "awaiting_human_review",
+  "source_directory": "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/results/verified-source-20260911T164528649441Z",
+  "gt_directory": "/media/hbvcai/HATTER 4TB/MPI_data/MaxPlanckData/ruffs_2022/males_annotation/test_data/GT_MIVOS/cut_Lek4_right_2021_604_00-00-00_00-02-32/upscaled_masks",
+  "source_sha256": "389b9511bcee536a1e7a445cc752c5b89848014575dea13dda03b736fccb8ba1",
+  "source_verification_sha256": "f0e9d5b9012673aadeb1bcbfed1bd3093e7bbe501ebb3ed4131f5eb4eccb73b5",
+  "limitations": [
+    "Heuristics do not certify GT identity or mask boundaries.",
+    "No GT pixels are modified. No small component is automatically discarded.",
+    "Only selected candidate frames are previewed; all candidate intervals remain in the queue.",
+    "Task 2 stays open until review decisions and uncertain/excluded cases are recorded."
+  ],
+  "gt_frames_scanned": 3802,
+  "candidate_records": 119278,
+  "candidate_counts": {
+    "unexpected_label": 115279,
+    "small_disconnected_regions": 3837,
+    "multiple_substantial_regions": 72,
+    "area_change": 40,
+    "tiny_target_region": 6,
+    "centroid_jump": 43,
+    "previously_reported_case": 1
+  },
+  "review_events": 3420,
+  "previewed_events": 30,
+  "preview_images": 46,
+  "screening_parameters": {
+    "tiny_area": 50,
+    "substantial_component_min_pixels": 50,
+    "substantial_component_fraction": 0.1,
+    "centroid_jump_pixels": 150,
+    "area_ratio": 3,
+    "pairwise_cross_iou_min": 0.2,
+    "pairwise_advantage_min": 0.25
+  }
+}
