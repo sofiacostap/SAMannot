@@ -2,6 +2,22 @@
 
 **NOT COMPLETE: one technical encoding gate remains. No further broad manual review is requested.**
 
+### 15 September source discovery update
+
+The uploaded report `gt-encoding-20260915T074030534574Z/verification.json`
+inspected 13 grayscale masks and found a sibling RGB `upscaled_masks_v2` set.
+No tested conversion reproduced any sampled target exactly. The user believes
+v2 was generated during project work; it is not an independent original reference.
+No evaluation input or exclusion count has changed.
+
+A subsequent directory listing found the sibling clip folder
+`cut_Lek4_right_2021_604_00-00-00_00-02-32_50percent/masks`, outside the first
+check's clip-level search. This is a candidate precursor, not yet certified.
+Pass it to the existing `check_gt_encoding.py --original ".../masks"` option.
+The checker tests native indices, palette/grayscale conversions and resizing;
+any all-sample exact recipe is then checked against every target mask. Use
+`masks`, not `overlayed_masks`: image overlays are not categorical references.
+
 ## Persistent decisions and counts
 
 The versioned `task2_gt_review.json` records the user's confirmations. Frame numbers

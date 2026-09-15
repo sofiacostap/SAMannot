@@ -57,7 +57,7 @@ class EncodingTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
             gt = root / 'clip/upscaled_masks'
-            orig = root / 'clip/original'
+            orig = root / 'clip_50percent/masks'
             audit = root / 'audit'
             for p in (gt, orig, audit):
                 p.mkdir(parents=True)
@@ -67,10 +67,11 @@ class EncodingTests(unittest.TestCase):
                 im.resize((8, 8), Image.Resampling.BILINEAR).save(gt / f'{index}.png')
             (audit / 'verification.json').write_text(json.dumps({'gt_directory': str(gt)}))
             (audit / 'gt_hashes.json').write_text(json.dumps({str(i): sha(gt / f'{i}.png') for i in (0, 1)}))
-            args = SimpleNamespace(audit=audit, workspace=root, output=root / 'result')
+            args = SimpleNamespace(audit=audit, workspace=root, output=root / 'result', original=orig)
             result = run(args)
             self.assertEqual(result['status'], 'exact_reproduction_all_files')
             self.assertEqual(result['full_recipe_check']['counts']['exact'], 2)
+            self.assertEqual(result['explicit_candidate_directory'], str(orig.resolve()))
             Image.new('L', (8, 8), 0).save(gt / '0.png')
             args.output = root / 'changed_result'
             with self.assertRaises(ValueError):

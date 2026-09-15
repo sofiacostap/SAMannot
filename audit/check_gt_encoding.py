@@ -25,11 +25,18 @@ def inventory(root, depth=3):
     result = []
     for base, dirs, files in os.walk(root):
         p = Path(base)
+        dirs[:] = [d for d in dirs if d != '@eaDir' and not d.startswith('.')]
         if len(p.relative_to(root).parts) >= depth:
             dirs[:] = []
         images = [p / f for f in files if Path(f).suffix.lower() in ('.png', '.tif', '.tiff')]
-        if images:
-            result.append((p, {int(f.stem): f for f in images if f.stem.isdigit()}))
+        numeric = {}
+        for f in images:
+            if f.stem.isdigit():
+                if int(f.stem) in numeric:
+                    raise ValueError(f'Duplicate mask index in {p}: {f.stem}')
+                numeric[int(f.stem)] = f
+        if numeric:
+            result.append((p, numeric))
     return result
 
 
@@ -55,6 +62,9 @@ def recipes(path, size):
         cv2 = None
     raw, gray, rgb, _ = load(path)
     sources = {'native': raw, 'pillow_gray': gray, 'rgb': rgb}
+    if cv2:
+        sources['cv2_rgb_gray'] = cv2.cvtColor(rgb, cv2.COLOR_RGB2GRAY)
+        sources['cv2_bgr_gray'] = cv2.cvtColor(rgb, cv2.COLOR_BGR2GRAY)
     for name, src in sources.items():
         methods = [('nearest', cv2.INTER_NEAREST), ('linear', cv2.INTER_LINEAR),
                    ('cubic', cv2.INTER_CUBIC), ('area', cv2.INTER_AREA)] if cv2 else []
@@ -104,12 +114,27 @@ def run(args):
     output = args.output or Path(__file__).resolve().parent / 'results' / ('gt-encoding-' + datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ'))
     output.mkdir()
     folders = inventory(gt.parent)
+    original = getattr(args, 'original', None)
+    if original is not None:
+        original = original.resolve()
+        if not original.is_dir():
+            raise FileNotFoundError(original)
+        extra = inventory(original, depth=0)
+        if not extra:
+            raise ValueError(f'No numerically indexed masks in {original}')
+        folders.extend((p, files) for p, files in extra
+                       if p.resolve() not in {q.resolve() for q, _ in folders})
     target = next((files for p, files in folders if p.resolve() == gt), None)
     if not target:
         raise ValueError('No numerically indexed target masks')
     indices = sorted(set([0, 1, 2, 3, 651, 1739, 437, 1112, 1862, 2612, 3312, 3769, 3801]) & set(target))
     if not indices:
         raise ValueError('Expected sample frame indices missing')
+    if original is not None:
+        original_files = next(files for p, files in folders if p.resolve() == original)
+        missing = sorted(set(indices) - set(original_files))
+        if missing:
+            raise ValueError(f'Explicit source lacks sample indices: {missing}')
     expected_hashes = json.loads((args.audit / 'gt_hashes.json').read_text())
     if set(map(int, expected_hashes)) != set(target):
         raise ValueError('GT inventory changed since audit')
@@ -119,12 +144,13 @@ def run(args):
     except ImportError:
         cv_version = None
     result = dict(status='encoding_investigation', gt_directory=str(gt),
+                  explicit_candidate_directory=str(original) if original else None,
                   source_sha256=sha(Path(__file__)), opencv_version=cv_version,
                   inventory=[dict(directory=str(p), count=len(files), examples=[str(f) for f in list(files.values())[:3]]) for p, files in folders],
                   target_samples=[], candidate_comparisons=[], code_evidence=code_evidence(args.workspace.resolve()),
                   limitations=['A sample match does not certify all masks or reveal the historical command.',
                                'No original masks are modified; no extra values are rounded or reassigned.',
-                               'Search is bounded to the GT clip folder (depth 3) and workspace code (depth 4).'])
+                               'Search is bounded to the GT clip folder (depth 3), explicit candidate folder (depth 0), and workspace code (depth 4).'])
     candidates = [(p, files) for p, files in folders if p.resolve() != gt and all(i in files for i in indices)]
     comparisons = {}
     for index in indices:
@@ -191,4 +217,5 @@ if __name__ == '__main__':
     parser.add_argument('--audit', type=Path, default=Path('audit/results/gt-audit-20260912T121456077403Z'))
     parser.add_argument('--workspace', type=Path, default=Path('/media/hbvcai/HBVCSSD/samannot'))
     parser.add_argument('--output', type=Path, help='New result directory; default stays inside this checkout')
+    parser.add_argument('--original', type=Path, help='Explicit candidate precursor mask folder; provenance is tested, not assumed')
     run(parser.parse_args())
