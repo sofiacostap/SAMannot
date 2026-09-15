@@ -1,0 +1,74 @@
+[
+  {
+    "block_id": 4,
+    "a": 38,
+    "b": 75,
+    "start": 3161,
+    "end": 3233,
+    "length": 73,
+    "minimum_gain": 0.7673273807360173,
+    "decision": "pending",
+    "boundary_status": "Observed evidence interval; not certified biological start/end",
+    "event_id": "SWAP0001"
+  },
+  {
+    "block_id": 4,
+    "a": 38,
+    "b": 75,
+    "start": 3099,
+    "end": 3151,
+    "length": 53,
+    "minimum_gain": 0.781848459857637,
+    "decision": "pending",
+    "boundary_status": "Observed evidence interval; not certified biological start/end",
+    "event_id": "SWAP0002"
+  },
+  {
+    "block_id": 4,
+    "a": 38,
+    "b": 75,
+    "start": 3087,
+    "end": 3095,
+    "length": 9,
+    "minimum_gain": 0.7527520903795824,
+    "decision": "pending",
+    "boundary_status": "Observed evidence interval; not certified biological start/end",
+    "event_id": "SWAP0003"
+  },
+  {
+    "block_id": 4,
+    "a": 38,
+    "b": 75,
+    "start": 3154,
+    "end": 3159,
+    "length": 6,
+    "minimum_gain": 0.7946277143687543,
+    "decision": "pending",
+    "boundary_status": "Observed evidence interval; not certified biological start/end",
+    "event_id": "SWAP0004"
+  },
+  {
+    "block_id": 4,
+    "a": 38,
+    "b": 75,
+    "start": 3002,
+    "end": 3006,
+    "length": 5,
+    "minimum_gain": 0.7301777757090699,
+    "decision": "pending",
+    "boundary_status": "Observed evidence interval; not certified biological start/end",
+    "event_id": "SWAP0005"
+  },
+  {
+    "block_id": 4,
+    "a": 38,
+    "b": 75,
+    "start": 3235,
+    "end": 3238,
+    "length": 4,
+    "minimum_gain": 0.8985175337892648,
+    "decision": "pending",
+    "boundary_status": "Observed evidence interval; not certified biological start/end",
+    "event_id": "SWAP0006"
+  }
+]

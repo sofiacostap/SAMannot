@@ -1,0 +1,134 @@
+{
+  "SWAP0001": [
+    {
+      "frame": 3160,
+      "file": "previews/SWAP0001_003160.jpg"
+    },
+    {
+      "frame": 3161,
+      "file": "previews/SWAP0001_003161.jpg"
+    },
+    {
+      "frame": 3197,
+      "file": "previews/SWAP0001_003197.jpg"
+    },
+    {
+      "frame": 3233,
+      "file": "previews/SWAP0001_003233.jpg"
+    },
+    {
+      "frame": 3234,
+      "file": "previews/SWAP0001_003234.jpg"
+    }
+  ],
+  "SWAP0002": [
+    {
+      "frame": 3098,
+      "file": "previews/SWAP0002_003098.jpg"
+    },
+    {
+      "frame": 3099,
+      "file": "previews/SWAP0002_003099.jpg"
+    },
+    {
+      "frame": 3125,
+      "file": "previews/SWAP0002_003125.jpg"
+    },
+    {
+      "frame": 3151,
+      "file": "previews/SWAP0002_003151.jpg"
+    },
+    {
+      "frame": 3152,
+      "file": "previews/SWAP0002_003152.jpg"
+    }
+  ],
+  "SWAP0003": [
+    {
+      "frame": 3086,
+      "file": "previews/SWAP0003_003086.jpg"
+    },
+    {
+      "frame": 3087,
+      "file": "previews/SWAP0003_003087.jpg"
+    },
+    {
+      "frame": 3091,
+      "file": "previews/SWAP0003_003091.jpg"
+    },
+    {
+      "frame": 3095,
+      "file": "previews/SWAP0003_003095.jpg"
+    },
+    {
+      "frame": 3096,
+      "file": "previews/SWAP0003_003096.jpg"
+    }
+  ],
+  "SWAP0004": [
+    {
+      "frame": 3153,
+      "file": "previews/SWAP0004_003153.jpg"
+    },
+    {
+      "frame": 3154,
+      "file": "previews/SWAP0004_003154.jpg"
+    },
+    {
+      "frame": 3156,
+      "file": "previews/SWAP0004_003156.jpg"
+    },
+    {
+      "frame": 3159,
+      "file": "previews/SWAP0004_003159.jpg"
+    },
+    {
+      "frame": 3160,
+      "file": "previews/SWAP0004_003160.jpg"
+    }
+  ],
+  "SWAP0005": [
+    {
+      "frame": 3001,
+      "file": "previews/SWAP0005_003001.jpg"
+    },
+    {
+      "frame": 3002,
+      "file": "previews/SWAP0005_003002.jpg"
+    },
+    {
+      "frame": 3004,
+      "file": "previews/SWAP0005_003004.jpg"
+    },
+    {
+      "frame": 3006,
+      "file": "previews/SWAP0005_003006.jpg"
+    },
+    {
+      "frame": 3007,
+      "file": "previews/SWAP0005_003007.jpg"
+    }
+  ],
+  "SWAP0006": [
+    {
+      "frame": 3234,
+      "file": "previews/SWAP0006_003234.jpg"
+    },
+    {
+      "frame": 3235,
+      "file": "previews/SWAP0006_003235.jpg"
+    },
+    {
+      "frame": 3236,
+      "file": "previews/SWAP0006_003236.jpg"
+    },
+    {
+      "frame": 3238,
+      "file": "previews/SWAP0006_003238.jpg"
+    },
+    {
+      "frame": 3239,
+      "file": "previews/SWAP0006_003239.jpg"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "status": "completed_suggestions",
+  "source_directory": "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/results/verified-source-20260911T164528649441Z",
+  "prediction_directory": "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/results/propagation-20260911T180552787557Z",
+  "reference_directory": "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/results/task2-reference-20260915T080605348526Z",
+  "method": "Trusted GT-assisted pairwise identity comparison; no deployed GT-free detection claim.",
+  "parameters": {
+    "cross_iou_min": 0.5,
+    "individual_gain_min": 0.2,
+    "minimum_interval": 3
+  },
+  "input_hashes": {
+    "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/results/propagation-20260911T180552787557Z/verification.json": "c06da75717e359e419c93314c1cab2052005a7a11dc92c727d67faba82ab0718",
+    "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/results/propagation-20260911T180552787557Z/annotations.json": "77d5f8f14da928eab4ae6458b124ed1ad1c01017b4217e7a8c08e4c810c362fb",
+    "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/results/propagation-20260911T180552787557Z/foreground_confidence.csv": "19f237a3fdbfc10da5ccedb4c0bff8fcc6f1a1f0381a439ae43a1290a0e4cc25",
+    "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/results/task2-reference-20260915T080605348526Z/verification.json": "48eddf2e8d5164f9837a173ae38c7910094aeb7c8353c3068561c70b7c841c52",
+    "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/results/task2-reference-20260915T080605348526Z/evaluation_set.csv": "f79fecadaf01f694be36e3769a8e31098fc1963c0cbb3db53e6ceecd634eeed7",
+    "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/results/task2-reference-20260915T080605348526Z/mask_hashes.json": "78eccd9d718b5a87758a1729360e3dfbbbfeb5021621c7fb3bdb61a8b63336f5",
+    "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/results/task4-20260915T084226849510Z/prediction_hashes.csv": "5b5d919af8069b0a24458a134a0060b5404d7b82fdb0f3a201eaade7f8685fc1",
+    "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/TASK2_CLOSEOUT.json": "991b573af889d12522680ab7b1441e63c38d2d420ec2ac2bab14c239d083b582",
+    "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/TASK4_CLOSEOUT.json": "6b847d39787b43df951a6c22a3d06dd02df01e9eb5771da55691022673886312"
+  },
+  "source_sha256": "5f8d49f7b343b7711d137e016225d5005c38f4d8b15e8b118e9450f04a70f77a",
+  "limitations": [
+    "Suggestions use GT and are only research diagnostics.",
+    "No bridges over excluded/missing GT or block boundaries; observed interval endpoints are not certified true endpoints.",
+    "Three-way exchanges, short/weak swaps, empty masks and shape failures can be missed.",
+    "Swapping identity cannot repair a wrong shape, wall mask or missing bird."
+  ],
+  "eligible_frames": 3735,
+  "candidate_pair_frames": 157,
+  "proposed_intervals": 6,
+  "proposed_pair_frames": 150,
+  "events_sha256": "cade98c3ca5291782451d51c63472e4bd91e8b006ccd0699b82b98e3858fe618",
+  "baseline_hashes_sha256": "5b5d919af8069b0a24458a134a0060b5404d7b82fdb0f3a201eaade7f8685fc1"
+}
