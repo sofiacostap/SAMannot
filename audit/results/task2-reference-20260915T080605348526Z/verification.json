@@ -1,0 +1,195 @@
+{
+  "status": "completed_reference_partition",
+  "original_directory": "/media/hbvcai/HATTER 4TB/MPI_data/MaxPlanckData/ruffs_2022/males_annotation/test_data/GT_MIVOS/cut_Lek4_right_2021_604_00-00-00_00-02-32_50percent/masks",
+  "output_directory": "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/results/task2-reference-20260915T080605348526Z",
+  "source_directory": "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/results/verified-source-20260911T164528649441Z",
+  "normalization": "Native palette IDs -> explicit label map -> exact 2x nearest-neighbor repeat",
+  "label_map": {
+    "0": 0,
+    "1": 38,
+    "2": 75,
+    "3": 113,
+    "4": 14
+  },
+  "extra_source_indices": [],
+  "input_sha256": {
+    "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/prepare_task2_reference.py": "1bd50a7be25f839ecd60adecdd1377a047fcbcf703fb991492270b858c08eda2",
+    "audit/task2_gt_review.json": "3b77870583cac48e4f827dfdc84e3a969628bfcb03d32ba6cf12fd9d89cedc57",
+    "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/results/verified-source-20260911T164528649441Z/index.csv": "b267f89a820770a04c0530f63edaecf5ca0e487731ef6ac80f5f1c9752beafce",
+    "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/results/verified-source-20260911T164528649441Z/verification.json": "f0e9d5b9012673aadeb1bcbfed1bd3093e7bbe501ebb3ed4131f5eb4eccb73b5",
+    "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/results/gt-audit-20260912T121456077403Z/gt_hashes.json": "601737527eee804cccaded9142f8535c2ffcabf0cf6048c115ad4534f2b5f6bd"
+  },
+  "screening": {
+    "core_erosion_radius_pixels": 2,
+    "min_core_known_fraction": 0.95,
+    "max_core_disagreement_fraction": 0.01,
+    "max_core_disagreement_floor_pixels": 4,
+    "component_policy": "Hold all disconnected/tiny candidates; preserve their pixels",
+    "continuity_policy": "Hold both frames of abrupt changes or potential exchanges"
+  },
+  "limitations": [
+    "No checksum from the supervisor/cluster was supplied; original transfer integrity is not established.",
+    "Half-resolution mask file indices inherit the verified FRAMES mapping, with historical-mask interior agreement used as a consistency screen.",
+    "Interior agreement is not proof of frame timing; small movements and boundary differences can pass.",
+    "Trusted means passed the declared conservative screening, not exhaustive human certification.",
+    "Nearest-neighbor preserves half-resolution annotation geometry; it adds no new boundary detail.",
+    "Historical grayscale conversion remains unidentified; current grayscale masks are not used as final truth.",
+    "GT-assisted annotation limits claims about independent novice annotation performance."
+  ],
+  "gt_images": 3802,
+  "normalized_images": 3802,
+  "gt_bird_frames": 15208,
+  "counts": {
+    "trusted_screened": 14199,
+    "uncertain": 1006,
+    "exclude_from_evaluation": 3
+  },
+  "review_held_bird_frames": 56,
+  "by_gt_id": {
+    "14": {
+      "trusted_screened": 3613,
+      "uncertain": 189
+    },
+    "38": {
+      "trusted_screened": 3516,
+      "uncertain": 285,
+      "exclude_from_evaluation": 1
+    },
+    "75": {
+      "trusted_screened": 3504,
+      "uncertain": 297,
+      "exclude_from_evaluation": 1
+    },
+    "113": {
+      "uncertain": 235,
+      "trusted_screened": 3566,
+      "exclude_from_evaluation": 1
+    }
+  },
+  "by_block_and_gt": {
+    "0/14": {
+      "trusted_screened": 654,
+      "uncertain": 84
+    },
+    "0/38": {
+      "trusted_screened": 652,
+      "uncertain": 86
+    },
+    "0/75": {
+      "trusted_screened": 638,
+      "uncertain": 99,
+      "exclude_from_evaluation": 1
+    },
+    "0/113": {
+      "uncertain": 55,
+      "trusted_screened": 683
+    },
+    "1/14": {
+      "trusted_screened": 715,
+      "uncertain": 35
+    },
+    "1/38": {
+      "trusted_screened": 721,
+      "uncertain": 29
+    },
+    "1/75": {
+      "trusted_screened": 670,
+      "uncertain": 80
+    },
+    "1/113": {
+      "trusted_screened": 691,
+      "uncertain": 59
+    },
+    "2/14": {
+      "trusted_screened": 705,
+      "uncertain": 45
+    },
+    "2/38": {
+      "trusted_screened": 700,
+      "uncertain": 49,
+      "exclude_from_evaluation": 1
+    },
+    "2/75": {
+      "trusted_screened": 719,
+      "uncertain": 31
+    },
+    "2/113": {
+      "trusted_screened": 679,
+      "uncertain": 70,
+      "exclude_from_evaluation": 1
+    },
+    "3/14": {
+      "trusted_screened": 736,
+      "uncertain": 14
+    },
+    "3/38": {
+      "trusted_screened": 691,
+      "uncertain": 59
+    },
+    "3/75": {
+      "trusted_screened": 701,
+      "uncertain": 49
+    },
+    "3/113": {
+      "trusted_screened": 714,
+      "uncertain": 36
+    },
+    "4/14": {
+      "trusted_screened": 739,
+      "uncertain": 11
+    },
+    "4/38": {
+      "uncertain": 61,
+      "trusted_screened": 689
+    },
+    "4/75": {
+      "trusted_screened": 715,
+      "uncertain": 35
+    },
+    "4/113": {
+      "trusted_screened": 735,
+      "uncertain": 15
+    },
+    "5/14": {
+      "trusted_screened": 64
+    },
+    "5/38": {
+      "trusted_screened": 63,
+      "uncertain": 1
+    },
+    "5/75": {
+      "trusted_screened": 61,
+      "uncertain": 3
+    },
+    "5/113": {
+      "trusted_screened": 64
+    }
+  },
+  "trusted_present_absent": {
+    "present": 13092,
+    "absent": 1107
+  },
+  "candidate_counts": {
+    "small_disconnected_regions": 840,
+    "source_correspondence_uncertain": 38,
+    "multiple_substantial_regions": 84,
+    "area_change": 23,
+    "tiny_target_region": 4,
+    "centroid_jump": 25
+  },
+  "task2_closeout": "Assess coverage from this report; no new manual review queue. All uncertain rows are held out.",
+  "missing_gt_video_frames": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ]
+}
