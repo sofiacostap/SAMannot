@@ -1,0 +1,60 @@
+{
+  "status": "completed",
+  "prediction_run": "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/results/propagation-20260911T180552787557Z",
+  "reference_run": "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/results/task2-reference-20260915T080605348526Z",
+  "quality_thresholds": {
+    "A": 0.35,
+    "B": 0.95,
+    "C": 0.1,
+    "combined": 0.35,
+    "empty_baseline": 0.5
+  },
+  "signal_protocol": "A: pass-local continuity; B: saved foreground sigmoid confidence; C: predicted prompt-mask spatial IoU; combined: existing weights and fallback.",
+  "primary_protocol": "Trusted GT only, prompt frames excluded. Error50: GT present IoU<0.5; GT absent any positive prediction. Error75 sensitivity uses 0.75.",
+  "limitations": [
+    "One video; descriptive evaluation, not independent deployment validation.",
+    "GT-assisted prompts; GT only enters evaluation labels, never score formulas.",
+    "Reference screening may favor easier cases; GT exclusions are preserved.",
+    "Missing B/C cause unequal coverage; compare common_available as well as full-cohort coverage.",
+    "Adjacent frames are correlated; no IID significance claims.",
+    "Annotation anchor for both passes is the saved later-pass prompt prediction; earlier-pass prompt PNG was not separately exported."
+  ],
+  "inputs": {
+    "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/results/propagation-20260911T180552787557Z/verification.json": "c06da75717e359e419c93314c1cab2052005a7a11dc92c727d67faba82ab0718",
+    "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/results/propagation-20260911T180552787557Z/annotations.json": "77d5f8f14da928eab4ae6458b124ed1ad1c01017b4217e7a8c08e4c810c362fb",
+    "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/results/propagation-20260911T180552787557Z/foreground_confidence.csv": "19f237a3fdbfc10da5ccedb4c0bff8fcc6f1a1f0381a439ae43a1290a0e4cc25",
+    "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/results/task2-reference-20260915T080605348526Z/verification.json": "48eddf2e8d5164f9837a173ae38c7910094aeb7c8353c3068561c70b7c841c52",
+    "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/results/task2-reference-20260915T080605348526Z/evaluation_set.csv": "f79fecadaf01f694be36e3769a8e31098fc1963c0cbb3db53e6ceecd634eeed7",
+    "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/results/task2-reference-20260915T080605348526Z/mask_hashes.json": "78eccd9d718b5a87758a1729360e3dfbbbfeb5021621c7fb3bdb61a8b63336f5",
+    "audit/TASK2_CLOSEOUT.json": "991b573af889d12522680ab7b1441e63c38d2d420ec2ac2bab14c239d083b582",
+    "/media/hbvcai/HBVCSSD/samannot/SAMannot/SAMannot-audit/audit/evaluate_task4.py": "42f06cac429d85d66e325da139602a012e6a276c8a812aaf6d41f4b8c5f49ec3"
+  },
+  "primary_observations": 14175,
+  "outcomes": {
+    "acceptable_segmentation": 11485,
+    "missing_visible_bird": 444,
+    "segmentation_error": 1139,
+    "false_positive_absent_bird": 586,
+    "expected_empty": 521
+  },
+  "mean_iou_gt_present": 0.7415316492189375,
+  "median_iou_gt_present": 0.8361251785482405,
+  "primary_error50": 2169,
+  "primary_error75": 3852,
+  "high_B_observations": 13177,
+  "high_B_error50": 1709,
+  "primary_gt_present": 13068,
+  "primary_gt_absent": 1107,
+  "annotation_observations_excluded": 24,
+  "reference_status_counts": {
+    "trusted_screened": 14199,
+    "uncertain": 1006,
+    "no_gt": 48,
+    "exclude_from_evaluation": 3
+  },
+  "saved_B_missing": 1042,
+  "substantial_absent_false_positives": 586,
+  "figures": [
+    "signal_comparison.svg"
+  ]
+}
