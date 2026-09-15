@@ -1,0 +1,26 @@
+{
+  "task4_status": "COMPLETE_EVALUATION",
+  "scorer_ready_for_deployment": false,
+  "result_run": "task4-20260915T084226849510Z",
+  "primary_observations": 14175,
+  "scope": "Consolidated descriptive evaluation of frozen GT-free scores against released screened GT.",
+  "checks": [
+    "All input hashes match",
+    "Complete unique prediction inventory",
+    "Stored B reproduced exactly",
+    "All combined scores independently reconstructed",
+    "Continuity neighbour/block indexing checked",
+    "Reference exclusions and prompt holdout preserved",
+    "IoU arithmetic and presence-aware labels checked",
+    "All signal metrics, threshold tables, outcome alerts and block/bird summaries reproduced to 1e-12 floating-point tolerance"
+  ],
+  "limitations": [
+    "Pixel computations ran on Lumen; this check verifies uploaded numerical evidence and provenance.",
+    "One GT-assisted video; screened reference, correlated observations, no independent deployment validation."
+  ],
+  "checksums": {
+    "verification.json": "20e17164e35106a4a44c5bbde7270a3e166c288c6e28999a549218c75aa06238",
+    "evaluation.csv": "bea132a86ee392fd17f04c9aa1d09aa9aa74828e13596a17e8db1059d2c90fcd",
+    "signal_metrics.csv": "f2457f493645d909984f9c5ba2f4e006d1f67e583f786a0a35b9f087b5a8d5c6"
+  }
+}

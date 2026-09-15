@@ -1,6 +1,9 @@
 # Task 4: consolidated evaluation of GT-free quality signals
 
-Status: implementation and local checks complete; awaiting the Lumen evaluation.
+Status: **COMPLETE — evaluation checked 15 September 2026.** The current scorer
+is not ready for reliable deployment. See `TASK4_FINDINGS.md` and
+`TASK4_CLOSEOUT.json` for the findings and verification record. The released
+result is `results/task4-20260915T084226849510Z`.
 No new SAM2 propagation or biological annotation is required.
 
 ## Frozen inputs and separation from GT
