@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "index_convention": "Zero-based video frames; gt_frame = video_frame - 12 for video frames >= 15. GT IDs are labels, not frame numbers.",
+  "decisions": [
+    {
+      "video_first": 663, "video_last": 663, "gt_ids": [75],
+      "decision": "exclude_from_evaluation",
+      "evidence": "User confirmed two separate birds covered by yellow GT75, with no blue mask visible.",
+      "authority": "user_visual_confirmation"
+    },
+    {
+      "video_first": 650, "video_last": 676, "gt_ids": [75, 38],
+      "decision": "uncertain",
+      "evidence": "GT75 substantial-component candidate interval contains the confirmed error at 663. Hold GT75 and potentially missing GT38 across this bounded interval; extent and GT38 identity are precautionary, not user-confirmed for every frame.",
+      "authority": "conservative_interval_hold"
+    },
+    {
+      "video_first": 1751, "video_last": 1751, "gt_ids": [113, 38],
+      "decision": "exclude_from_evaluation",
+      "evidence": "User confirmed purple GT113 contamination inside blue/cyan GT38. Both labels' reference regions are affected. Do not reassign pixels without the original labels.",
+      "authority": "user_visual_confirmation"
+    }
+  ],
+  "encoding_policy": {
+    "status": "unresolved_source_provenance",
+    "canonical_labels": [0, 14, 38, 75, 113],
+    "forbidden": ["round unexpected values to nearest label", "treat unexpected values as background", "repair biological identity from predictions"],
+    "conditional_void_policy": "If evaluation uses the current encoded masks, unexpected pixels must be void: exclude them from BOTH intersection and union for every bird. This alone does not establish a trusted reference because interpolation may also manufacture canonical-valued pixels.",
+    "preferred_resolution": "Recover original categorical IDs and use a documented identity mapping and nearest-neighbor resize, only after source correspondence is established. Preserve original files and hashes."
+  }
+}

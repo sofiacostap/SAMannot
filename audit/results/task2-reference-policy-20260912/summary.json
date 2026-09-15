@@ -1,0 +1,91 @@
+{
+  "status": "provisional_encoding_gate_not_passed",
+  "task2_complete": false,
+  "gt_images": 3802,
+  "gt_bird_frames": 15208,
+  "review_held_bird_frames": 56,
+  "review_held_video_frames": 28,
+  "counts": {
+    "uncertain": 3995,
+    "screened_pending_encoding": 11210,
+    "exclude_from_evaluation": 3
+  },
+  "by_gt_id": {
+    "14": {
+      "uncertain": 3579,
+      "screened_pending_encoding": 223
+    },
+    "38": {
+      "screened_pending_encoding": 3675,
+      "uncertain": 126,
+      "exclude_from_evaluation": 1
+    },
+    "75": {
+      "screened_pending_encoding": 3593,
+      "uncertain": 208,
+      "exclude_from_evaluation": 1
+    },
+    "113": {
+      "screened_pending_encoding": 3719,
+      "uncertain": 82,
+      "exclude_from_evaluation": 1
+    }
+  },
+  "by_block": {
+    "0": {
+      "uncertain": 851,
+      "screened_pending_encoding": 2100,
+      "exclude_from_evaluation": 1
+    },
+    "1": {
+      "uncertain": 819,
+      "screened_pending_encoding": 2181
+    },
+    "2": {
+      "uncertain": 833,
+      "screened_pending_encoding": 2165,
+      "exclude_from_evaluation": 2
+    },
+    "3": {
+      "uncertain": 745,
+      "screened_pending_encoding": 2255
+    },
+    "4": {
+      "uncertain": 678,
+      "screened_pending_encoding": 2322
+    },
+    "5": {
+      "uncertain": 69,
+      "screened_pending_encoding": 187
+    }
+  },
+  "screened_present_absent": {
+    "present": 10439,
+    "absent": 771
+  },
+  "missing_gt_video_frames": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "limitations": [
+    "Screening is not exhaustive biological certification.",
+    "Small fragments are held conservatively pending the single encoding investigation; not manual review tasks.",
+    "No reference row is released as trusted until encoding is resolved.",
+    "Coverage is highly biased against GT14; do not pool provisional counts as representative performance."
+  ],
+  "input_sha256": {
+    "audit\\task2_gt_review.json": "3b77870583cac48e4f827dfdc84e3a969628bfcb03d32ba6cf12fd9d89cedc57",
+    "audit\\results\\gt-audit-20260912T121456077403Z\\metrics.csv": "dc37c9c3064ee698caf678e1eb2ce84acb8954523417881529e85e551832581b",
+    "audit\\results\\gt-audit-20260912T121456077403Z\\candidates.csv": "dae9dfb2b539518fabe24b96d0ad4b9ca73717fed2c9a0b59944ad294cce7722"
+  }
+}
