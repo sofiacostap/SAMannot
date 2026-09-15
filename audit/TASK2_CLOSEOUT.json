@@ -1,0 +1,26 @@
+{
+  "task2_status": "COMPLETE_WITH_DOCUMENTED_EXCLUSIONS",
+  "reference_run": "task2-reference-20260915T080605348526Z",
+  "gt_images": 3802,
+  "gt_bird_frames": 15208,
+  "retained": 14199,
+  "withheld": 1009,
+  "confirmed_exclusions": 3,
+  "uncertain": 1006,
+  "lowest_bird_block_retained_fraction": 0.8644986449864499,
+  "frames_with_any_trusted_gt": 3800,
+  "fully_held_frames": 2,
+  "checks_passed": [
+    "Unique complete bird/frame inventory",
+    "Exact verified index mapping",
+    "Rebuilt decisions match all release rows",
+    "All recorded human holds retained",
+    "All correspondence failures held",
+    "Normalized mask path and hash inventory complete",
+    "All bird/block groups represented"
+  ],
+  "verification_sha256": "48eddf2e8d5164f9837a173ae38c7910094aeb7c8353c3068561c70b7c841c52",
+  "evaluation_set_sha256": "f79fecadaf01f694be36e3769a8e31098fc1963c0cbb3db53e6ceecd634eeed7",
+  "limitation": "Local checks verify uploaded report consistency; full PNG processing and hashes were checked on Lumen. Trusted means screened, not biological perfection.",
+  "checksum_convention": "SHA256 of UTF-8 file bytes with CRLF normalized to LF, for Git cross-platform portability"
+}
