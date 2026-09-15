@@ -2,6 +2,49 @@
 
 **NOT COMPLETE: one technical encoding gate remains. No further broad manual review is requested.**
 
+### Final reference preparation (15 September)
+
+The half-resolution check `gt-encoding-20260915T074933632634Z` found an inspected
+1344 x 760 palette PNG containing exactly IDs 0–4. No recipe reproduced all
+13 current grayscale samples exactly, so no full reproduction check ran.
+The supervisor's supplied message establishes a dataset delivery location on
+the cluster and subsequently Lumen, but includes no checksums. It does not
+establish corruption by the user or certify this particular mask derivative.
+
+The authorized closeout route is now **preserve categorical source labels and
+exclude uncertainties**, rather than indefinitely reconstruct the historical
+grayscale recipe. `prepare_task2_reference.py` performs the full pass on Lumen:
+
+- Require the inspected palette and label set on every usable source mask. Map
+  source 1->38, 2->75, 3->113, 4->14 explicitly; repeat each source pixel into a
+  2x2 square. Do not convert colours to grayscale or blend bird identities.
+- Verify the photograph fingerprint and shape against the established image
+  correspondence. Test source/reference interior agreement in both directions
+  against unchanged historical GT, holding disagreement per bird/frame. This
+  is a consistency screen, not independent proof of biological identity/timing.
+- Recompute fragment, area, movement and possible exchange screening on the
+  categorical derivatives. Preserve the user's ledger and all source pixels;
+  questionable components are held out, never erased or relabelled.
+- Write new masks, hashes, bird/frame decisions and coverage by bird/block into
+  a new `audit/results/task2-reference-<timestamp>` directory. Missing/unusable
+  source frames hold their four references locally; they do not remove a video.
+- `trusted_screened` means passes the documented operational reference policy,
+  not that every biological contour was manually certified. A result marked
+  `failed` must never be consumed by evaluation.
+
+Nine local tests passed for categorical normalization, label/palette/shape
+rejection, identity/support disagreement, paired exchange exclusions, and the
+previous review/provenance tests. Full OpenCV screening and dataset coverage
+must be checked from the Lumen result. No SAM2 propagation is requested.
+
+Task 2 may be closed with explicit exclusions once this run succeeds and its
+coverage is assessed; reconstructing the historical conversion is no longer
+required for this source-preserving route. No new broad manual-review exercise
+is planned. Task 4 must use the new result's `evaluation_set.csv`, normalized
+mask paths and hashes, not the old provisional partition or grayscale masks.
+Report exclusions and per-bird coverage; half-resolution boundaries and
+unverified transfer provenance remain limitations.
+
 ### 15 September source discovery update
 
 The uploaded report `gt-encoding-20260915T074030534574Z/verification.json`

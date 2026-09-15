@@ -23,15 +23,16 @@ def partition(metrics, candidates, ledger):
     for r in candidates:
         if r['reason'] == 'unexpected_label':
             continue  # One encoding investigation, not 115,279 manual decisions.
-        key = (int(r['video_frame']), int(r['gt_id']))
-        if key not in keys:
-            raise ValueError('Candidate not in GT inventory')
-        reasons[key].add(r['reason'])
-        # An abrupt change cannot identify which side is wrong.
-        if r['reason'] in ('centroid_jump', 'area_change'):
-            previous = (key[0] - 1, key[1])
-            if previous in keys:
-                reasons[previous].add('adjacent_to_' + r['reason'])
+        for bird in str(r['gt_id']).split('+'):
+            key = (int(r['video_frame']), int(bird))
+            if key not in keys:
+                raise ValueError('Candidate not in GT inventory')
+            reasons[key].add(r['reason'])
+            # Both sides of an abrupt change or exchange are uncertain.
+            if r['reason'] in ('centroid_jump', 'area_change', 'possible_identity_exchange'):
+                previous = (key[0] - 1, key[1])
+                if previous in keys:
+                    reasons[previous].add('adjacent_to_' + r['reason'])
     explicit = defaultdict(set)
     held = set()
     for d in ledger['decisions']:
