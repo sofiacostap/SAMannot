@@ -1,7 +1,7 @@
 # Task 5: human-reviewed identity-swap prototype
 
 Status (16 September 2026): prototype tested and Lumen suggestions analysed.
-Six proposals remain pending for Friday by the user's explicit decision.
+Six proposals remain pending 
 No correction has been approved or applied to project data. See TASK5_FINDINGS.md.
 
 ## Purpose and scope
