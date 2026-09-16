@@ -1,0 +1,147 @@
+{
+  "status": "completed_descriptive_analysis",
+  "baseline_unchanged": true,
+  "n": 14175,
+  "primary_errors": 2169,
+  "gt_present": 13068,
+  "distance_comparison": [
+    {
+      "block_id": 0,
+      "near": {
+        "n": 720,
+        "gt_present": 623,
+        "errors": 18,
+        "error_rate": 0.025,
+        "present_errors": 12,
+        "present_error_rate": 0.019261637239165328,
+        "mean_segmentation_error": 0.22489252617587827
+      },
+      "far": {
+        "n": 610,
+        "gt_present": 610,
+        "errors": 92,
+        "error_rate": 0.15081967213114755,
+        "present_errors": 92,
+        "present_error_rate": 0.15081967213114755,
+        "mean_segmentation_error": 0.27501422896149974
+      }
+    },
+    {
+      "block_id": 1,
+      "near": {
+        "n": 695,
+        "gt_present": 692,
+        "errors": 11,
+        "error_rate": 0.015827338129496403,
+        "present_errors": 8,
+        "present_error_rate": 0.011560693641618497,
+        "mean_segmentation_error": 0.1458214119832142
+      },
+      "far": {
+        "n": 708,
+        "gt_present": 708,
+        "errors": 81,
+        "error_rate": 0.11440677966101695,
+        "present_errors": 81,
+        "present_error_rate": 0.11440677966101695,
+        "mean_segmentation_error": 0.2413912995609641
+      }
+    },
+    {
+      "block_id": 2,
+      "near": {
+        "n": 694,
+        "gt_present": 694,
+        "errors": 0,
+        "error_rate": 0.0,
+        "present_errors": 0,
+        "present_error_rate": 0.0,
+        "mean_segmentation_error": 0.14557167077620228
+      },
+      "far": {
+        "n": 693,
+        "gt_present": 629,
+        "errors": 262,
+        "error_rate": 0.37806637806637805,
+        "present_errors": 198,
+        "present_error_rate": 0.314785373608903,
+        "mean_segmentation_error": 0.41412667301476863
+      }
+    },
+    {
+      "block_id": 3,
+      "near": {
+        "n": 725,
+        "gt_present": 642,
+        "errors": 83,
+        "error_rate": 0.11448275862068966,
+        "present_errors": 0,
+        "present_error_rate": 0.0,
+        "mean_segmentation_error": 0.1968352156567868
+      },
+      "far": {
+        "n": 685,
+        "gt_present": 593,
+        "errors": 29,
+        "error_rate": 0.042335766423357665,
+        "present_errors": 24,
+        "present_error_rate": 0.04047217537942664,
+        "mean_segmentation_error": 0.1734714107414448
+      }
+    },
+    {
+      "block_id": 4,
+      "near": {
+        "n": 713,
+        "gt_present": 549,
+        "errors": 138,
+        "error_rate": 0.1935483870967742,
+        "present_errors": 79,
+        "present_error_rate": 0.14389799635701275,
+        "mean_segmentation_error": 0.23479559960896051
+      },
+      "far": {
+        "n": 731,
+        "gt_present": 580,
+        "errors": 220,
+        "error_rate": 0.3009575923392613,
+        "present_errors": 125,
+        "present_error_rate": 0.21551724137931033,
+        "mean_segmentation_error": 0.321730024285127
+      }
+    },
+    {
+      "block_id": 5,
+      "near": {
+        "n": 59,
+        "gt_present": 59,
+        "errors": 0,
+        "error_rate": 0.0,
+        "present_errors": 0,
+        "present_error_rate": 0.0,
+        "mean_segmentation_error": 0.18137251829363973
+      },
+      "far": {
+        "n": 64,
+        "gt_present": 64,
+        "errors": 0,
+        "error_rate": 0.0,
+        "present_errors": 0,
+        "present_error_rate": 0.0,
+        "mean_segmentation_error": 0.14268830404564775
+      }
+    }
+  ],
+  "inputs": {
+    "audit\\results\\task4-20260915T084226849510Z\\evaluation.csv": "bea132a86ee392fd17f04c9aa1d09aa9aa74828e13596a17e8db1059d2c90fcd",
+    "audit\\TASK4_CLOSEOUT.json": "6b847d39787b43df951a6c22a3d06dd02df01e9eb5771da55691022673886312"
+  },
+  "limitations": [
+    "No causal claim or fitted alert rule.",
+    "Neighbours are correlated; no IID significance test.",
+    "GT-present curves exclude absent-bird outcomes; tables also show presence-aware errors.",
+    "25-frame bins and block-position bins have unequal retained counts, recorded in CSV.",
+    "Reference exclusions and baseline predictions unchanged. Proposed swaps are not applied.",
+    "Each block has one interior annotation; geometric distance is generally largest toward the block ends."
+  ]
+}

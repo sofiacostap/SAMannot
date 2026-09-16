@@ -1,7 +1,8 @@
 # Task 5: human-reviewed identity-swap prototype
 
-Status: prototype implemented and locally tested; awaiting Lumen suggestions
-and visual review. No correction has been approved or applied to project data.
+Status (16 September 2026): prototype tested and Lumen suggestions analysed.
+Six proposals remain pending for Friday by the user's explicit decision.
+No correction has been approved or applied to project data. See TASK5_FINDINGS.md.
 
 ## Purpose and scope
 

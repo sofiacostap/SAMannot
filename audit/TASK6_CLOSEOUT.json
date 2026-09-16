@@ -1,0 +1,29 @@
+{
+  "status": "COMPLETE_DESCRIPTIVE_ANALYSIS",
+  "result_run": "temporal-20260916T101412571082Z",
+  "baseline_unchanged": true,
+  "corrections_applied": false,
+  "checks": [
+    "Frozen Task 4 checksums verified",
+    "All four table partitions reproduce 14175 observations",
+    "Block totals reproduce 2169 errors and 13068 GT-present observations",
+    "All three plots visually inspected"
+  ],
+  "checksums": {
+    "audit/temporal_analysis.py": "3f07e5adb8fe9f106c71412f97439d7676526624a95d8cbe224cf774166ec600",
+    "audit/results/propagation-20260911T180552787557Z/annotations.json": "cfef8dca8d3258a334b0f4be5fc0f561bb177dd30a6a4ab371be8b04a3283a45",
+    "audit/results/swap-review-20260915T154510599128Z/events.json": "547ef308e1b2e57b3b62f07b53ed11c6d5dee5d8f86cf5f0e1f1f41828d25408",
+    "audit/results/temporal-20260916T101412571082Z/block_position.png": "a6338d0087a92f047f3968cd6efbad1b863e6d90bf0eb22572f9478f0856a242",
+    "audit/results/temporal-20260916T101412571082Z/block_position.svg": "2b8af1ef55d0da85d156a350f83c0d19c00bdaa39ca051df99abbcfc0878ec26",
+    "audit/results/temporal-20260916T101412571082Z/block_summary.csv": "704ea103d837a3dba475001c738a3e224f5e2e5e41e0f9738b08409eedd649b4",
+    "audit/results/temporal-20260916T101412571082Z/block_thirds.csv": "da81e69f9c17a1378f07b38b6659161d7c38fae27b40b259358a034a03f8e9e4",
+    "audit/results/temporal-20260916T101412571082Z/distance_from_annotation.png": "acfedce56990ef09294e8a762f425dbafb1c7696574ab422b500373437b9ddfb",
+    "audit/results/temporal-20260916T101412571082Z/distance_from_annotation.svg": "61bd0c823cf1183f5c99b37efdc5e7acd3d4f9b237b81b646686a455f670bc31",
+    "audit/results/temporal-20260916T101412571082Z/frame_bins.csv": "6cdd86a89963a5db8d018a08aa92f7394732696219edff216f82e10fb4be9e15",
+    "audit/results/temporal-20260916T101412571082Z/near_far.csv": "f663fcd7f5a47ce783a03a83bf054fcb161cc42bbc8f213526a30418e1035344",
+    "audit/results/temporal-20260916T101412571082Z/per_block_error.png": "85095fd7fd035f51da390da381c3a7c7f7d3455bbe64845cc923a443e1e7c8e9",
+    "audit/results/temporal-20260916T101412571082Z/per_block_error.svg": "172d08f29260c48ae0e4bcc14099efb1025fb9fcd755701401f1db3ec810760e",
+    "audit/results/temporal-20260916T101412571082Z/position_bins.csv": "98f039b53eaedbf4926f33ffad020a16110b2adf536fac8f8f2c1c4e4705a5b8",
+    "audit/results/temporal-20260916T101412571082Z/verification.json": "380fd1c6107766404b2d2f4fece9ba5b48ea720a636f0948a3607afd3bc19149"
+  }
+}
