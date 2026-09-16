@@ -1,7 +1,7 @@
 # Task 5 findings — 16 September 2026
 
 The prototype produced six proposed intervals, all involving identities 38 and
-75 in block 4. **All corrections remain pending for Friday by user decision.**
+75 in block 4. **All corrections remain pending.**
 The baseline predictions and Task 4 measurements have not changed.
 
 Source: [review page](results/swap-review-20260915T154510599128Z/index.html).
