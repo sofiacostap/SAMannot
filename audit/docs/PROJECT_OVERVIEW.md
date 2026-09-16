@@ -1,10 +1,9 @@
-# Weekly handover and Friday preparation
+# Project overview
 
-The week's baseline evaluation and temporal analysis are ready to discuss.
-**No more Lumen computation is needed today.** Six proposed swaps remain pending
-for Friday, as requested. They have not altered any reported baseline score.
+The baseline evaluation and temporal analysis are complete. Six proposed swaps
+remain pending visual approval. They have not altered any reported baseline score.
 
-## The story to present
+## Findings overview
 
 1. **Establish correspondence first.** All 3,802 FRAMES images were matched exactly
    to decoded video images. The video has 3,814 frames; frames 3–14 have no FRAMES
@@ -58,14 +57,14 @@ claims of independently validated performance on new recordings. Proposed
 GT-assisted swaps must not be presented as improvements already achieved by the
 GT-free scorer.
 
-## Tomorrow: preparation, not new computation
+## Suggested reading order
 
-Allow about 30 minutes to read TASK4_FINDINGS.md and understand the denominators;
-30 minutes for the three temporal figures and TASK6_FINDINGS.md; 20 minutes for
-the six proposal examples and their limitations; and 30 minutes to rehearse the
-six-point story above. No additional manual GT audit is required for this cutoff.
+Read the [scoring findings](tasks/04-scoring/FINDINGS.md) first to understand the
+denominators, then the [temporal findings](tasks/06-temporal/FINDINGS.md) and
+three figures. Finally, inspect the six proposed identity exchanges and their
+limitations. No additional broad manual GT audit is required for this baseline.
 
-For Friday, discuss approval or further review of the proposed swaps and agree
+Before correction, resolve approval or further review of the proposed swaps and agree
 the next scoring experiment: distinguish absence from missed segmentation,
 reconsider fixed-position C, and validate any new combination on held-out data.
 Task 6 helps locate failure episodes and design that experiment; it does not
@@ -73,9 +72,9 @@ itself provide a deployed automatic flagger.
 
 ## Evidence to open
 
-- [Frozen evaluation](TASK4_FINDINGS.md)
-- [Swap findings](TASK5_FINDINGS.md) and [visual review](results/swap-review-20260915T154510599128Z/index.html)
-- [Temporal findings](TASK6_FINDINGS.md)
-- [Per-block figure](results/temporal-20260916T101412571082Z/per_block_error.png)
-- [Within-block position](results/temporal-20260916T101412571082Z/block_position.png)
-- [Distance and direction](results/temporal-20260916T101412571082Z/distance_from_annotation.png)
+- [Frozen evaluation](tasks/04-scoring/FINDINGS.md)
+- [Swap findings](tasks/05-identity-review/FINDINGS.md) and [visual review](../results/swap-review-20260915T154510599128Z/index.html)
+- [Temporal findings](tasks/06-temporal/FINDINGS.md)
+- [Per-block figure](../results/temporal-20260916T101412571082Z/per_block_error.png)
+- [Within-block position](../results/temporal-20260916T101412571082Z/block_position.png)
+- [Distance and direction](../results/temporal-20260916T101412571082Z/distance_from_annotation.png)

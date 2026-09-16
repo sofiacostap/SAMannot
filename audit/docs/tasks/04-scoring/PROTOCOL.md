@@ -1,8 +1,8 @@
 # Task 4: consolidated evaluation of GT-free quality signals
 
 Status: **COMPLETE — evaluation checked 15 September 2026.** The current scorer
-is not ready for reliable deployment. See `TASK4_FINDINGS.md` and
-`TASK4_CLOSEOUT.json` for the findings and verification record. The released
+is not ready for reliable deployment. See [findings](FINDINGS.md) and
+[verification record](../../../TASK4_CLOSEOUT.json). The released
 result is `results/task4-20260915T084226849510Z`.
 No new SAM2 propagation or biological annotation is required.
 

@@ -1,3 +1,7 @@
+# Historical report — superseded
+
+Do not use these provisional metrics as the current baseline or follow these commands as the current workflow. See [current status](../README.md).
+
 # Lumen audit — evidence received 9 September 2026
 
 Evidence: `audit/results/lumen-evidence.json`, uploaded in commit `a1faca3`. All code line numbers below refer to the numbered Lumen source embedded in that report, not the different laptop source files. Lumen HEAD was `8235ecfa4cdda4d3c11cd4b740c5411efa8279de`, with staged and unstaged edits to core pipeline files. HEAD alone therefore cannot reproduce the working code or establish the code used by earlier runs.

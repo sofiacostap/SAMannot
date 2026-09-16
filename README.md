@@ -1,3 +1,13 @@
+# Ruff tracking research branch
+
+For the audited Lek4 pipeline, **start with the [task dashboard](audit/docs/README.md)**.
+See the [project overview](audit/docs/PROJECT_OVERVIEW.md),
+[script catalogue](audit/docs/SCRIPTS.md) and [results catalogue](audit/results/README.md).
+The SAMannot application documentation follows below; its general evaluation
+commands are separate from the released research workflow.
+
+---
+
 <a href="https://arxiv.org/abs/2601.11301"><img src="https://img.shields.io/badge/arXiv-2503.11651-b31b1b" alt="arXiv"></a>
 <a href="https://samannot.github.io/"> <img src="https://img.shields.io/badge/Project_Page-green" alt="Project Page"></a>
 <a href="https://www.youtube.com/watch?v=j5TVcVeuVZM"> <img src="https://img.shields.io/badge/demo_video-youtube-red" alt="Demo video"></a>

@@ -1,10 +1,10 @@
 # Task 5 findings — 16 September 2026
 
 The prototype produced six proposed intervals, all involving identities 38 and
-75 in block 4. **All corrections remain pending for Friday by user decision.**
+75 in block 4. **All corrections remain pending visual approval.**
 The baseline predictions and Task 4 measurements have not changed.
 
-Source: [review page](results/swap-review-20260915T154510599128Z/index.html).
+Source: [review page](../../../results/swap-review-20260915T154510599128Z/index.html).
 
 | Event | Video frames, inclusive | Frames |
 |---|---|---:|
@@ -33,4 +33,4 @@ This is a **GT-assisted diagnostic**, not a GT-free deployed detector. It cannot
 repair missing masks, wall masks, boundary errors or arbitrary multi-bird swaps.
 Approval, application, and a separate evaluation of any corrected output remain
 pending. The technical proposal stage is finished; the full correction stage is
-not complete. No further Lumen run is needed for Friday's discussion.
+not complete. No further Lumen run is needed to inspect the proposals.

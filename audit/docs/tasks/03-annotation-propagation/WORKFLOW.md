@@ -1,9 +1,16 @@
 # GT-assisted reannotation
 
-This is a new experimental annotation set, separate from the original manual
+Status: reviewed annotations and GPU propagation are complete for the released
+baseline. See the [results catalogue](../../../results/README.md). The steps below
+describe creation of an annotation set; they are not a request to repeat it.
+`gpu_prompt_check.py` checks initial masks and `propagate_reviewed.py` generates
+the reviewed propagation, using the verified source. The existing baseline is
+`audit/results/propagation-20260911T180552787557Z`.
+
+This is an experimental annotation set, separate from the original manual
 baseline. No old pickle, GT, or prediction is edited. New points are saved in
-`audit/results/reannotation-*/annotations.json`. GPU propagation integration is
-a separate next step; this tool does not run inference.
+`audit/results/reannotation-*/annotations.json`. This annotation tool does not
+itself run inference; the separate GPU stages are already implemented.
 
 Run on Lumen, from the audit checkout with the samannot environment active:
 
@@ -49,4 +56,4 @@ both directions from that same frame. Moving prompts from the start to the
 middle changes the experiment. Under this design, block ends are farthest
 from the prompt; any temporal-error analysis must use actual distance from
 the chosen prompt. GT-guided clicks also make this a GT-assisted experiment,
-not an independent estimate of ordinary user annotation performance.
+not an independent estimate of unaided annotation performance.

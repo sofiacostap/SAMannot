@@ -97,8 +97,7 @@ has been selected using this evaluation data.
 | 5 | 248 | 0 |
 
 The last block is short. These totals do not prove temporal deterioration or
-the supervisor's within-block hypothesis. Task 6's planned per-frame/block
-analysis is separate. Bird-level breakdowns are in `by_block_bird.csv`.
+the within-block hypothesis. The completed temporal analysis is documented in Task 6. Bird-level breakdowns are in `by_block_bird.csv`.
 
 ## Verification and scope
 
@@ -115,16 +114,9 @@ observations, screened GT that may select easier cases, half-resolution referenc
 boundaries, and the inherited correspondence/provenance qualifications recorded
 in Task 2. These findings are descriptive, not independent deployment validation.
 
-## Next work in the agreed plan
+## Current follow-up status
 
-Tasks 2 and 4 are closed within their stated scopes. The next planned task is
-Task 5: a human-reviewed identity-swap detection/correction prototype, followed
-by Task 6 per-block temporal error analysis. Keep original predictions immutable
-and require visual approval before identity corrections. Existing quality-score
-thresholds should not be used as authoritative swap or visibility detectors.
-
-Scorer improvements are a separate follow-up informed by Task 4: retain B as a
-candidate feature; represent unavailable evidence explicitly; treat emptiness as
-an observation requiring presence/context evidence; reconsider fixed-position C;
-and validate any new combination or calibrated thresholds on held-out data.
-These changes have not been silently applied to this completed evaluation.
+Task 5 proposals and Task 6 baseline temporal analysis are complete. Identity
+corrections remain pending visual approval. Baseline predictions are immutable.
+Any approved correction needs a separate overlay-aware evaluation and updated
+temporal scores. Scorer redesign and validation on held-out data remain future work.

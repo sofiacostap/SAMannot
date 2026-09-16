@@ -1,3 +1,7 @@
+# Historical report — superseded
+
+Do not use these provisional metrics as the current baseline or follow these commands as the current workflow. See [current status](../README.md).
+
 # Corrected recomputation workflow
 
 ## Update: verified frame correspondence is now required

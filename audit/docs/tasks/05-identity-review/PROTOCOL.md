@@ -1,8 +1,8 @@
 # Task 5: human-reviewed identity-swap prototype
 
 Status (16 September 2026): prototype tested and Lumen suggestions analysed.
-Six proposals remain pending for Friday by the user's explicit decision.
-No correction has been approved or applied to project data. See TASK5_FINDINGS.md.
+Six proposals remain pending visual approval.
+No correction has been approved or applied to project data. See [findings](FINDINGS.md).
 
 ## Purpose and scope
 
@@ -14,7 +14,7 @@ exchange. Original predictions and GT remain untouched.
 Automatic suggestions in this prototype use the released GT and are **research
 diagnostics, not a deployed GT-free identity detector**. The Task 4 A/B/C scorer
 is not used as an authoritative swap detector. In a future no-GT interface,
-the user would supply/review identities using footage and annotation context;
+a reviewer would supply/review identities using footage and annotation context;
 automatic GT-free detection is still separate work.
 
 ## Propose and visually inspect

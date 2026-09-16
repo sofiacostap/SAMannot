@@ -2,10 +2,17 @@
   "recorded_date": "2026-09-16",
   "run": "swap-review-20260915T154510599128Z",
   "status": "proposals_analysed_human_decision_pending",
-  "user_instruction": "Leave corrections pending for Friday",
   "approved_events": [],
   "applied_events": [],
-  "pending_events": ["SWAP0001", "SWAP0002", "SWAP0003", "SWAP0004", "SWAP0005", "SWAP0006"],
+  "pending_events": [
+    "SWAP0001",
+    "SWAP0002",
+    "SWAP0003",
+    "SWAP0004",
+    "SWAP0005",
+    "SWAP0006"
+  ],
   "baseline_unchanged": true,
-  "assistant_visual_inspection": "Six midpoint previews support exchanging labels relative to GT. This is not human approval or verification of every frame and boundary."
+  "assistant_visual_inspection": "Six midpoint previews support exchanging labels relative to GT. This is not human approval or verification of every frame and boundary.",
+  "review_status": "Corrections pending visual approval; no events approved or applied."
 }

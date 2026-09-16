@@ -171,3 +171,6 @@ __marimo__/
 # Misc
 *.pt
 *.png
+
+# Local audit scratch environments and helpers
+audit/.tmp/

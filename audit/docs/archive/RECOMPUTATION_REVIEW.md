@@ -1,8 +1,12 @@
+# Historical report — superseded
+
+Do not use these provisional metrics as the current baseline or follow these commands as the current workflow. See [current status](../README.md).
+
 # Review of Lek4 recomputation — 9 September 2026
 
 Evidence: run `recompute-20260909T145908Z`, uploaded as commit `3778e78`. Numerical review uses the uploaded full CSVs; visual review includes alignment images at 750, 2251, 3000 and 3750, plus representative annotation/final-frame overlays. Original production outputs were not changed.
 
-## What can be said at the meeting
+## Interpretation at the time of this report
 
 The historical IoU CSV reproduces the reported mean 0.46323 and error rate 44.97%. Those figures are numerically reproducible, but they use per-frame identity rematching and a selected population. They are not yet certified as individual-tracking accuracy.
 

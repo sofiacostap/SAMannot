@@ -4,9 +4,9 @@
 existing observation table; no propagation, pixel evaluation, threshold fitting
 or identity correction was repeated.
 
-Outputs: [per-block error](results/temporal-20260916T101412571082Z/per_block_error.png),
-[position within blocks](results/temporal-20260916T101412571082Z/block_position.png),
-[distance from annotation](results/temporal-20260916T101412571082Z/distance_from_annotation.png).
+Outputs: [per-block error](../../../results/temporal-20260916T101412571082Z/per_block_error.png),
+[position within blocks](../../../results/temporal-20260916T101412571082Z/block_position.png),
+[distance from annotation](../../../results/temporal-20260916T101412571082Z/distance_from_annotation.png).
 CSV tables and verification.json are in the same directory; SVGs permit export.
 
 ## What the plots establish
