@@ -1,7 +1,11 @@
-# Task 2 GT reference status — closed 15 September 2026
+# Task 2 GT reference status
 
-**COMPLETE WITH DOCUMENTED EXCLUSIONS.** No further broad manual review or SAM2
-propagation is required for this Task 2 closeout.
+**Screened reference released; exhaustive visual review pending.** The release
+below completed the automatic-screening and localized-exclusion scope on
+2026-09-15. The expanded requirement is to inspect every GT image and record
+each bird/frame decision using the [visual review workflow](VISUAL_REVIEW.md).
+The historical release and its evaluation remain unchanged. They are not a
+fully visually validated reference. No SAM2 propagation is needed for review.
 
 ## Released reference and verified counts
 

@@ -3,6 +3,11 @@
 The baseline evaluation and temporal analysis are complete. Six proposed swaps
 remain pending visual approval. They have not altered any reported baseline score.
 
+The next requirement is [exhaustive visual GT review](tasks/02-reference/VISUAL_REVIEW.md).
+Existing statistics use the screened reference; they are not results against a
+reference where every bird/frame has been visually accepted. Review decisions
+will be recorded separately before any revised evaluation set is released.
+
 ## Findings overview
 
 1. **Establish correspondence first.** All 3,802 FRAMES images were matched exactly

@@ -3,7 +3,7 @@
 | Task | Status | Documentation |
 |---|---|---|
 | 1 — Image correspondence | Verified source prepared; historical outputs have separate provenance limits | [Alignment](tasks/01-alignment/README.md) |
-| 2 — GT reference | Complete with documented exclusions: 14,199 retained; 1,009 held | [Reference status](tasks/02-reference/STATUS.md) |
+| 2 — GT reference | Screened reference released; exhaustive visual review pending | [Reference status](tasks/02-reference/STATUS.md), [visual review](tasks/02-reference/VISUAL_REVIEW.md) |
 | 3 — Annotation and propagation | Reviewed baseline generated | [Workflow](tasks/03-annotation-propagation/WORKFLOW.md) |
 | 4 — Quality scoring | Evaluation complete; scorer not deployment-ready | [Findings](tasks/04-scoring/FINDINGS.md), [protocol](tasks/04-scoring/PROTOCOL.md) |
 | 5 — Identity review | Six proposals; correction pending visual approval | [Findings](tasks/05-identity-review/FINDINGS.md), [protocol](tasks/05-identity-review/PROTOCOL.md) |
