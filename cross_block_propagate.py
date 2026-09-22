@@ -5,8 +5,8 @@ Runs SAM2 propagation across ALL blocks using saved SAMannot prompt annotations.
 
 Usage:
     python cross_block_propagate.py \
-        --pkl C:/Users/SOFIA/SAMannot/export/Session.pkl \
-        --frames_dir C:/Users/SOFIA/SAMannot/export/Session/frames \
+        --pkl export/Session.pkl \
+        --frames_dir export/Session/frames \
         --output_dir ./output_masks \
         --ckpt ./checkpoints/sam2.1_hiera_base_plus.pt \
         --cfg ./sam2_configs/sam2.1_hiera_b+.yaml
