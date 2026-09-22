@@ -11,6 +11,7 @@ export helpers imported by current tools, so deleting them would break dependenc
 | 1 | `verify_correspondence.py`, `prepare_verified_frames.py` | Exact image correspondence and sequential source |
 | 2 | `prepare_task2_reference.py` | Released categorical reference and evaluation partition |
 | 2 | `review_all_gt.py` with `review_all_gt.html` | Complete visual review, playback, individual bird decisions and resumable records; no mask editing |
+| 2 | `export_reviewed_gt.py` | Export only visually accepted bird/frame masks and matching photographs after complete review |
 | 3 | `reannotate.py`, `gpu_prompt_check.py`, `propagate_reviewed.py` | Review points, check prompts, generate baseline |
 | 4 | `evaluate_task4.py` | Evaluate frozen scores against released reference |
 | 5 | `identity_swap_review.py` | GT-assisted proposals, previews and approval-gated overlay |

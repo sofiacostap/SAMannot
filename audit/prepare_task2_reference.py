@@ -91,7 +91,7 @@ def run(args):
                       component_policy='Hold all disconnected/tiny candidates; preserve their pixels',
                       continuity_policy='Hold both frames of abrupt changes or potential exchanges'),
                   limitations=[
-                      'No checksum from the supervisor/cluster was supplied; original transfer integrity is not established.',
+                      'No original source checksum is available; original transfer integrity is not established.',
                       'Half-resolution mask file indices inherit the verified FRAMES mapping, with historical-mask interior agreement used as a consistency screen.',
                       'Interior agreement is not proof of frame timing; small movements and boundary differences can pass.',
                       'Trusted means passed the declared conservative screening, not exhaustive human certification.',

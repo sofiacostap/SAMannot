@@ -80,6 +80,22 @@ can still be uploaded with the push command alone.
 
 ## Interpretation and next release
 
+After all observations have a decision, stop the review server and export the
+accepted subset with `export_reviewed_gt.py --review <review-folder> --destination
+<existing-destination-folder>`. Supply destination paths at runtime. The exporter
+refuses any pending observations and exports only accepted_present/accepted_absent.
+Uncertain and confirmed-problem pairs are omitted. Accepted absence has a valid
+empty binary mask; an omitted identity must never be interpreted as background.
+
+Each export creates a unique `accepted-gt-<timestamp>` folder with individual
+0/255 bird masks, matching photographs, overlays, a browser-readable `index.html`,
+an eligibility manifest and file hashes. Inspect index.html locally without a
+server. Source masks and photographs are verified during export. A failed export
+retains an `.incomplete` suffix and is not a released package. Existing exports
+are never overwritten. Metadata uses relative file paths and hashes; it does not
+copy free-text review notes or absolute machine paths. This package is for visual
+inspection and a subsequent versioned evaluation; it does not update old scores.
+
 `pending` means not yet decided. `accepted_present` and `accepted_absent` are
 explicit visual acceptances. `uncertain` and `confirmed_problem` remain unresolved
 for evaluation. All four non-pending categories count toward review coverage;
