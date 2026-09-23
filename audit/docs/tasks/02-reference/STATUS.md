@@ -1,5 +1,10 @@
 # Task 2 GT reference status
 
+Current review method: [playback and artifact separation](ARTIFACT_REVIEW.md).
+Only irregular frames require a confirmed flag; correct frames need no individual
+approval. The full viewing pass is still pending. The per-bird approval tool remains
+available as an alternative, with a different acceptance policy.
+
 **Screened reference released; exhaustive visual review pending.** The release
 below completed the automatic-screening and localized-exclusion scope on
 2026-09-15. The expanded requirement is to inspect every GT image and record

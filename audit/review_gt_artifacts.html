@@ -1,0 +1,37 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>GT artifact review</title>
+<style>body{font:18px system-ui;margin:20px;background:#f5f6f8;color:#203040}button,select{font:inherit;padding:10px;margin:4px}#screen{max-height:72vh;max-width:100%;display:block;cursor:pointer;margin:auto}#where{font-weight:bold}#message{min-height:28px;color:#9c291d}dialog{max-width:500px;border:1px solid #aaa;border-radius:10px}#scrub{width:95%}</style>
+<h1>GT artifact review</h1><p>Play to inspect. Click the image to freeze it. Flag only frames with a GT artifact.</p>
+<div><button id="prev">←</button><button id="play">Play</button><button id="next">→</button>
+<select id="speed" aria-label="Playback speed"><option value="500">2 fps</option><option value="200" selected>5 fps</option><option value="100">10 fps</option><option value="40">25 fps</option></select>
+<button id="flag">Flag this frame</button><button id="undo">Undo flag</button><button id="unseen">Next unseen frame</button><button id="finish">Finish and separate GT</button></div>
+<div id="where"></div><div id="coverage"></div><div id="message" role="status"></div>
+<img id="screen" alt="GT overlay — click to pause"><input id="scrub" type="range" min="0" value="0" aria-label="Frame position">
+<dialog id="confirm"><h2>Separate this GT artifact?</h2><p id="question"></p><p>This excludes this entire frame and all its bird labels from the retained copy. Original files stay unchanged.</p><button id="yes">Confirm artifact</button><button id="cancel">Cancel</button></dialog>
+<dialog id="complete"><h2>Finish this viewing pass?</h2><p>Confirm that you watched the complete sequence. The remaining frames will be exported as unflagged GT, not individually certified masks.</p><button id="done">Confirm and export</button><button id="back">Continue reviewing</button></dialog>
+<script>
+const $=id=>document.getElementById(id),token=new URLSearchParams(location.search).get('token');
+const url=(path,extra={})=>path+'?'+new URLSearchParams({token,...extra});
+let state,index=-1,playing=false,timer,epoch=0,saving=false,selected=-1;
+async function post(path,data){let r=await fetch(url(path),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}),j=await r.json();if(!r.ok)throw Error(j.error);state.record=j;return j;}
+function pause(){playing=false;clearTimeout(timer);epoch++;$('play').textContent='Play';}
+function info(){let f=state.frames[index];$('where').textContent=`Video frame ${f.video_frame} · GT ${f.gt_frame} · ${index+1}/${state.frames.length}${state.record.flagged.includes(index)?' · FLAGGED':''}`;$('scrub').value=index;$('coverage').textContent=`${state.record.displayed.length}/${state.frames.length} frames displayed · ${state.record.flagged.length} artifacts`;$('undo').disabled=!state.record.flagged.includes(index);}
+function err(e){pause();$('message').textContent=e.message;}
+function preload(i){return new Promise((resolve,reject)=>{let im=new Image();im.onload=()=>resolve(im);im.onerror=()=>reject(Error('Image failed to load or verify'));im.src=url('/image',{index:i});});}
+async function show(i){if(saving||i<0||i>=state.frames.length)return;let ticket=++epoch;try{let image=await preload(i);if(ticket!==epoch)return;
+// Commit pixels and displayed frame number together. A pause invalidates any pending load.
+image.id='screen';image.alt='GT overlay — click to pause';image.onpointerdown=()=>pause();$('screen').replaceWith(image);index=i;info();saving=true;await post('/visit',{index:i});info();saving=false;if(playing){if(i===state.frames.length-1)pause();else timer=setTimeout(()=>show(i+1),Number($('speed').value));}}catch(e){saving=false;err(e);}}
+function toggle(){if(playing){pause();return;}if(saving||index<0)return;if(index===state.frames.length-1){$('message').textContent='End of sequence. Use the slider to go back or finish the review.';return;}playing=true;$('play').textContent='Pause';timer=setTimeout(()=>show(index+1),Number($('speed').value));}
+$('screen').onpointerdown=()=>pause();$('play').onclick=toggle;
+$('prev').onclick=()=>{pause();show(index-1);};$('next').onclick=()=>{pause();show(index+1);};
+$('scrub').oninput=()=>pause();$('scrub').onchange=()=>show(Number($('scrub').value));
+$('unseen').onclick=()=>{pause();if(!state||saving)return;let i=state.frames.findIndex((f,n)=>!state.record.displayed.includes(n));if(i>=0)show(i);else $('message').textContent='All frames have been displayed.';};
+document.addEventListener('visibilitychange',()=>{if(document.hidden)pause();});
+$('flag').onclick=()=>{pause();if(saving||index<0)return;selected=index;$('question').textContent=`Video frame ${state.frames[selected].video_frame}, GT image ${state.frames[selected].gt_frame}.`;$('confirm').showModal();};
+$('cancel').onclick=()=>$('confirm').close();
+$('yes').onclick=async()=>{if(saving)return;saving=true;$('yes').disabled=true;try{await post('/flag',{index:selected,confirmed:true});$('confirm').close();info();$('message').textContent='Separated into gt artifacts. Press Play to continue.';}catch(e){err(e);}finally{saving=false;$('yes').disabled=false;}};
+$('undo').onclick=async()=>{pause();if(saving)return;saving=true;try{await post('/undo',{index});info();$('message').textContent='Flag undone.';}catch(e){err(e);}finally{saving=false;}};
+$('finish').onclick=()=>{pause();if(saving)return;if(state.record.displayed.length!==state.frames.length){$('message').textContent='Some frames have not been displayed. Continue the viewing pass first.';return;}$('complete').showModal();};
+$('back').onclick=()=>$('complete').close();$('done').onclick=async()=>{if(saving)return;saving=true;$('done').disabled=true;$('message').textContent='Separating verified GT files. Keep this window open…';try{await post('/finish',{confirmed:true});$('complete').close();$('message').textContent='Saved: '+state.record.latest_export;}catch(e){err(e);}finally{saving=false;$('done').disabled=false;}};
+document.onkeydown=e=>{if(document.querySelector('dialog[open]')||e.target.tagName==='SELECT'||e.target.tagName==='INPUT')return;if(e.code==='Space'){e.preventDefault();toggle();}if(e.key==='ArrowLeft')$('prev').click();if(e.key==='ArrowRight')$('next').click();};
+fetch(url('/state')).then(r=>r.json()).then(s=>{if(s.error)throw Error(s.error);state=s;$('scrub').max=s.frames.length-1;show(s.record.last);}).catch(err);
+</script></html>
