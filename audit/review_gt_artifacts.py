@@ -100,10 +100,15 @@ class ArtifactReview:
         if type(index) is not int or not 0 <= index < len(self.source.frames):
             raise ValueError('Invalid frame index')
 
-    def visit(self, index):
+    def visit(self, index, gt_view=True):
         self.check(index)
         self.source.pixels(index)
-        if index not in self.record['displayed']:
+        if type(gt_view) is not bool:
+            raise ValueError('Invalid view coverage marker')
+        visible = self.record.setdefault('visible', self.record['displayed'][:])
+        if index not in visible:
+            visible.append(index)
+        if gt_view and index not in self.record['displayed']:
             self.record['displayed'].append(index)
         self.record['last'] = index
         self.save()
@@ -112,7 +117,7 @@ class ArtifactReview:
         self.check(index)
         if confirmed is not True:
             raise ValueError('Explicit confirmation required')
-        if index not in self.record['displayed']:
+        if index not in self.record.get('visible', self.record['displayed']):
             raise ValueError('Display the frame before flagging')
         vf = self.source.frames[index]['video_frame']
         folder = self.root/'gt artifacts'/f'{vf:06d}'
@@ -219,7 +224,7 @@ def serve(review, port):
                 if not 0 < size < 4096: raise ValueError('Invalid request')
                 data = json.loads(self.rfile.read(size))
                 with review.lock:
-                    if route == '/visit': review.visit(data['index'])
+                    if route == '/visit': review.visit(data['index'], data.get('gt_view', True))
                     elif route == '/flag': review.flag(data['index'], data.get('confirmed'))
                     elif route == '/undo': review.undo(data['index'])
                     elif route == '/finish': review.finish(data.get('confirmed'))

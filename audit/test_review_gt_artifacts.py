@@ -21,6 +21,14 @@ class ArtifactTests(unittest.TestCase):
         self.review.visit(0)
         self.assertEqual(self.review.record['flagged'],[])
         self.assertEqual(self.review.record['displayed'],[0])
+    def test_photo_or_binary_view_can_be_flagged_without_full_gt_coverage(self):
+        self.review.visit(0, gt_view=False)
+        self.review.flag(0, True)
+        self.assertEqual(self.review.record['flagged'], [0])
+        self.assertEqual(self.review.record['displayed'], [])
+        with self.assertRaises(ValueError): self.review.finish(True)
+        self.review.visit(0, gt_view=True)
+        self.assertEqual(self.review.record['displayed'], [0])
     def test_confirmation_and_display_required(self):
         with self.assertRaises(ValueError): self.review.flag(0,True)
         self.review.visit(0)
