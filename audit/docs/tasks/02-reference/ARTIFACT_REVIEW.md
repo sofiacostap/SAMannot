@@ -1,5 +1,19 @@
 # Playback and artifact separation
 
+## Seeing previous flags while checking another identity
+
+An orange ALREADY FLAGGED badge and border identify frames already set aside.
+Recorded interval identities and reasons appear below the controls. Flags apply
+to whole frames and remain visible when the selected bird changes; a previous
+ID-specific reason is context, not a claim that every bird has an annotation error.
+The duplicate single-frame flag button is disabled, while Undo remains available.
+
+Optional Skip already-flagged frames affects playback and arrow navigation only.
+The slider, Next flagged frame and Next unseen frame can still open those images.
+Skipping does not count as viewing and does not modify any saved decisions. Leave
+skipping off for a complete visual pass or when inspecting other birds in flagged
+frames. The skip preference starts off whenever the page is reopened.
+
 ## Flagging an interval
 
 Expand Flag a frame range. Enter inclusive VIDEO start/end numbers, the affected
