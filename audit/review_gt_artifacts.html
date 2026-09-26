@@ -8,13 +8,21 @@
 <select id="speed" aria-label="Playback speed"><option value="500">2 fps</option><option value="200" selected>5 fps</option><option value="100">10 fps</option><option value="40">25 fps</option></select>
 <button id="flag">Flag this frame</button><button id="undo">Undo flag</button><button id="unseen">Next unseen frame</button><button id="finish">Finish and separate GT</button></div>
 <div id="where"></div><div id="coverage"></div><div id="message" role="status"></div>
+<details><summary>Flag a frame range</summary><p>Inclusive VIDEO frame numbers. Existing flags stay saved. This sets aside whole frames; the identity and reason are recorded for later inspection.</p>
+<label>Start <input id="rangeStart" type="number" min="0" style="width:100px"></label>
+<label>End <input id="rangeEnd" type="number" min="0" style="width:100px"></label>
+<label>Affected ID <select id="rangeBird"></select></label>
+<label>Reason <input id="rangeNote" type="text" maxlength="2000" placeholder="Partially visible but GT mask missing" style="width:320px"></label>
+<button id="rangeFlag">Flag range…</button></details>
 <img id="screen" alt="GT overlay — click to pause"><input id="scrub" type="range" min="0" value="0" aria-label="Frame position">
 <dialog id="confirm"><h2>Separate this GT artifact?</h2><p id="question"></p><p>This excludes this entire frame and all its bird labels from the retained copy. Original files stay unchanged.</p><button id="yes">Confirm artifact</button><button id="cancel">Cancel</button></dialog>
 <dialog id="complete"><h2>Finish this viewing pass?</h2><p>Confirm that you watched the complete sequence. The remaining frames will be exported as unflagged GT, not individually certified masks.</p><button id="done">Confirm and export</button><button id="back">Continue reviewing</button></dialog>
+<dialog id="rangeConfirm"><h2>Confirm frame range</h2><p id="rangeQuestion"></p><p>All bird labels in these frames will be set aside. Existing flags are preserved. This does not mark unseen frames as inspected.</p><button id="rangeYes">Confirm range</button><button id="rangeCancel">Cancel</button></dialog>
 <script>
 const $=id=>document.getElementById(id),token=new URLSearchParams(location.search).get('token');
 const url=(path,extra={})=>path+'?'+new URLSearchParams({token,...extra});
 let state,index=-1,playing=false,timer,epoch=0,saving=false,selected=-1;
+let pendingRange=null;
 async function post(path,data){let r=await fetch(url(path),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}),j=await r.json();if(!r.ok)throw Error(j.error);state.record=j;return j;}
 function pause(){playing=false;clearTimeout(timer);epoch++;$('play').textContent='Play';}
 function info(){let f=state.frames[index];$('where').textContent=`Video frame ${f.video_frame} · GT ${f.gt_frame} · ${index+1}/${state.frames.length}${state.record.flagged.includes(index)?' · FLAGGED':''}`;$('scrub').value=index;$('coverage').textContent=`${state.record.displayed.length}/${state.frames.length} frames displayed · ${state.record.flagged.length} artifacts`;$('undo').disabled=!state.record.flagged.includes(index);}
@@ -32,10 +40,13 @@ $('unseen').onclick=()=>{pause();if(!state||saving)return;let i=state.frames.fin
 document.addEventListener('visibilitychange',()=>{if(document.hidden)pause();});
 $('flag').onclick=()=>{pause();if(saving||index<0)return;selected=index;$('question').textContent=`Video frame ${state.frames[selected].video_frame}, GT image ${state.frames[selected].gt_frame}.`;$('confirm').showModal();};
 $('cancel').onclick=()=>$('confirm').close();
+$('rangeFlag').onclick=()=>{pause();if(saving||!state)return;let start=Number($('rangeStart').value),end=Number($('rangeEnd').value),bird=Number($('rangeBird').value),note=$('rangeNote').value.trim();if(!$('rangeStart').value||!$('rangeEnd').value||!Number.isInteger(start)||!Number.isInteger(end)||start>end||!note){$('message').textContent='Enter start/end video frames and a reason.';return;}let n=state.frames.filter(f=>f.video_frame>=start&&f.video_frame<=end).length;if(n!==end-start+1){$('message').textContent='Range includes unavailable GT frames or is outside the video.';return;}pendingRange={start,end,bird,note,confirmed:true};$('rangeQuestion').textContent=`Video frames ${start}–${end} inclusive (${n} frames), ID ${bird}: ${note}`;$('rangeConfirm').showModal();};
+$('rangeCancel').onclick=()=>$('rangeConfirm').close();
+$('rangeYes').onclick=async()=>{if(saving||!pendingRange)return;saving=true;$('rangeYes').disabled=true;$('message').textContent='Saving the range and copying artifact frames. Keep this window open…';try{await post('/flag-range',pendingRange);$('rangeConfirm').close();info();$('message').textContent=`Range ${pendingRange.start}–${pendingRange.end} saved. Previous flags preserved.`;}catch(e){err(e);try{let r=await fetch(url('/state'));let s=await r.json();if(r.ok){state.record=s.record;info();}}catch(_){} }finally{saving=false;$('rangeYes').disabled=false;}};
 $('yes').onclick=async()=>{if(saving)return;saving=true;$('yes').disabled=true;try{await post('/flag',{index:selected,confirmed:true});$('confirm').close();info();$('message').textContent='Separated into gt artifacts. Press Play to continue.';}catch(e){err(e);}finally{saving=false;$('yes').disabled=false;}};
 $('undo').onclick=async()=>{pause();if(saving)return;saving=true;try{await post('/undo',{index});info();$('message').textContent='Flag undone.';}catch(e){err(e);}finally{saving=false;}};
 $('finish').onclick=()=>{pause();if(saving)return;if(state.record.displayed.length!==state.frames.length){$('message').textContent='Some frames have not been displayed. Continue the viewing pass first.';return;}$('complete').showModal();};
 $('back').onclick=()=>$('complete').close();$('done').onclick=async()=>{if(saving)return;saving=true;$('done').disabled=true;$('message').textContent='Separating verified GT files. Keep this window open…';try{await post('/finish',{confirmed:true});$('complete').close();$('message').textContent='Saved: '+state.record.latest_export;}catch(e){err(e);}finally{saving=false;$('done').disabled=false;}};
 document.onkeydown=e=>{if(document.querySelector('dialog[open]')||e.target.tagName==='SELECT'||e.target.tagName==='INPUT')return;if(e.code==='Space'){e.preventDefault();toggle();}if(e.key==='ArrowLeft')$('prev').click();if(e.key==='ArrowRight')$('next').click();};
-fetch(url('/state')).then(r=>r.json()).then(s=>{if(s.error)throw Error(s.error);state=s;for(let id of s.ids)$('bird').add(new Option('ID '+id,id));$('scrub').max=s.frames.length-1;show(s.record.last);}).catch(err);
+fetch(url('/state')).then(r=>r.json()).then(s=>{if(s.error)throw Error(s.error);state=s;for(let id of s.ids){$('bird').add(new Option('ID '+id,id));$('rangeBird').add(new Option('ID '+id,id));}$('scrub').max=s.frames.length-1;show(s.record.last);}).catch(err);
 </script></html>

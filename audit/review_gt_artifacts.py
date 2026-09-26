@@ -113,11 +113,11 @@ class ArtifactReview:
         self.record['last'] = index
         self.save()
 
-    def flag(self, index, confirmed):
+    def flag(self, index, confirmed, *, range_confirmed=False):
         self.check(index)
         if confirmed is not True:
             raise ValueError('Explicit confirmation required')
-        if index not in self.record.get('visible', self.record['displayed']):
+        if not range_confirmed and index not in self.record.get('visible', self.record['displayed']):
             raise ValueError('Display the frame before flagging')
         vf = self.source.frames[index]['video_frame']
         folder = self.root/'gt artifacts'/f'{vf:06d}'
@@ -133,6 +133,39 @@ class ArtifactReview:
                 gt_frame=self.source.frames[index]['gt_frame'], scope='whole_frame'), indent=2))
             self.record['flagged'].append(index)
             self.record['completed'] = False
+            self.save()
+
+    def flag_range(self, start, end, bird, note, confirmed):
+        if confirmed is not True:
+            raise ValueError('Explicit range confirmation required')
+        if type(start) is not int or type(end) is not int or start > end:
+            raise ValueError('Enter integer video-frame bounds with start <= end')
+        if type(bird) is not int or bird not in self.source.ids:
+            raise ValueError('Select the affected identity')
+        if not isinstance(note, str) or not note.strip() or len(note) > 2000:
+            raise ValueError('Add a short reason for the range')
+        indices = [i for i, f in enumerate(self.source.frames) if start <= f['video_frame'] <= end]
+        if len(indices) != end-start+1:
+            raise ValueError('Range is outside the video or includes frames without GT')
+        # Save an untouched progress snapshot before a bulk action. Existing flags are unioned.
+        backup = self.root/'progress backups'
+        backup.mkdir(exist_ok=True)
+        shutil.copyfile(self.path, backup/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')+'.json'))
+        event = dict(start_video_frame=start, end_video_frame=end, affected_id=bird,
+            reason=note.strip(), scope='whole_frame', status='in_progress', total_frames=len(indices),
+            newly_flagged=0, already_flagged=sum(i in self.record['flagged'] for i in indices))
+        self.record.setdefault('range_flags', []).append(event)
+        self.save()
+        try:
+            for i in indices:
+                previous = i in self.record['flagged']
+                self.flag(i, True, range_confirmed=True)
+                event['newly_flagged'] += int(not previous)
+            event['status'] = 'completed'
+        except (ValueError, OSError) as exc:
+            event['status'] = 'interrupted'
+            raise ValueError('Range interrupted; saved flags are preserved. Retry the same range. '+str(exc)) from exc
+        finally:
             self.save()
 
     def undo(self, index):
@@ -181,6 +214,7 @@ class ArtifactReview:
         (staging/'README.txt').write_text('GT partition after visual playback. Retained means no artifact was flagged, not independently certified perfect.\n'
             'Flags exclude the entire image (all bird labels), never the whole video. Original source files are unchanged.\n'
             'Filenames use video indices; manifest.csv also records GT indices. Do not mix this with the earlier automatic partition.\n')
+        (staging/'range_notes.json').write_text(json.dumps(self.record.get('range_flags', []), indent=2), encoding='utf-8')
         (staging/'verification.json').write_text(json.dumps(dict(status='completed_visual_playback_partition',
             retained_frames=len(rows)-len(self.record['flagged']), artifact_frames=len(self.record['flagged']),
             total_frames=len(rows), source_inputs=self.record['inputs']), indent=2))
@@ -221,11 +255,12 @@ def serve(review, port):
             try:
                 route, q = self.route()
                 size = int(self.headers.get('Content-Length', 0))
-                if not 0 < size < 4096: raise ValueError('Invalid request')
+                if not 0 < size < 16000: raise ValueError('Invalid request')
                 data = json.loads(self.rfile.read(size))
                 with review.lock:
                     if route == '/visit': review.visit(data['index'], data.get('gt_view', True))
                     elif route == '/flag': review.flag(data['index'], data.get('confirmed'))
+                    elif route == '/flag-range': review.flag_range(data['start'], data['end'], data['bird'], data['note'], data.get('confirmed'))
                     elif route == '/undo': review.undo(data['index'])
                     elif route == '/finish': review.finish(data.get('confirmed'))
                     else: raise ValueError('Unknown action')

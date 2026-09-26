@@ -21,6 +21,31 @@ class ArtifactTests(unittest.TestCase):
         self.review.visit(0)
         self.assertEqual(self.review.record['flagged'],[])
         self.assertEqual(self.review.record['displayed'],[0])
+    def test_range_preserves_existing_flags_and_coverage(self):
+        self.review.visit(0);self.review.flag(0,True)
+        self.review.flag_range(1,1,14,'Partially visible but mask missing',True)
+        self.assertEqual(self.review.record['flagged'],[0,1])
+        self.assertEqual(self.review.record['displayed'],[0])
+        self.assertEqual(self.review.record['range_flags'][-1]['affected_id'],14)
+        self.assertTrue(list((self.review.root/'progress backups').glob('*.json')))
+        resumed=ArtifactReview(self.ref,self.src,self.root)
+        self.assertEqual(resumed.record['flagged'],[0,1])
+    def test_range_is_inclusive_and_repeat_is_idempotent(self):
+        self.review.flag_range(0,1,14,'Missing mask',True)
+        self.assertEqual(self.review.record['flagged'],[0,1])
+        self.review.flag_range(0,1,14,'Missing mask',True)
+        self.assertEqual(self.review.record['flagged'],[0,1])
+        self.assertEqual(self.review.record['range_flags'][-1]['already_flagged'],2)
+    def test_range_invalid_bounds_and_confirmation_do_not_change_flags(self):
+        for start,end,bird,confirmed in [(1,0,14,True),(0,2,14,True),(0,1,999,True),(0,1,14,False)]:
+            with self.assertRaises(ValueError):self.review.flag_range(start,end,bird,'Reason',confirmed)
+        self.assertEqual(self.review.record['flagged'],[])
+    def test_range_uses_video_indices_not_positions(self):
+        self.review.source.frames[0]['video_frame']=2436
+        self.review.source.frames[1]['video_frame']=2437
+        self.review.flag_range(2436,2437,14,'Missing mask',True)
+        self.assertTrue((self.review.root/'gt artifacts/002436/gt_mask.png').exists())
+        self.assertTrue((self.review.root/'gt artifacts/002437/gt_mask.png').exists())
     def test_photo_or_binary_view_can_be_flagged_without_full_gt_coverage(self):
         self.review.visit(0, gt_view=False)
         self.review.flag(0, True)

@@ -1,5 +1,20 @@
 # Playback and artifact separation
 
+## Flagging an interval
+
+Expand Flag a frame range. Enter inclusive VIDEO start/end numbers, the affected
+identity and a reason. Flag range opens a confirmation showing bounds and count.
+Confirm range copies the affected whole frames to the artifact folder and adds them
+to existing flags; it never replaces the flag list. A progress backup is saved first.
+Ranges containing missing GT frames are refused. Applying the same range again does
+not duplicate frame flags. Frame-by-frame Undo remains available. The interval note
+is historical context; current flags remain authoritative after individual undo.
+
+Range confirmation records a reported issue, not playback coverage. Unseen images
+are not automatically counted as inspected. Keep the window open during copying.
+If copying fails, successfully saved flags remain; retry the same range. Interval
+notes, including the affected identity, are saved in progress and final exports.
+
 ## Original GT inspection
 
 The player now reads original categorical palette PNGs directly from the source
