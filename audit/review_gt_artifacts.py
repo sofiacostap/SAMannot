@@ -2,6 +2,10 @@
 import argparse
 import csv
 import json
+import io
+import shutil
+from functools import lru_cache
+import numpy as np
 import secrets
 import threading
 from datetime import datetime, timezone
@@ -10,18 +14,59 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
 from PIL import Image
-from recompute import sha
+from recompute import sha, indexed
 from review_all_gt import Review, inventory
+from prepare_task2_reference import LABEL_MAP, PALETTE
+from verify_correspondence import fingerprint
 
 
 class Source(Review):
-    def __init__(self, reference, source):
+    def __init__(self, reference, source, original=None):
         self.ids, self.frames = inventory(reference, source)
+        self.original = original
+        if original is not None:
+            self.raw_files = indexed(original)
+            self.hashes = json.loads((reference/'mask_hashes.json').read_text())
+            if any(f['gt_frame'] not in self.raw_files for f in self.frames):
+                raise ValueError('Original GT inventory is incomplete')
+
+    def raw(self, index):
+        f = self.frames[index]; path = self.raw_files[f['gt_frame']]
+        if sha(path) != self.hashes[str(f['gt_frame'])]['original']:
+            raise ValueError('Original GT hash differs from recorded source')
+        with Image.open(path) as im:
+            raw = np.array(im); palette = im.getpalette()
+            if im.mode != 'P' or palette is None or not set(np.unique(raw)) <= set(PALETTE):
+                raise ValueError('Unexpected original categorical GT encoding')
+            if any(tuple(palette[3*i:3*i+3]) != PALETTE[i] for i in np.unique(raw)):
+                raise ValueError('Unexpected original GT palette')
+        return path, raw
+
+    @lru_cache(maxsize=3)
+    def pixels(self, index):
+        if self.original is None: return super().pixels(index)
+        _, raw = self.raw(index)
+        f = self.frames[index]
+        with Image.open(f['photo']) as im: rgb = np.array(im.convert('RGB'))
+        if fingerprint(rgb) != f['rgb_sha256'] or rgb.shape[:2] != (raw.shape[0]*2, raw.shape[1]*2):
+            raise ValueError('Photograph hash or original GT dimensions do not match')
+        # Direct label lookup and exact pixel replication, never the generated mask file.
+        return rgb, np.repeat(np.repeat(LABEL_MAP[raw], 2, axis=0), 2, axis=1)
+
+    def picture(self, index, view, selected, native):
+        if view in ('raw', 'binary'):
+            if self.original is None: raise ValueError('Original GT source required')
+            path, raw = self.raw(index)
+            if view == 'raw': return path.read_bytes()
+            if selected not in self.ids: raise ValueError('Select a bird identity')
+            image = Image.fromarray(((LABEL_MAP[raw] == selected)*255).astype(np.uint8))
+            out = io.BytesIO(); image.save(out, format='PNG'); return out.getvalue()
+        return super().picture(index, view, selected, native)
 
 
 class ArtifactReview:
-    def __init__(self, reference, source, destination):
-        self.source = Source(reference, source)
+    def __init__(self, reference, source, destination, original=None):
+        self.source = Source(reference, source, original)
         self.root = destination/'gt-review'
         self.root.mkdir(parents=True, exist_ok=True)
         self.lock = threading.Lock()
@@ -39,6 +84,12 @@ class ArtifactReview:
             self.save()
         for folder in ('gt artifacts', 'undo history', 'exports'):
             (self.root/folder).mkdir(exist_ok=True)
+        if original is not None and self.record.get('view_source') != 'original_categorical':
+            self.record['previous_derivative_displayed'] = self.record['displayed'][:]
+            self.record['displayed'] = []
+            self.record['completed'] = False
+            self.record['view_source'] = 'original_categorical'
+            self.save()  # Preserve flags; do not relabel derivative viewing as original GT inspection.
 
     def save(self):
         temp = self.path.with_suffix('.tmp')
@@ -70,6 +121,8 @@ class ArtifactReview:
             folder.mkdir(exist_ok=True)
             Image.fromarray(rgb).save(folder/'photograph.png')
             Image.fromarray(gt).save(folder/'gt_mask.png')
+            if self.source.original is not None:
+                shutil.copyfile(self.source.raw(index)[0], folder/'original_gt.png')
             (folder/'overlay.png').write_bytes(self.source.picture(index, 'overlay', 0, True))
             (folder/'frame.json').write_text(json.dumps(dict(video_frame=vf,
                 gt_frame=self.source.frames[index]['gt_frame'], scope='whole_frame'), indent=2))
@@ -104,11 +157,18 @@ class ArtifactReview:
             folder.mkdir(exist_ok=True)
             # Recheck all images when exporting, including files previously cached during playback.
             self.source.pixels.cache_clear()
+            Review.pixels.cache_clear()
             rgb, gt = self.source.pixels(index)
             stem = f"{frame['video_frame']:06d}"
             photo, mask = folder/(stem+'_photo.png'), folder/(stem+'_gt.png')
             Image.fromarray(rgb).save(photo); Image.fromarray(gt).save(mask)
+            raw_name = ''
+            if self.source.original is not None:
+                raw_path = folder/(stem+'_original_gt.png')
+                shutil.copyfile(self.source.raw(index)[0], raw_path)
+                raw_name = raw_path.relative_to(staging).as_posix()
             rows.append(dict(video_frame=frame['video_frame'], gt_frame=frame['gt_frame'],
+                original_gt=raw_name,
                 category=category, photograph=photo.relative_to(staging).as_posix(),
                 mask=mask.relative_to(staging).as_posix(), photo_sha256=sha(photo), mask_sha256=sha(mask)))
         with (staging/'manifest.csv').open('w', newline='', encoding='utf-8') as stream:
@@ -144,10 +204,12 @@ def serve(review, port):
                 if route == '/': self.reply(Path(__file__).with_suffix('.html').read_bytes(), 'text/html; charset=utf-8')
                 elif route == '/state':
                     with review.lock:
-                        self.reply(dict(record=review.record, frames=[dict(video_frame=f['video_frame'],gt_frame=f['gt_frame']) for f in review.source.frames]))
+                        self.reply(dict(record=review.record, ids=review.source.ids, frames=[dict(video_frame=f['video_frame'],gt_frame=f['gt_frame']) for f in review.source.frames]))
                 elif route == '/image':
                     i = int(q['index'][0]); review.check(i)
-                    self.reply(review.source.picture(i, 'overlay', 0, False), 'image/png')
+                    view=q.get('view',['overlay'])[0]; bird=int(q.get('bird',['0'])[0])
+                    if view not in ('overlay','photo','raw','binary'): raise ValueError('Invalid view')
+                    self.reply(review.source.picture(i, view, bird, False), 'image/png')
                 else: self.reply('Not found', 'text/plain', 404)
             except (ValueError, KeyError, OSError) as exc: self.reply(dict(error=str(exc)), status=400)
         def do_POST(self):
@@ -178,6 +240,9 @@ if __name__ == '__main__':
     p.add_argument('--reference', type=Path, default=Path('audit/results/task2-reference-20260915T080605348526Z'))
     p.add_argument('--source', type=Path, default=Path('audit/results/verified-source-20260911T164528649441Z'))
     p.add_argument('--port', type=int, default=8768)
+    p.add_argument('--original', type=Path, help='Original palette-mask directory; defaults to the recorded source')
     a = p.parse_args()
     if not a.destination.is_dir(): p.error('Destination must already exist')
-    serve(ArtifactReview(a.reference, a.source, a.destination), a.port)
+    original = a.original or Path(json.loads((a.reference/'verification.json').read_text())['original_directory'])
+    if not original.is_dir(): p.error('Original GT directory is unavailable; mount the data drive or supply --original')
+    serve(ArtifactReview(a.reference, a.source, a.destination, original), a.port)

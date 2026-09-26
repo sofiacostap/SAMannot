@@ -1,5 +1,27 @@
 # Playback and artifact separation
 
+## Original GT inspection
+
+The player now reads original categorical palette PNGs directly from the source
+directory recorded in the reference report. It verifies their recorded hashes.
+It does not read the generated normalized mask pixels for display. Overlay display
+uses an explicit identity lookup and exact 2x pixel repetition to match the photograph;
+it does not smooth, repair or remove regions. Original palette view serves the source
+PNG itself, unchanged, at its native image resolution. Binary view isolates one
+identity at that same resolution. Photograph-only view removes every overlay.
+
+Use the View selector while paused to distinguish a natural image colour from a
+labelled speck. Original palette colours differ from overlay colours. Binary white
+pixels are the selected identity; these can confirm whether a suspect patch exists
+in the original annotation. A flag means needs inspection, not proof of its cause.
+
+The same launch command still works. Existing flags are retained. Earlier display
+coverage is archived separately and the original-GT viewing pass starts with zero
+coverage. No flags, source masks or historical exports are deleted. New artifact
+copies and final exports include the original palette PNG as well as the full-size
+derived label mask. Previously flagged folders remain historical; final exports
+include original files for every retained and flagged frame.
+
 Use `review_gt_artifacts.py` for a complete visual pass without individual approvals.
 This is an alternative to `review_all_gt.py`, not an automatic conversion of its
 decisions. Existing scores and original GT files remain unchanged.
@@ -39,7 +61,7 @@ perfect. This partition does not inherit the earlier automatic exclusions and mu
 not silently replace the frozen evaluation set. A new evaluation must explicitly use
 its manifest and report the changed reference policy. No SAM2 inference is required.
 
-The tool uses the same verified source images and normalized categorical GT as the
+The tool uses verified source images and the original categorical GT underlying the
 existing reference release. Input-manifest changes prevent accidental resumption
 against another dataset. Actual mask/photo hashes are checked on load and rechecked
 at export. No personal names, machine paths or free-text review notes are embedded
