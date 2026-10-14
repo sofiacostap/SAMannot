@@ -1,0 +1,51 @@
+{
+  "status": "candidates_only_alignment_not_certified",
+  "reference_results": "structure-20261014T090915907504Z",
+  "saved_index": 13497,
+  "search_start": 13347,
+  "search_end": 13647,
+  "compared_frames": 301,
+  "method": "Sequential decode; mean absolute BGR difference after area resize to 672x380",
+  "limitations": [
+    "Overlay colours can bias ranking.",
+    "A single cached image cannot certify mask indexing or a video-wide offset.",
+    "No match outside this search window has been tested."
+  ],
+  "candidates": [
+    {
+      "rank": 1,
+      "video_index": 13525,
+      "difference_from_saved_index": 28,
+      "mean_absolute_colour_difference": 1.544396162033081,
+      "image": "candidate_1_013525.png"
+    },
+    {
+      "rank": 2,
+      "video_index": 13526,
+      "difference_from_saved_index": 29,
+      "mean_absolute_colour_difference": 1.819312572479248,
+      "image": "candidate_2_013526.png"
+    },
+    {
+      "rank": 3,
+      "video_index": 13524,
+      "difference_from_saved_index": 27,
+      "mean_absolute_colour_difference": 1.8501944541931152,
+      "image": "candidate_3_013524.png"
+    },
+    {
+      "rank": 4,
+      "video_index": 13527,
+      "difference_from_saved_index": 30,
+      "mean_absolute_colour_difference": 2.0471203327178955,
+      "image": "candidate_4_013527.png"
+    },
+    {
+      "rank": 5,
+      "video_index": 13523,
+      "difference_from_saved_index": 26,
+      "mean_absolute_colour_difference": 2.188481569290161,
+      "image": "candidate_5_013523.png"
+    }
+  ]
+}
