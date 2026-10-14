@@ -89,6 +89,8 @@ def run(args):
             raise ValueError('Duplicate numeric frame key')
         frames[index] = masks
     selected = [0, 250, 500, 4250, 6750, 10000, 13497]
+    if args.sample_step is not None:
+        selected = sorted(set(range(min(frames), max(frames)+1, args.sample_step)) | {max(frames)})
     if any(i not in frames for i in selected):
         raise ValueError('Expected Lek3 sample frame is missing; inspect coverage first')
     folder = Path(__file__).resolve().parent / 'results' / (
@@ -119,7 +121,10 @@ def run(args):
     # cumulative extraction drift; +28 comes from one saved-overlay candidate.
     requests = {}
     for index in selected:
-        for offset in sorted({0, 1, index//block_size+2, 28}):
+        offsets = [args.offset] if args.offset is not None else sorted({0, 1, index//block_size+2, 28})
+        for offset in offsets:
+            if index + offset < 0:
+                raise ValueError('Candidate video index is negative')
             requests.setdefault(index+offset, []).append((index, offset))
     cap = cv2.VideoCapture(str(args.video))
     comparisons = []
@@ -166,6 +171,7 @@ def run(args):
         raise ValueError('Session changed during inspection')
     unique = sorted({r['session_index_candidate'] for r in prompts if r['session_index_candidate'] is not None})
     result = {'status': 'pilot_complete_correspondence_unverified',
+        'sampling_step': args.sample_step, 'fixed_candidate_offset': args.offset,
         'session_file': args.session.name, 'video_file': args.video.name,
         'labels': [dict(v, preview_label=n+1, preview_rgb=colours[n]) for n,v in enumerate(labels)],
         'prompt_records': len(prompts), 'unique_prompt_session_indices_candidate': unique,
@@ -189,4 +195,9 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--session', type=Path, required=True)
     parser.add_argument('--video', type=Path, required=True)
-    run(parser.parse_args())
+    parser.add_argument('--sample-step', type=int, help='Sample stored indices at this interval, plus the last index')
+    parser.add_argument('--offset', type=int, help='Use only this candidate video-minus-GT offset; zero tests same-index pairing')
+    args = parser.parse_args()
+    if args.sample_step is not None and args.sample_step <= 0:
+        parser.error('sample-step must be positive')
+    run(args)
