@@ -1,0 +1,174 @@
+{
+  "status": "structure_inspected_alignment_unverified",
+  "backend": {
+    "session_name": "Lek3_left_2021_512_a_lek_cut",
+    "view_mode": "overlay",
+    "mode": "correction",
+    "media_files": {
+      "type": "list",
+      "count": 500
+    },
+    "curr_img_idx": 497,
+    "overlay_img": {
+      "type": "PIL.Image.Image"
+    },
+    "overlay_imgs": {
+      "type": "dict",
+      "count": 0
+    },
+    "combined_masks": {
+      "type": "dict",
+      "count": 0
+    },
+    "original_img": {
+      "type": "PIL.JpegImagePlugin.JpegImageFile"
+    },
+    "composite_mask": {
+      "type": "numpy._core.numeric._frombuffer"
+    },
+    "masks": {
+      "type": "dict",
+      "count": 13500
+    },
+    "idx_to_path": {
+      "type": "dict",
+      "count": 500
+    },
+    "temp_dir": "temp_dir",
+    "current_img_width": 0,
+    "current_img_height": 0,
+    "label_handler": {
+      "type": "label.Label_Handler"
+    },
+    "curr_label_idx": 3,
+    "tracking_results": {
+      "type": "dict",
+      "count": 0
+    },
+    "cache_images": false,
+    "media_path": "C:/Users/kkupan/Desktop/Fm2 Videos/for Samannot/512_a_lek_cut",
+    "video_name": "C:/Users/kkupan/Desktop/Fm2 Videos/for Samannot/512_a_lek_cut/Lek3_left_2021_512_a_lek_cut.mp4",
+    "block_size": 500,
+    "current_block": 26,
+    "num_blocks": 94,
+    "curr_img_shape": {
+      "type": "tuple",
+      "count": 3
+    },
+    "extra_frame_path": {
+      "type": "dict",
+      "count": 27
+    },
+    "extra_frame": {
+      "type": "dict",
+      "count": 27
+    },
+    "extra_frame_masks": {
+      "type": "dict",
+      "count": 27
+    },
+    "sam_handler_labels": {
+      "type": "list",
+      "count": 4
+    },
+    "sam_handler_object_id_to_label_name": {
+      "type": "dict",
+      "count": 4
+    },
+    "sam_handler_media_files": {
+      "type": "list",
+      "count": 500
+    },
+    "sam_handler_curr_img_idx": 486,
+    "sam_handler_current_stage": 2,
+    "sam_handler_model_loaded": true,
+    "sam_handler_model_loading": false,
+    "sam_handler_propagation_blocks": {
+      "type": "dict",
+      "count": 94
+    }
+  },
+  "frontend": {
+    "pt_type": 0,
+    "currently_selected_feature": 0,
+    "delete_feature_btn": "normal",
+    "delete_point_btn": "normal",
+    "delete_box_btn": "normal",
+    "generate_mask_btn": "normal",
+    "add_remove_block_button": "normal",
+    "init_tracking_btn_all": "normal",
+    "init_tracking_btn_forward": "normal",
+    "init_tracking_btn_backward": "normal",
+    "export_tracking_btn": "normal",
+    "prev_btn": "normal",
+    "next_btn": "normal",
+    "prev_block_btn": "normal",
+    "next_block_btn": "normal",
+    "image_counter_label": "Image: 498 / 500 | Block: 27 / 94",
+    "status_label": "Masks applied to all images.",
+    "label_markers": {
+      "type": "list",
+      "count": 4
+    },
+    "box_label_markers": {
+      "type": "list",
+      "count": 4
+    },
+    "timelines": {
+      "type": "list",
+      "count": 94
+    },
+    "timeline": {
+      "type": "numpy._core.numeric._frombuffer"
+    },
+    "max_frame": 46529,
+    "file_path": "C:/Users/kkupan/Desktop/Fm2 Videos/for Samannot/512_a_lek_cut/Lek3_left_2021_512_a_lek_cut.mp4"
+  },
+  "limitations": [
+    "Stored frame keys are not yet certified video indices.",
+    "Mask contents and annotation provenance are not validated."
+  ],
+  "mask_outer_keys": {
+    "count": 13500,
+    "first": [
+      "temp_dir\\000000.jpg",
+      "temp_dir\\000001.jpg",
+      "temp_dir\\000002.jpg",
+      "temp_dir\\000003.jpg",
+      "temp_dir\\000004.jpg",
+      "temp_dir\\000005.jpg",
+      "temp_dir\\000006.jpg",
+      "temp_dir\\000007.jpg",
+      "temp_dir\\000008.jpg",
+      "temp_dir\\000009.jpg"
+    ],
+    "last": [
+      "temp_dir\\013490.jpg",
+      "temp_dir\\013491.jpg",
+      "temp_dir\\013492.jpg",
+      "temp_dir\\013493.jpg",
+      "temp_dir\\013494.jpg",
+      "temp_dir\\013495.jpg",
+      "temp_dir\\013496.jpg",
+      "temp_dir\\013497.jpg",
+      "temp_dir\\013498.jpg",
+      "temp_dir\\013499.jpg"
+    ]
+  },
+  "saved_images": {
+    "original_img": {
+      "width": 2688,
+      "height": 1520
+    },
+    "overlay_img": {
+      "width": 2688,
+      "height": 1520
+    }
+  },
+  "current_media_entry": "temp_dir\\013497.jpg",
+  "video_candidate": {
+    "index": 13497,
+    "method": "sequential decode",
+    "status": "same-index candidate only; correspondence not certified"
+  }
+}
