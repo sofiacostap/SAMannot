@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><title>Fixed GT frame review</title>
+<style>
+body{font:17px system-ui;margin:18px;background:#f4f6f8;color:#172436}button,select,input{font:inherit;margin:5px}button{padding:7px 12px}#tools{position:sticky;top:0;background:#f4f6f8;padding:8px;z-index:1;border-bottom:1px solid #aaa}canvas{width:100%;height:auto;background:#222}#slider{width:65%}#status{font-weight:bold}#selection{padding:10px;background:#fff} .hint{font-size:14px}
+</style>
+<h2>Hold GT fixed and step through the video</h2>
+<p>The mask stays at its stored coordinates. Only the photograph changes. Check all birds before choosing a candidate.</p>
+<div id="tools">
+<div id="status">Loading…</div>
+<button id="prev" disabled>← Previous</button><button id="next" disabled>Next →</button>
+<button id="reset" disabled>Same index</button>
+<label><input id="show" type="checkbox" checked>Show masks</label>
+<label>Bird <select id="bird"><option value="all">All</option></select></label>
+<label>Opacity <input id="opacity" type="range" min="0" max="0.8" step="0.05" value="0.35"></label>
+<div><input id="slider" type="range" disabled><span id="loading"></span></div>
+<button id="choose" disabled>Record this candidate</button>
+<span class="hint">Left/Right: one frame. Shift+Left/Right: ten frames. No GT is changed.</span>
+</div>
+<p id="selection">No candidate recorded. A recorded candidate appears here for copying into the chat.</p>
+<canvas id="canvas"></canvas>
+<script>
+const config=__CONFIG__;
+const $=id=>document.getElementById(id);
+const canvas=$('canvas'),ctx=canvas.getContext('2d');
+canvas.width=config.width;canvas.height=config.height;
+let current=null,requested=config.gt,photo=null,epoch=0,ready=false;
+const masks=[];
+function loadImage(src){return new Promise((resolve,reject)=>{const image=new Image();image.onload=()=>resolve(image);image.onerror=()=>reject(new Error('Could not load '+src));image.src=src;});}
+function draw(){if(!photo)return;ctx.globalAlpha=1;ctx.drawImage(photo,0,0);if($('show').checked){ctx.globalAlpha=Number($('opacity').value);for(const layer of masks){if($('bird').value==='all'||$('bird').value===String(layer.label))ctx.drawImage(layer.image,0,0);}ctx.globalAlpha=1;}}
+async function display(index){
+ if(!ready)return;
+ requested=Math.max(config.start,Math.min(config.end,index));
+ const target=requested,ticket=++epoch;
+ $('loading').textContent='Loading video '+target+'…';$('choose').disabled=true;
+ try{
+  const image=await loadImage('frames/'+String(target).padStart(6,'0')+'.jpg');
+  if(ticket!==epoch)return;
+  photo=image;current=target;draw();$('slider').value=current;
+  $('status').textContent=`Fixed GT ${config.gt} | Displayed video ${current} | Offset ${current-config.gt>=0?'+':''}${current-config.gt} | Not certified`;
+  $('loading').textContent='';$('choose').disabled=false;
+ }catch(error){if(ticket===epoch){requested=current??config.gt;$('loading').textContent=error.message;}}
+}
+$('prev').onclick=()=>display(requested-1);$('next').onclick=()=>display(requested+1);
+$('reset').onclick=()=>display(config.gt);$('slider').oninput=()=>display(Number($('slider').value));
+for(const id of ['show','bird','opacity'])$(id).oninput=draw;
+document.addEventListener('keydown',event=>{if(['INPUT','SELECT','TEXTAREA','BUTTON'].includes(event.target.tagName))return;if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();display(requested+(event.key==='ArrowLeft'?-1:1)*(event.shiftKey?10:1));}});
+$('choose').onclick=()=>{if(current===null||$('choose').disabled)return;$('selection').textContent=`Visual candidate: GT ${config.gt}, video ${current}, offset ${current-config.gt>=0?'+':''}${current-config.gt}. Needs confirmation across other frames. (Pilot: ${config.pilot})`;};
+(async()=>{
+ try{
+  for(const layer of config.layers){
+   const option=document.createElement('option');option.value=layer.label;option.textContent=layer.label+': '+layer.name+(layer.missing?' — missing entry':'');option.disabled=layer.missing;$('bird').appendChild(option);
+   if(!layer.missing)masks.push({...layer,image:await loadImage(layer.file)});
+  }
+  $('slider').min=config.start;$('slider').max=config.end;$('slider').value=config.gt;
+  ready=true;for(const id of ['prev','next','reset','slider'])$(id).disabled=false;
+  await display(config.gt);
+ }catch(error){$('status').textContent=error.message;}
+})();
+</script></html>
