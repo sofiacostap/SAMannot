@@ -1,0 +1,847 @@
+{
+  "status": "opcode_scan_completed",
+  "file_name": "Lek3_left_2021_512_a_lek_cut.pkl",
+  "bytes": 27598919751,
+  "mtime_ns": 1791804696640200900,
+  "method": "Sequential opcode inspection with seek over byte payloads; no unpickling",
+  "limitations": [
+    "No pickle objects are reconstructed and no referenced code is executed.",
+    "Field observations are nearby opcode evidence, not resolved dictionary values.",
+    "Mask coverage, manual annotations and identity mapping remain unverified.",
+    "Unchanged size/mtime and STOP opcodes do not prove transfer integrity or semantic validity."
+  ],
+  "bytes_traversed": 27598919751,
+  "opcode_counts": {
+    "PROTO": 2,
+    "FRAME": 53242,
+    "EMPTY_DICT": 66960,
+    "MEMOIZE": 348339,
+    "MARK": 120354,
+    "SHORT_BINUNICODE": 13669,
+    "EMPTY_LIST": 775,
+    "APPENDS": 55,
+    "BININT2": 240022,
+    "STACK_GLOBAL": 11,
+    "EMPTY_TUPLE": 53288,
+    "NEWOBJ": 53288,
+    "TUPLE2": 53114,
+    "NONE": 17,
+    "BINBYTES": 2,
+    "BUILD": 53293,
+    "BININT1": 29876,
+    "SETITEMS": 66875,
+    "BINGET": 776,
+    "TUPLE": 53316,
+    "BYTEARRAY8": 53308,
+    "NEWFALSE": 7,
+    "NEWTRUE": 6,
+    "TUPLE3": 207,
+    "REDUCE": 53313,
+    "BININT": 18,
+    "LONG_BINGET": 426982,
+    "APPEND": 77,
+    "EMPTY_SET": 376,
+    "ADDITEMS": 108,
+    "STOP": 2
+  },
+  "stop_offsets": [
+    27597240775,
+    27598919750
+  ],
+  "skipped_payload_bytes": 27593834529,
+  "payload_examples": [
+    {
+      "offset": 11197,
+      "opcode": "BINBYTES",
+      "bytes": 12257280
+    },
+    {
+      "offset": 12268676,
+      "opcode": "BINBYTES",
+      "bytes": 12257280
+    },
+    {
+      "offset": 24526070,
+      "opcode": "BYTEARRAY8",
+      "bytes": 12257280
+    },
+    {
+      "offset": 36783544,
+      "opcode": "BYTEARRAY8",
+      "bytes": 510720
+    },
+    {
+      "offset": 37294391,
+      "opcode": "BYTEARRAY8",
+      "bytes": 510720
+    },
+    {
+      "offset": 37805202,
+      "opcode": "BYTEARRAY8",
+      "bytes": 510720
+    },
+    {
+      "offset": 38316013,
+      "opcode": "BYTEARRAY8",
+      "bytes": 510720
+    },
+    {
+      "offset": 38826845,
+      "opcode": "BYTEARRAY8",
+      "bytes": 510720
+    },
+    {
+      "offset": 39337651,
+      "opcode": "BYTEARRAY8",
+      "bytes": 510720
+    },
+    {
+      "offset": 39848457,
+      "opcode": "BYTEARRAY8",
+      "bytes": 510720
+    },
+    {
+      "offset": 40359263,
+      "opcode": "BYTEARRAY8",
+      "bytes": 510720
+    },
+    {
+      "offset": 40870095,
+      "opcode": "BYTEARRAY8",
+      "bytes": 510720
+    }
+  ],
+  "field_observations": [
+    {
+      "field": "session_name",
+      "next_opcode": "SHORT_BINUNICODE",
+      "offset": 29,
+      "value": "Lek3_left_2021_512_a_lek_cut"
+    },
+    {
+      "field": "view_mode",
+      "next_opcode": "SHORT_BINUNICODE",
+      "offset": 72,
+      "value": "overlay"
+    },
+    {
+      "field": "mode",
+      "next_opcode": "SHORT_BINUNICODE",
+      "offset": 89,
+      "value": "correction"
+    },
+    {
+      "field": "media_files",
+      "next_opcode": "EMPTY_LIST",
+      "offset": 116,
+      "value": null
+    },
+    {
+      "field": "curr_img_idx",
+      "next_opcode": "BININT2",
+      "offset": 11135,
+      "value": 497
+    },
+    {
+      "field": "combined_masks",
+      "next_opcode": "EMPTY_DICT",
+      "offset": 12268528,
+      "value": null
+    },
+    {
+      "field": "masks",
+      "next_opcode": "EMPTY_DICT",
+      "offset": 36783449,
+      "value": null
+    },
+    {
+      "field": "idx_to_path",
+      "next_opcode": "EMPTY_DICT",
+      "offset": 27109843343,
+      "value": null
+    },
+    {
+      "field": "current_img_width",
+      "next_opcode": "BININT1",
+      "offset": 27109846386,
+      "value": 0
+    },
+    {
+      "field": "current_img_height",
+      "next_opcode": "BININT1",
+      "offset": 27109846409,
+      "value": 0
+    },
+    {
+      "field": "label_handler",
+      "next_opcode": "SHORT_BINUNICODE",
+      "offset": 27109846427,
+      "value": "label"
+    },
+    {
+      "field": "tracking_results",
+      "next_opcode": "EMPTY_DICT",
+      "offset": 27109847335,
+      "value": null
+    },
+    {
+      "field": "media_path",
+      "next_opcode": "SHORT_BINUNICODE",
+      "offset": 27109847366,
+      "value": "C:/Users/kkupan/Desktop/Fm2 Videos/for Samannot/512_a_lek_cut"
+    },
+    {
+      "field": "video_name",
+      "next_opcode": "SHORT_BINUNICODE",
+      "offset": 27109847443,
+      "value": "C:/Users/kkupan/Desktop/Fm2 Videos/for Samannot/512_a_lek_cut/Lek3_left_2021_512_a_lek_cut.mp4"
+    },
+    {
+      "field": "block_size",
+      "next_opcode": "BININT2",
+      "offset": 27109847553,
+      "value": 500
+    },
+    {
+      "field": "current_block",
+      "next_opcode": "BININT1",
+      "offset": 27109847572,
+      "value": 26
+    },
+    {
+      "field": "num_blocks",
+      "next_opcode": "BININT1",
+      "offset": 27109847587,
+      "value": 94
+    },
+    {
+      "field": "sam_handler_labels",
+      "next_opcode": "EMPTY_LIST",
+      "offset": 27597090468,
+      "value": null
+    },
+    {
+      "field": "sam_handler_object_id_to_label_name",
+      "next_opcode": "EMPTY_DICT",
+      "offset": 27597240184,
+      "value": null
+    },
+    {
+      "field": "sam_handler_curr_img_idx",
+      "next_opcode": "BININT2",
+      "offset": 27597240271,
+      "value": 486
+    },
+    {
+      "field": "sam_handler_current_stage",
+      "next_opcode": "BININT1",
+      "offset": 27597240302,
+      "value": 2
+    },
+    {
+      "field": "sam_handler_propagation_blocks",
+      "next_opcode": "EMPTY_DICT",
+      "offset": 27597240394,
+      "value": null
+    },
+    {
+      "field": "max_frame",
+      "next_opcode": "BININT2",
+      "offset": 27598919637,
+      "value": 46529
+    }
+  ],
+  "text_samples": [
+    {
+      "offset": 14,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "session_name"
+    },
+    {
+      "offset": 29,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "Lek3_left_2021_512_a_lek_cut"
+    },
+    {
+      "offset": 60,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "view_mode"
+    },
+    {
+      "offset": 72,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "overlay"
+    },
+    {
+      "offset": 82,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "mode"
+    },
+    {
+      "offset": 89,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "correction"
+    },
+    {
+      "offset": 102,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "media_files"
+    },
+    {
+      "offset": 11120,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "curr_img_idx"
+    },
+    {
+      "offset": 11138,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "overlay_img"
+    },
+    {
+      "offset": 11152,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "PIL.Image"
+    },
+    {
+      "offset": 11164,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "Image"
+    },
+    {
+      "offset": 11182,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "RGB"
+    },
+    {
+      "offset": 12268494,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "overlay_imgs"
+    },
+    {
+      "offset": 12268511,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "combined_masks"
+    },
+    {
+      "offset": 12268530,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "original_img"
+    },
+    {
+      "offset": 12268545,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "PIL.JpegImagePlugin"
+    },
+    {
+      "offset": 12268567,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "JpegImageFile"
+    },
+    {
+      "offset": 12268594,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "jfif"
+    },
+    {
+      "offset": 12268604,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "jfif_version"
+    },
+    {
+      "offset": 12268625,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "jfif_unit"
+    },
+    {
+      "offset": 12268639,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "jfif_density"
+    },
+    {
+      "offset": 24526014,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "composite_mask"
+    },
+    {
+      "offset": 24526031,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "numpy._core.numeric"
+    },
+    {
+      "offset": 24526053,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "_frombuffer"
+    },
+    {
+      "offset": 36783369,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "numpy"
+    },
+    {
+      "offset": 36783377,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "dtype"
+    },
+    {
+      "offset": 36783387,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "u1"
+    },
+    {
+      "offset": 36783401,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "|"
+    },
+    {
+      "offset": 36783433,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "C"
+    },
+    {
+      "offset": 36783441,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "masks"
+    },
+    {
+      "offset": 36783477,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "Marginal 1 BW|WLb"
+    },
+    {
+      "offset": 36783497,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "annotator"
+    },
+    {
+      "offset": 36783509,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "PackedMasks"
+    },
+    {
+      "offset": 36783531,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "data"
+    },
+    {
+      "offset": 37294342,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "h"
+    },
+    {
+      "offset": 37294349,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "w"
+    },
+    {
+      "offset": 37294358,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "DbLb|DbP"
+    },
+    {
+      "offset": 37805170,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "DbLb|OY"
+    },
+    {
+      "offset": 38315981,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "ODb|YDb"
+    },
+    {
+      "offset": 27109843329,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "idx_to_path"
+    },
+    {
+      "offset": 27109846350,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "temp_dir"
+    },
+    {
+      "offset": 27109846366,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "current_img_width"
+    },
+    {
+      "offset": 27109846388,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "current_img_height"
+    },
+    {
+      "offset": 27109846411,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "label_handler"
+    },
+    {
+      "offset": 27109846427,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "label"
+    },
+    {
+      "offset": 27109846435,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "Label_Handler"
+    },
+    {
+      "offset": 27109846459,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "colour_map"
+    },
+    {
+      "offset": 27109847273,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "current_label_idx"
+    },
+    {
+      "offset": 27109847297,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "curr_label_idx"
+    },
+    {
+      "offset": 27109847316,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "tracking_results"
+    },
+    {
+      "offset": 27109847337,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "cache_images"
+    },
+    {
+      "offset": 27109847353,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "media_path"
+    },
+    {
+      "offset": 27109847366,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "C:/Users/kkupan/Desktop/Fm2 Videos/for Samannot/512_a_lek_cut"
+    },
+    {
+      "offset": 27109847430,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "video_name"
+    },
+    {
+      "offset": 27109847443,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "C:/Users/kkupan/Desktop/Fm2 Videos/for Samannot/512_a_lek_cut/Lek3_left_2021_512_a_lek_cut.mp4"
+    },
+    {
+      "offset": 27109847540,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "block_size"
+    },
+    {
+      "offset": 27109847556,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "current_block"
+    },
+    {
+      "offset": 27109847574,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "num_blocks"
+    },
+    {
+      "offset": 27109847589,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "curr_img_shape"
+    },
+    {
+      "offset": 27109847616,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "extra_frame_path"
+    },
+    {
+      "offset": 27109848287,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "extra_frame"
+    },
+    {
+      "offset": 27113934104,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "b1"
+    },
+    {
+      "offset": 27542944825,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "extra_frame_masks"
+    },
+    {
+      "offset": 27597090447,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "sam_handler_labels"
+    },
+    {
+      "offset": 27597090476,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "Label"
+    },
+    {
+      "offset": 27597090492,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "name"
+    },
+    {
+      "offset": 27597090504,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "col"
+    },
+    {
+      "offset": 27597090510,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "#800000"
+    },
+    {
+      "offset": 27597090520,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "pts"
+    },
+    {
+      "offset": 27597090570,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "PPoint"
+    },
+    {
+      "offset": 27597090587,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "x"
+    },
+    {
+      "offset": 27597090594,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "y"
+    },
+    {
+      "offset": 27597090601,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "pt_type"
+    },
+    {
+      "offset": 27597090613,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "idx"
+    },
+    {
+      "offset": 27597091098,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "boxes"
+    },
+    {
+      "offset": 27597091118,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "PBox"
+    },
+    {
+      "offset": 27597091133,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "fx"
+    },
+    {
+      "offset": 27597091141,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "fy"
+    },
+    {
+      "offset": 27597093718,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "features"
+    },
+    {
+      "offset": 27597093731,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "prop_frames"
+    },
+    {
+      "offset": 27597127795,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "#008000"
+    },
+    {
+      "offset": 27597131238,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "black/ beige pinky"
+    },
+    {
+      "offset": 27597165329,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "#808000"
+    },
+    {
+      "offset": 27597168251,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "brwon-white/brown"
+    },
+    {
+      "offset": 27597202332,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "#000080"
+    },
+    {
+      "offset": 27597206088,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "grey/black"
+    },
+    {
+      "offset": 27597240146,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "sam_handler_object_id_to_label_name"
+    },
+    {
+      "offset": 27597240216,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "sam_handler_media_files"
+    },
+    {
+      "offset": 27597240244,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "sam_handler_curr_img_idx"
+    },
+    {
+      "offset": 27597240274,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "sam_handler_current_stage"
+    },
+    {
+      "offset": 27597240304,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "sam_handler_model_loaded"
+    },
+    {
+      "offset": 27597240332,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "sam_handler_model_loading"
+    },
+    {
+      "offset": 27597240361,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "sam_handler_propagation_blocks"
+    },
+    {
+      "offset": 27597240802,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "currently_selected_feature"
+    },
+    {
+      "offset": 27597240833,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "delete_feature_btn"
+    },
+    {
+      "offset": 27597240854,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "normal"
+    },
+    {
+      "offset": 27597240863,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "delete_point_btn"
+    },
+    {
+      "offset": 27597240891,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "delete_box_btn"
+    },
+    {
+      "offset": 27597240917,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "generate_mask_btn"
+    },
+    {
+      "offset": 27597240946,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "add_remove_block_button"
+    },
+    {
+      "offset": 27597240981,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "init_tracking_btn_all"
+    },
+    {
+      "offset": 27597241014,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "init_tracking_btn_forward"
+    },
+    {
+      "offset": 27597241051,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "init_tracking_btn_backward"
+    },
+    {
+      "offset": 27597241089,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "export_tracking_btn"
+    },
+    {
+      "offset": 27597241120,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "prev_btn"
+    },
+    {
+      "offset": 27597241140,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "next_btn"
+    },
+    {
+      "offset": 27597241160,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "prev_block_btn"
+    },
+    {
+      "offset": 27597241186,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "next_block_btn"
+    },
+    {
+      "offset": 27597241212,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "image_counter_label"
+    },
+    {
+      "offset": 27597241234,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "Image: 498 / 500 | Block: 27 / 94"
+    },
+    {
+      "offset": 27597241270,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "status_label"
+    },
+    {
+      "offset": 27597241285,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "Masks applied to all images."
+    },
+    {
+      "offset": 27597241316,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "label_markers"
+    },
+    {
+      "offset": 27597241344,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "box_label_markers"
+    },
+    {
+      "offset": 27597241436,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "timelines"
+    },
+    {
+      "offset": 27598919612,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "timeline"
+    },
+    {
+      "offset": 27598919625,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "max_frame"
+    },
+    {
+      "offset": 27598919640,
+      "opcode": "SHORT_BINUNICODE",
+      "text": "file_path"
+    }
+  ],
+  "source_unchanged": true
+}
