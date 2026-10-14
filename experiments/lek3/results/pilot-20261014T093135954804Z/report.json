@@ -1,0 +1,615 @@
+{
+  "status": "pilot_complete_correspondence_unverified",
+  "session_file": "Lek3_left_2021_512_a_lek_cut.pkl",
+  "video_file": "Lek3_left_2021_512_a.mp4",
+  "labels": [
+    {
+      "name": "Marginal 1 BW|WLb",
+      "colour": "#800000",
+      "preview_label": 1,
+      "preview_rgb": [
+        255,
+        70,
+        70
+      ]
+    },
+    {
+      "name": "DbLb|DbP",
+      "colour": "#008000",
+      "preview_label": 2,
+      "preview_rgb": [
+        70,
+        240,
+        100
+      ]
+    },
+    {
+      "name": "DbLb|OY",
+      "colour": "#808000",
+      "preview_label": 3,
+      "preview_rgb": [
+        255,
+        220,
+        40
+      ]
+    },
+    {
+      "name": "ODb|YDb",
+      "colour": "#000080",
+      "preview_label": 4,
+      "preview_rgb": [
+        90,
+        160,
+        255
+      ]
+    }
+  ],
+  "prompt_records": 175,
+  "unique_prompt_session_indices_candidate": [
+    0,
+    139,
+    188,
+    403,
+    430,
+    500,
+    1000,
+    1500,
+    1791,
+    2000,
+    2044,
+    2500,
+    2922,
+    2925,
+    2927,
+    3000,
+    3500,
+    4000,
+    4500,
+    4866,
+    4921,
+    5000,
+    5183,
+    5488,
+    5530,
+    6000,
+    6105,
+    6146,
+    6487,
+    6488,
+    6500,
+    6604,
+    7000,
+    7415,
+    7466,
+    7500,
+    7610,
+    7824,
+    8000,
+    8284,
+    8285,
+    8500,
+    8643,
+    9000,
+    9500,
+    10000,
+    10003,
+    10500,
+    10926,
+    11000,
+    11121,
+    11500,
+    12000,
+    12500,
+    13000,
+    13486
+  ],
+  "consecutive_prompt_spacings_candidate": [
+    139,
+    49,
+    215,
+    27,
+    70,
+    500,
+    500,
+    291,
+    209,
+    44,
+    456,
+    422,
+    3,
+    2,
+    73,
+    500,
+    500,
+    500,
+    366,
+    55,
+    79,
+    183,
+    305,
+    42,
+    470,
+    105,
+    41,
+    341,
+    1,
+    12,
+    104,
+    396,
+    415,
+    51,
+    34,
+    110,
+    214,
+    176,
+    284,
+    1,
+    215,
+    143,
+    357,
+    500,
+    500,
+    3,
+    497,
+    426,
+    74,
+    121,
+    379,
+    500,
+    500,
+    500,
+    486
+  ],
+  "selected_session_indices": [
+    0,
+    250,
+    500,
+    4250,
+    6750,
+    10000,
+    13497
+  ],
+  "mask_checks": [
+    {
+      "session_index": 0,
+      "label": "Marginal 1 BW|WLb",
+      "status": "present_entry",
+      "area": 1426,
+      "shape": [
+        1520,
+        2688
+      ]
+    },
+    {
+      "session_index": 0,
+      "label": "DbLb|DbP",
+      "status": "present_entry",
+      "area": 25485,
+      "shape": [
+        1520,
+        2688
+      ]
+    },
+    {
+      "session_index": 0,
+      "label": "DbLb|OY",
+      "status": "present_entry",
+      "area": 2020,
+      "shape": [
+        1520,
+        2688
+      ]
+    },
+    {
+      "session_index": 0,
+      "label": "ODb|YDb",
+      "status": "present_entry",
+      "area": 2140,
+      "shape": [
+        1520,
+        2688
+      ]
+    },
+    {
+      "session_index": 250,
+      "label": "Marginal 1 BW|WLb",
+      "status": "present_entry",
+      "area": 1472,
+      "shape": [
+        1520,
+        2688
+      ]
+    },
+    {
+      "session_index": 250,
+      "label": "DbLb|DbP",
+      "status": "present_entry",
+      "area": 11089,
+      "shape": [
+        1520,
+        2688
+      ]
+    },
+    {
+      "session_index": 250,
+      "label": "DbLb|OY",
+      "status": "present_entry",
+      "area": 4893,
+      "shape": [
+        1520,
+        2688
+      ]
+    },
+    {
+      "session_index": 250,
+      "label": "ODb|YDb",
+      "status": "present_entry",
+      "area": 2068,
+      "shape": [
+        1520,
+        2688
+      ]
+    },
+    {
+      "session_index": 500,
+      "label": "Marginal 1 BW|WLb",
+      "status": "present_entry",
+      "area": 4291,
+      "shape": [
+        1520,
+        2688
+      ]
+    },
+    {
+      "session_index": 500,
+      "label": "DbLb|DbP",
+      "status": "present_entry",
+      "area": 21636,
+      "shape": [
+        1520,
+        2688
+      ]
+    },
+    {
+      "session_index": 500,
+      "label": "DbLb|OY",
+      "status": "present_entry",
+      "area": 12751,
+      "shape": [
+        1520,
+        2688
+      ]
+    },
+    {
+      "session_index": 500,
+      "label": "ODb|YDb",
+      "status": "present_entry",
+      "area": 2213,
+      "shape": [
+        1520,
+        2688
+      ]
+    },
+    {
+      "session_index": 4250,
+      "label": "Marginal 1 BW|WLb",
+      "status": "present_entry",
+      "area": 2087,
+      "shape": [
+        1520,
+        2688
+      ]
+    },
+    {
+      "session_index": 4250,
+      "label": "DbLb|DbP",
+      "status": "present_entry",
+      "area": 46127,
+      "shape": [
+        1520,
+        2688
+      ]
+    },
+    {
+      "session_index": 4250,
+      "label": "DbLb|OY",
+      "status": "missing_entry"
+    },
+    {
+      "session_index": 4250,
+      "label": "ODb|YDb",
+      "status": "missing_entry"
+    },
+    {
+      "session_index": 6750,
+      "label": "Marginal 1 BW|WLb",
+      "status": "present_entry",
+      "area": 0,
+      "shape": [
+        1520,
+        2688
+      ]
+    },
+    {
+      "session_index": 6750,
+      "label": "DbLb|DbP",
+      "status": "present_entry",
+      "area": 0,
+      "shape": [
+        1520,
+        2688
+      ]
+    },
+    {
+      "session_index": 6750,
+      "label": "DbLb|OY",
+      "status": "present_entry",
+      "area": 549,
+      "shape": [
+        1520,
+        2688
+      ]
+    },
+    {
+      "session_index": 6750,
+      "label": "ODb|YDb",
+      "status": "present_entry",
+      "area": 4976,
+      "shape": [
+        1520,
+        2688
+      ]
+    },
+    {
+      "session_index": 10000,
+      "label": "Marginal 1 BW|WLb",
+      "status": "present_entry",
+      "area": 13094,
+      "shape": [
+        1520,
+        2688
+      ]
+    },
+    {
+      "session_index": 10000,
+      "label": "DbLb|DbP",
+      "status": "present_entry",
+      "area": 52197,
+      "shape": [
+        1520,
+        2688
+      ]
+    },
+    {
+      "session_index": 10000,
+      "label": "DbLb|OY",
+      "status": "present_entry",
+      "area": 826,
+      "shape": [
+        1520,
+        2688
+      ]
+    },
+    {
+      "session_index": 10000,
+      "label": "ODb|YDb",
+      "status": "present_entry",
+      "area": 5289,
+      "shape": [
+        1520,
+        2688
+      ]
+    },
+    {
+      "session_index": 13497,
+      "label": "Marginal 1 BW|WLb",
+      "status": "present_entry",
+      "area": 1919,
+      "shape": [
+        1520,
+        2688
+      ]
+    },
+    {
+      "session_index": 13497,
+      "label": "DbLb|DbP",
+      "status": "present_entry",
+      "area": 59320,
+      "shape": [
+        1520,
+        2688
+      ]
+    },
+    {
+      "session_index": 13497,
+      "label": "DbLb|OY",
+      "status": "present_entry",
+      "area": 778,
+      "shape": [
+        1520,
+        2688
+      ]
+    },
+    {
+      "session_index": 13497,
+      "label": "ODb|YDb",
+      "status": "present_entry",
+      "area": 4895,
+      "shape": [
+        1520,
+        2688
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "session_index": 0,
+      "video_index": 0,
+      "candidate_offset": 0,
+      "preview": "comparison_000000_offset000.jpg"
+    },
+    {
+      "session_index": 0,
+      "video_index": 1,
+      "candidate_offset": 1,
+      "preview": "comparison_000000_offset001.jpg"
+    },
+    {
+      "session_index": 0,
+      "video_index": 2,
+      "candidate_offset": 2,
+      "preview": "comparison_000000_offset002.jpg"
+    },
+    {
+      "session_index": 0,
+      "video_index": 28,
+      "candidate_offset": 28,
+      "preview": "comparison_000000_offset028.jpg"
+    },
+    {
+      "session_index": 250,
+      "video_index": 250,
+      "candidate_offset": 0,
+      "preview": "comparison_000250_offset000.jpg"
+    },
+    {
+      "session_index": 250,
+      "video_index": 251,
+      "candidate_offset": 1,
+      "preview": "comparison_000250_offset001.jpg"
+    },
+    {
+      "session_index": 250,
+      "video_index": 252,
+      "candidate_offset": 2,
+      "preview": "comparison_000250_offset002.jpg"
+    },
+    {
+      "session_index": 250,
+      "video_index": 278,
+      "candidate_offset": 28,
+      "preview": "comparison_000250_offset028.jpg"
+    },
+    {
+      "session_index": 500,
+      "video_index": 500,
+      "candidate_offset": 0,
+      "preview": "comparison_000500_offset000.jpg"
+    },
+    {
+      "session_index": 500,
+      "video_index": 501,
+      "candidate_offset": 1,
+      "preview": "comparison_000500_offset001.jpg"
+    },
+    {
+      "session_index": 500,
+      "video_index": 503,
+      "candidate_offset": 3,
+      "preview": "comparison_000500_offset003.jpg"
+    },
+    {
+      "session_index": 500,
+      "video_index": 528,
+      "candidate_offset": 28,
+      "preview": "comparison_000500_offset028.jpg"
+    },
+    {
+      "session_index": 4250,
+      "video_index": 4250,
+      "candidate_offset": 0,
+      "preview": "comparison_004250_offset000.jpg"
+    },
+    {
+      "session_index": 4250,
+      "video_index": 4251,
+      "candidate_offset": 1,
+      "preview": "comparison_004250_offset001.jpg"
+    },
+    {
+      "session_index": 4250,
+      "video_index": 4260,
+      "candidate_offset": 10,
+      "preview": "comparison_004250_offset010.jpg"
+    },
+    {
+      "session_index": 4250,
+      "video_index": 4278,
+      "candidate_offset": 28,
+      "preview": "comparison_004250_offset028.jpg"
+    },
+    {
+      "session_index": 6750,
+      "video_index": 6750,
+      "candidate_offset": 0,
+      "preview": "comparison_006750_offset000.jpg"
+    },
+    {
+      "session_index": 6750,
+      "video_index": 6751,
+      "candidate_offset": 1,
+      "preview": "comparison_006750_offset001.jpg"
+    },
+    {
+      "session_index": 6750,
+      "video_index": 6765,
+      "candidate_offset": 15,
+      "preview": "comparison_006750_offset015.jpg"
+    },
+    {
+      "session_index": 6750,
+      "video_index": 6778,
+      "candidate_offset": 28,
+      "preview": "comparison_006750_offset028.jpg"
+    },
+    {
+      "session_index": 10000,
+      "video_index": 10000,
+      "candidate_offset": 0,
+      "preview": "comparison_010000_offset000.jpg"
+    },
+    {
+      "session_index": 10000,
+      "video_index": 10001,
+      "candidate_offset": 1,
+      "preview": "comparison_010000_offset001.jpg"
+    },
+    {
+      "session_index": 10000,
+      "video_index": 10022,
+      "candidate_offset": 22,
+      "preview": "comparison_010000_offset022.jpg"
+    },
+    {
+      "session_index": 10000,
+      "video_index": 10028,
+      "candidate_offset": 28,
+      "preview": "comparison_010000_offset028.jpg"
+    },
+    {
+      "session_index": 13497,
+      "video_index": 13497,
+      "candidate_offset": 0,
+      "preview": "comparison_013497_offset000.jpg"
+    },
+    {
+      "session_index": 13497,
+      "video_index": 13498,
+      "candidate_offset": 1,
+      "preview": "comparison_013497_offset001.jpg"
+    },
+    {
+      "session_index": 13497,
+      "video_index": 13525,
+      "candidate_offset": 28,
+      "preview": "comparison_013497_offset028.jpg"
+    }
+  ],
+  "limitations": [
+    "Stored prompts may include later corrections; original annotation provenance is unverified.",
+    "Prompt indices use block*block_size+local_index, not certified video indices.",
+    "Offsets are exploratory alternatives; no automatic selection is made.",
+    "Absent dictionary entries are unknown, not confirmed bird absence.",
+    "Sparse visual checks cannot certify all frame correspondences."
+  ]
+}

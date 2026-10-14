@@ -1,0 +1,176 @@
+label,kind,block,local_index,session_index_candidate,index_status,x,y,fx,fy,pt_type
+Marginal 1 BW|WLb,pts,8,0,4000,block_local_interpretation,918,422,,,1
+Marginal 1 BW|WLb,pts,9,0,4500,block_local_interpretation,1020,429,,,0
+Marginal 1 BW|WLb,pts,9,366,4866,block_local_interpretation,841,465,,,0
+Marginal 1 BW|WLb,pts,9,366,4866,block_local_interpretation,928,525,,,0
+Marginal 1 BW|WLb,boxes,0,0,0,block_local_interpretation,938,494,871,447,1
+Marginal 1 BW|WLb,boxes,1,0,500,block_local_interpretation,1347,485,1232,334,1
+Marginal 1 BW|WLb,boxes,2,0,1000,block_local_interpretation,1126,462,1035,350,1
+Marginal 1 BW|WLb,boxes,3,0,1500,block_local_interpretation,1041,484,959,378,1
+Marginal 1 BW|WLb,boxes,4,0,2000,block_local_interpretation,1075,476,993,371,1
+Marginal 1 BW|WLb,boxes,5,427,2927,block_local_interpretation,1152,469,1053,402,1
+Marginal 1 BW|WLb,boxes,5,422,2922,block_local_interpretation,1042,481,981,387,1
+Marginal 1 BW|WLb,boxes,6,0,3000,block_local_interpretation,1126,455,1015,364,1
+Marginal 1 BW|WLb,boxes,7,0,3500,block_local_interpretation,1093,456,1013,355,1
+Marginal 1 BW|WLb,boxes,9,366,4866,block_local_interpretation,950,535,834,459,0
+Marginal 1 BW|WLb,boxes,10,0,5000,block_local_interpretation,926,514,858,454,0
+Marginal 1 BW|WLb,boxes,10,488,5488,block_local_interpretation,1257,254,1165,196,0
+Marginal 1 BW|WLb,boxes,11,30,5530,block_local_interpretation,939,473,896,422,0
+Marginal 1 BW|WLb,boxes,12,0,6000,block_local_interpretation,926,499,864,482,0
+Marginal 1 BW|WLb,boxes,13,0,6500,block_local_interpretation,1182,422,1157,422,0
+Marginal 1 BW|WLb,boxes,14,0,7000,block_local_interpretation,1110,452,1035,418,0
+Marginal 1 BW|WLb,boxes,15,0,7500,block_local_interpretation,1135,452,1037,416,0
+Marginal 1 BW|WLb,boxes,15,324,7824,block_local_interpretation,903,467,843,401,0
+Marginal 1 BW|WLb,boxes,16,0,8000,block_local_interpretation,819,467,721,435,0
+Marginal 1 BW|WLb,boxes,16,285,8285,block_local_interpretation,1044,446,971,380,0
+Marginal 1 BW|WLb,boxes,17,143,8643,block_local_interpretation,922,508,862,431,0
+Marginal 1 BW|WLb,boxes,18,0,9000,block_local_interpretation,911,478,789,401,0
+Marginal 1 BW|WLb,boxes,19,0,9500,block_local_interpretation,941,465,862,392,0
+Marginal 1 BW|WLb,boxes,20,0,10000,block_local_interpretation,1643,527,1449,377,0
+Marginal 1 BW|WLb,boxes,21,0,10500,block_local_interpretation,967,437,896,369,0
+Marginal 1 BW|WLb,boxes,21,0,10500,block_local_interpretation,969,437,941,386,0
+Marginal 1 BW|WLb,boxes,21,0,10500,block_local_interpretation,969,424,952,390,0
+Marginal 1 BW|WLb,boxes,21,426,10926,block_local_interpretation,892,465,794,418,0
+Marginal 1 BW|WLb,boxes,22,0,11000,block_local_interpretation,802,542,732,463,0
+Marginal 1 BW|WLb,boxes,23,0,11500,block_local_interpretation,851,512,794,422,0
+Marginal 1 BW|WLb,boxes,23,0,11500,block_local_interpretation,839,493,811,439,0
+Marginal 1 BW|WLb,boxes,24,0,12000,block_local_interpretation,907,446,841,399,0
+Marginal 1 BW|WLb,boxes,24,0,12000,block_local_interpretation,892,427,864,409,0
+Marginal 1 BW|WLb,boxes,25,0,12500,block_local_interpretation,886,452,841,420,0
+Marginal 1 BW|WLb,boxes,25,0,12500,block_local_interpretation,888,452,834,418,0
+Marginal 1 BW|WLb,boxes,26,0,13000,block_local_interpretation,1009,407,979,369,0
+Marginal 1 BW|WLb,boxes,26,0,13000,block_local_interpretation,1007,403,984,382,0
+DbLb|DbP,pts,8,0,4000,block_local_interpretation,2551,909,,,1
+DbLb|DbP,pts,8,0,4000,block_local_interpretation,2384,653,,,0
+DbLb|DbP,pts,11,30,5530,block_local_interpretation,2468,1270,,,0
+DbLb|DbP,boxes,0,0,0,block_local_interpretation,2557,852,2276,544,1
+DbLb|DbP,boxes,1,0,500,block_local_interpretation,2470,881,2390,584,1
+DbLb|DbP,boxes,2,0,1000,block_local_interpretation,2565,728,2548,485,1
+DbLb|DbP,boxes,3,0,1500,block_local_interpretation,2519,1030,2388,572,1
+DbLb|DbP,boxes,4,0,2000,block_local_interpretation,2620,709,2492,537,1
+DbLb|DbP,boxes,5,0,2500,block_local_interpretation,2507,1207,2304,748,1
+DbLb|DbP,boxes,5,425,2925,block_local_interpretation,1834,580,1694,338,1
+DbLb|DbP,boxes,6,0,3000,block_local_interpretation,2558,800,2499,520,1
+DbLb|DbP,boxes,7,0,3500,block_local_interpretation,2647,1252,2457,748,1
+DbLb|DbP,boxes,9,0,4500,block_local_interpretation,2641,1071,2500,751,0
+DbLb|DbP,boxes,9,421,4921,block_local_interpretation,2651,1347,2566,1073,0
+DbLb|DbP,boxes,10,0,5000,block_local_interpretation,2530,809,2451,508,0
+DbLb|DbP,boxes,10,0,5000,block_local_interpretation,2600,644,2465,488,0
+DbLb|DbP,boxes,11,30,5530,block_local_interpretation,2647,1490,2463,1270,0
+DbLb|DbP,boxes,12,0,6000,block_local_interpretation,2645,1490,2404,1029,0
+DbLb|DbP,boxes,12,487,6487,block_local_interpretation,2335,960,2115,792,0
+DbLb|DbP,boxes,12,488,6488,block_local_interpretation,2339,973,2248,868,0
+DbLb|DbP,boxes,13,0,6500,block_local_interpretation,2572,1178,2495,768,0
+DbLb|DbP,boxes,14,0,7000,block_local_interpretation,2260,1389,1994,1127,0
+DbLb|DbP,boxes,14,415,7415,block_local_interpretation,898,1298,649,1018,0
+DbLb|DbP,boxes,14,466,7466,block_local_interpretation,1987,646,1787,416,0
+DbLb|DbP,boxes,15,0,7500,block_local_interpretation,2655,1135,2451,740,0
+DbLb|DbP,boxes,15,110,7610,block_local_interpretation,1330,997,1101,728,0
+DbLb|DbP,boxes,16,0,8000,block_local_interpretation,2609,845,2485,548,0
+DbLb|DbP,boxes,17,0,8500,block_local_interpretation,2623,1219,2446,779,0
+DbLb|DbP,boxes,18,0,9000,block_local_interpretation,2604,811,2491,467,0
+DbLb|DbP,boxes,19,0,9500,block_local_interpretation,2594,723,2491,540,0
+DbLb|DbP,boxes,20,0,10000,block_local_interpretation,2600,1131,2431,634,0
+DbLb|DbP,boxes,20,3,10003,block_local_interpretation,2564,982,2453,702,0
+DbLb|DbP,boxes,21,0,10500,block_local_interpretation,2557,1436,2455,1204,0
+DbLb|DbP,boxes,21,0,10500,block_local_interpretation,2670,1513,2431,1093,0
+DbLb|DbP,boxes,21,426,10926,block_local_interpretation,1940,570,1833,467,0
+DbLb|DbP,boxes,22,0,11000,block_local_interpretation,2568,1039,2416,683,0
+DbLb|DbP,boxes,23,0,11500,block_local_interpretation,2579,725,2478,497,0
+DbLb|DbP,boxes,24,0,12000,block_local_interpretation,2562,734,2532,516,0
+DbLb|DbP,boxes,24,0,12000,block_local_interpretation,2570,625,2508,617,0
+DbLb|DbP,boxes,24,0,12000,block_local_interpretation,2589,685,2440,544,0
+DbLb|DbP,boxes,25,0,12500,block_local_interpretation,2540,1035,2401,634,0
+DbLb|DbP,boxes,25,0,12500,block_local_interpretation,2517,939,2431,666,0
+DbLb|DbP,boxes,26,0,13000,block_local_interpretation,2440,1020,2318,766,0
+DbLb|DbP,boxes,26,0,13000,block_local_interpretation,2386,875,2357,834,0
+DbLb|DbP,boxes,26,0,13000,block_local_interpretation,2421,896,2357,800,0
+DbLb|OY,pts,8,0,4000,block_local_interpretation,1082,427,,,1
+DbLb|OY,pts,9,0,4500,block_local_interpretation,1061,454,,,0
+DbLb|OY,boxes,0,188,188,block_local_interpretation,1167,469,1066,342,1
+DbLb|OY,boxes,0,403,403,block_local_interpretation,1524,444,1436,298,1
+DbLb|OY,boxes,1,0,500,block_local_interpretation,1623,640,1462,362,1
+DbLb|OY,boxes,2,0,1000,block_local_interpretation,1481,520,1268,336,1
+DbLb|OY,boxes,3,0,1500,block_local_interpretation,1395,401,1296,277,1
+DbLb|OY,boxes,4,0,2000,block_local_interpretation,1309,503,1168,365,1
+DbLb|OY,boxes,5,0,2500,block_local_interpretation,1282,390,1190,308,1
+DbLb|OY,boxes,5,425,2925,block_local_interpretation,1150,491,1063,399,1
+DbLb|OY,boxes,6,0,3000,block_local_interpretation,1209,446,1139,376,1
+DbLb|OY,boxes,7,0,3500,block_local_interpretation,1158,449,1104,387,1
+DbLb|OY,boxes,9,366,4866,block_local_interpretation,1133,471,1071,392,0
+DbLb|OY,boxes,10,0,5000,block_local_interpretation,1184,446,1058,420,0
+DbLb|OY,boxes,11,30,5530,block_local_interpretation,1061,450,1001,437,0
+DbLb|OY,boxes,12,0,6000,block_local_interpretation,1214,446,1116,313,0
+DbLb|OY,boxes,12,105,6105,block_local_interpretation,1191,444,1127,401,0
+DbLb|OY,boxes,13,0,6500,block_local_interpretation,1048,454,1020,444,0
+DbLb|OY,boxes,14,415,7415,block_local_interpretation,1014,478,969,454,0
+DbLb|OY,boxes,15,0,7500,block_local_interpretation,1044,482,1020,456,0
+DbLb|OY,boxes,16,0,8000,block_local_interpretation,1056,495,907,459,0
+DbLb|OY,boxes,16,284,8284,block_local_interpretation,1208,433,1176,405,0
+DbLb|OY,boxes,17,0,8500,block_local_interpretation,1118,456,1046,403,0
+DbLb|OY,boxes,18,0,9000,block_local_interpretation,1026,469,975,439,0
+DbLb|OY,boxes,19,0,9500,block_local_interpretation,1084,473,1033,439,0
+DbLb|OY,boxes,20,0,10000,block_local_interpretation,1150,431,1118,384,0
+DbLb|OY,boxes,21,0,10500,block_local_interpretation,1127,461,1031,407,0
+DbLb|OY,boxes,22,0,11000,block_local_interpretation,1144,473,1056,437,0
+DbLb|OY,boxes,23,0,11500,block_local_interpretation,1189,467,1026,392,0
+DbLb|OY,boxes,23,0,11500,block_local_interpretation,1108,473,1044,394,0
+DbLb|OY,boxes,24,0,12000,block_local_interpretation,1097,439,1037,418,0
+DbLb|OY,boxes,24,0,12000,block_local_interpretation,1105,459,1026,405,0
+DbLb|OY,boxes,25,0,12500,block_local_interpretation,1174,435,1112,394,0
+DbLb|OY,boxes,25,0,12500,block_local_interpretation,1180,427,1086,388,0
+DbLb|OY,boxes,26,0,13000,block_local_interpretation,1169,424,1127,405,0
+DbLb|OY,boxes,26,0,13000,block_local_interpretation,1172,427,1142,407,0
+ODb|YDb,pts,8,0,4000,block_local_interpretation,608,508,,,1
+ODb|YDb,pts,9,0,4500,block_local_interpretation,965,407,,,0
+ODb|YDb,pts,10,488,5488,block_local_interpretation,668,501,,,0
+ODb|YDb,pts,10,183,5183,block_local_interpretation,544,516,,,0
+ODb|YDb,pts,10,183,5183,block_local_interpretation,576,563,,,0
+ODb|YDb,pts,10,183,5183,block_local_interpretation,552,555,,,0
+ODb|YDb,pts,10,183,5183,block_local_interpretation,574,548,,,0
+ODb|YDb,pts,10,183,5183,block_local_interpretation,587,548,,,0
+ODb|YDb,pts,10,183,5183,block_local_interpretation,591,546,,,0
+ODb|YDb,pts,10,183,5183,block_local_interpretation,563,548,,,0
+ODb|YDb,pts,10,183,5183,block_local_interpretation,563,548,,,0
+ODb|YDb,pts,21,426,10926,block_local_interpretation,1893,506,,,0
+ODb|YDb,pts,21,426,10926,block_local_interpretation,1889,516,,,0
+ODb|YDb,boxes,0,430,430,block_local_interpretation,820,511,760,439,1
+ODb|YDb,boxes,0,139,139,block_local_interpretation,811,503,734,426,1
+ODb|YDb,boxes,1,0,500,block_local_interpretation,884,531,816,422,1
+ODb|YDb,boxes,2,0,1000,block_local_interpretation,907,504,826,419,1
+ODb|YDb,boxes,3,0,1500,block_local_interpretation,912,518,837,432,1
+ODb|YDb,boxes,3,291,1791,block_local_interpretation,1871,158,1705,50,1
+ODb|YDb,boxes,4,0,2000,block_local_interpretation,1628,432,1507,342,1
+ODb|YDb,boxes,4,44,2044,block_local_interpretation,896,192,634,33,1
+ODb|YDb,boxes,5,0,2500,block_local_interpretation,740,598,612,455,1
+ODb|YDb,boxes,6,0,3000,block_local_interpretation,673,604,538,476,1
+ODb|YDb,boxes,7,0,3500,block_local_interpretation,656,618,554,472,1
+ODb|YDb,boxes,9,366,4866,block_local_interpretation,997,456,933,384,0
+ODb|YDb,boxes,10,0,5000,block_local_interpretation,817,614,627,465,0
+ODb|YDb,boxes,11,30,5530,block_local_interpretation,674,497,674,452,0
+ODb|YDb,boxes,11,30,5530,block_local_interpretation,666,484,655,473,0
+ODb|YDb,boxes,12,0,6000,block_local_interpretation,832,478,777,416,0
+ODb|YDb,boxes,12,146,6146,block_local_interpretation,736,612,589,482,0
+ODb|YDb,boxes,13,104,6604,block_local_interpretation,742,572,646,486,0
+ODb|YDb,boxes,14,0,7000,block_local_interpretation,745,576,623,510,0
+ODb|YDb,boxes,15,0,7500,block_local_interpretation,704,570,578,493,0
+ODb|YDb,boxes,16,0,8000,block_local_interpretation,713,604,587,501,0
+ODb|YDb,boxes,17,0,8500,block_local_interpretation,802,565,704,439,0
+ODb|YDb,boxes,18,0,9000,block_local_interpretation,817,580,655,497,0
+ODb|YDb,boxes,19,0,9500,block_local_interpretation,813,567,668,454,0
+ODb|YDb,boxes,20,0,10000,block_local_interpretation,815,584,657,471,0
+ODb|YDb,boxes,21,0,10500,block_local_interpretation,764,559,631,482,0
+ODb|YDb,boxes,21,426,10926,block_local_interpretation,1018,448,941,377,0
+ODb|YDb,boxes,22,0,11000,block_local_interpretation,1029,454,928,375,0
+ODb|YDb,boxes,22,121,11121,block_local_interpretation,617,597,520,527,0
+ODb|YDb,boxes,23,0,11500,block_local_interpretation,745,591,661,437,0
+ODb|YDb,boxes,23,0,11500,block_local_interpretation,732,512,715,439,0
+ODb|YDb,boxes,24,0,12000,block_local_interpretation,785,518,696,463,0
+ODb|YDb,boxes,24,0,12000,block_local_interpretation,777,555,685,454,0
+ODb|YDb,boxes,25,0,12500,block_local_interpretation,772,544,685,484,0
+ODb|YDb,boxes,25,0,12500,block_local_interpretation,757,561,676,465,0
+ODb|YDb,boxes,26,0,13000,block_local_interpretation,815,567,661,448,0
+ODb|YDb,boxes,26,0,13000,block_local_interpretation,738,503,702,482,0
+ODb|YDb,boxes,26,0,13000,block_local_interpretation,762,533,644,488,0
+ODb|YDb,boxes,26,486,13486,block_local_interpretation,728,576,621,488,0
+ODb|YDb,boxes,26,486,13486,block_local_interpretation,681,533,625,499,0
