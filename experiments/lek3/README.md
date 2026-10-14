@@ -28,3 +28,23 @@ Only code and small reports belong in Git. Keep videos and annotation files on
 the data drive. No GPU or additional packages are required for this inspection.
 
 Tests: `python -m unittest discover -s experiments/lek3 -p 'test_*.py'`.
+
+## Small alignment pilot
+
+`alignment_pilot.py --session /path/to/session.pkl --video /path/to/video.mp4`
+exports saved point/box records and seven sampled raw GT mask sets. It compares
+each set against several candidate video indices using sequential decoding.
+Results are written to a new `experiments/lek3/results/pilot-*` directory.
+Requires NumPy, Pillow and OpenCV; no GPU or SAM2 inference is used.
+
+The packed masks are unpacked without interpolation. Missing label entries are
+reported as unknown rather than interpreted as absent birds. Preview colours
+are listed in the report. The current pilot is specific to the inspected Lek3
+coverage and stops on unsupported storage schemas or mismatched dimensions.
+
+Offsets 0, 1, block+2 and 28 are exploratory comparisons, not an accepted mapping.
+The block-dependent candidate tests possible extraction drift; the constant 28
+candidate comes from the cached-overlay search. No input files are changed.
+Saved prompts may include later corrections; their original annotation provenance
+and correspondence to video indices remain unverified. Do not select experimental
+anchors or calculate evaluation scores from these candidates before review.
