@@ -95,7 +95,16 @@ def summary(value):
     return {'type': getattr(value, 'stored_type', type(value).__name__)}
 
 
-def run(session):
+def image_state(obj):
+    state = getattr(obj, 'state', None)
+    expected = (7, 8) if getattr(obj, 'stored_type', '') == 'PIL.JpegImagePlugin.JpegImageFile' else (5,)
+    if (isinstance(state, (list, tuple)) and len(state) in expected
+            and state[1] == 'RGB' and isinstance(state[4], Payload)):
+        return state[:5]
+    return None
+
+
+def run(session, video=None):
     before = session.stat()
     output = Path(__file__).resolve().parent / 'results' / (
         'structure-' + datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ'))
@@ -137,10 +146,9 @@ def run(session):
     from PIL import Image
     for name in ('original_img', 'overlay_img'):
         obj = backend.get(name)
-        state = getattr(obj, 'state', None)
+        state = image_state(obj)
         # Pillow Image.__getstate__: info, mode, size, palette, pixel bytes.
-        if (not isinstance(state, (list, tuple)) or len(state) != 5
-                or state[1] != 'RGB' or not isinstance(state[4], Payload)):
+        if state is None:
             report['saved_images'][name] = 'Unsupported image state; not extracted'
             continue
         width, height = state[2]
@@ -157,6 +165,26 @@ def run(session):
     index = backend.get('curr_img_idx')
     report['current_media_entry'] = (media[index] if isinstance(media, list)
         and type(index) is int and 0 <= index < len(media) else None)
+    if video is not None and report['current_media_entry']:
+        import cv2
+        entry = str(report['current_media_entry']).replace('\\', '/')
+        candidate = int(Path(entry).stem)
+        cap = cv2.VideoCapture(str(video))
+        try:
+            if not cap.isOpened():
+                raise ValueError('Video could not be opened')
+            for number in range(candidate + 1):
+                ok, frame = cap.read()
+                if not ok:
+                    raise ValueError('Video read stopped before candidate frame')
+                if number % 2000 == 0:
+                    print('Decoded video frame:', number, flush=True)
+            Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)).save(
+                output / 'video_candidate.png')
+            report['video_candidate'] = {'index': candidate, 'method': 'sequential decode',
+                'status': 'same-index candidate only; correspondence not certified'}
+        finally:
+            cap.release()
     after = session.stat()
     if (before.st_size, before.st_mtime_ns) != (after.st_size, after.st_mtime_ns):
         raise ValueError('Source changed during inspection')
@@ -170,4 +198,6 @@ def run(session):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--session', type=Path, required=True)
-    run(parser.parse_args().session)
+    parser.add_argument('--video', type=Path)
+    args = parser.parse_args()
+    run(args.session, args.video)
