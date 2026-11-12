@@ -113,7 +113,7 @@ class Annotator:
         self.sam_handler.curr_img_idx = dict_representation["sam_handler_curr_img_idx"]
         self.sam_handler.propagation_blocks = dict_representation["sam_handler_propagation_blocks"]
         self.block_size = dict_representation["block_size"]
-        self.current_block = dict_representation["current_block"]
+        self.set_current_block(dict_representation["current_block"])
         self.num_blocks = dict_representation["num_blocks"]
         self.curr_img_shape = dict_representation["curr_img_shape"]
         self.extra_frame_path = dict_representation["extra_frame_path"]

@@ -7,6 +7,7 @@ from label import Label
 from sam2.build_sam import build_sam2_video_predictor
 import re
 import shutil
+from tempfile import TemporaryDirectory
 class SAM_Annotator:
     def __init__(self, model_type="vit_b", model_cfg_path = None, ckpt_path=None):
         self.model_loaded = False
@@ -111,7 +112,7 @@ class SAM_Annotator:
     def _get_object_id_for_label(self, label_name):
         if (label_name + str(self.current_block)) not in self.object_ids:
             self.object_ids[(label_name + str(self.current_block))] = len(self.object_ids) + 1
-            self.object_id_to_label_name[self.object_ids[(label_name + str(self.current_block))]] = label_name
+        self.object_id_to_label_name[self.object_ids[(label_name + str(self.current_block))]] = label_name
         return self.object_ids[(label_name + str(self.current_block))]
     def init_inference_state(self, path, status_callback=None):
         if not self.model_loaded:
@@ -130,15 +131,12 @@ class SAM_Annotator:
         if not self.model_loaded:
             return {}
         try:
-            print(f"### {self.media_files}")
             current_path = self.media_files[idx]
-            img_dir = os.path.dirname(current_path)
-            os.makedirs("./singular_temp_dir/",exist_ok=True)
-            shutil.copy(current_path,os.path.join("./singular_temp_dir/",os.path.basename(current_path)))
-            if not self.tracking_init or self.inference_state is None:
-                temp_inference_state = self.predictor.init_state(video_path=img_dir)
-            else:
-                temp_inference_state = self.inference_state
+            # idx is block-local. The one-image preview always has frame index zero.
+            with TemporaryDirectory(dir=".") as frame_dir:
+                suffix = os.path.splitext(current_path)[1]
+                shutil.copyfile(current_path, os.path.join(frame_dir, "000000" + suffix))
+                temp_inference_state = self.predictor.init_state(video_path=frame_dir)
             results = {}
             for label in self.labels:
                 pt_coords, pt_labels, boxes, _, _ = self._preprocess_label(label,idx,flag)
@@ -146,7 +144,7 @@ class SAM_Annotator:
                     with torch.autocast('cuda' if torch.cuda.is_available() else 'cpu', dtype=torch.float16):
                         _, obj_ids, mask_logits = self.predictor.add_new_points_or_box(
                             inference_state=temp_inference_state,
-                            frame_idx=self.curr_img_idx,
+                            frame_idx=0,
                             obj_id=self._get_object_id_for_label(label.name),
                             points=pt_coords,
                             labels=pt_labels
@@ -155,7 +153,7 @@ class SAM_Annotator:
                     with torch.autocast('cuda' if torch.cuda.is_available() else 'cpu', dtype=torch.float16):
                         _, obj_ids, mask_logits = self.predictor.add_new_points_or_box(
                             inference_state=temp_inference_state,
-                            frame_idx=self.curr_img_idx,
+                            frame_idx=0,
                             obj_id=self._get_object_id_for_label(label.name),
                             box = boxes
                         )
@@ -164,8 +162,7 @@ class SAM_Annotator:
             for j, obj_id in enumerate(obj_ids):
                 frame_results[self.object_id_to_label_name[obj_id]] = mask[j]
             results[idx] = frame_results
-            if not self.tracking_init or self.inference_state is None:
-                self.predictor.reset_state(temp_inference_state)
+            self.predictor.reset_state(temp_inference_state)
             return results
         except Exception as e:
             print(f"Error generating mask: {str(e)}")
