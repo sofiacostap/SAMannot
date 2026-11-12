@@ -1544,6 +1544,7 @@ class MainWindow:
                 self.next_block_btn.config(state=tk.DISABLED)
             else:
                 self.next_block_btn.config(state=tk.NORMAL)
+            self.refresh_tracking_controls()
     
     def save_session(self):
         frontend_representation = {
