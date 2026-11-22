@@ -119,7 +119,9 @@ def run(args):
         points = experiment["points"]
         if not points:
             raise ValueError(f"No available birds at {start}")
-        first, stop = bounds(start, len(plan["frames"]), plan["window"])
+        first, stop = (experiment["first"], experiment["stop_exclusive"]) if "first" in experiment else bounds(start, len(plan["frames"]), plan["window"])
+        if not 0 <= first <= start < stop <= len(plan["frames"]):
+            raise ValueError("Invalid experiment interval")
         report = dict(status="running", start=start, first=first, stop_exclusive=stop,
                       points=points, unavailable_birds=experiment["unavailable_birds"],
                       plan_sha256=sha(plan_path), checkpoint_sha256=sha(args.checkpoint),
