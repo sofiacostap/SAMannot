@@ -1,0 +1,9 @@
+global_index,bird,review_outcome,reason
+5550,bird2,reference_invalid,Individual reference includes both birds
+5550,bird4,cross_identity_contamination,Reference correct; prediction includes both birds
+6775,bird2,reference_or_prediction_uncertain,Cannot distinguish birds confidently
+6775,bird4,reference_or_prediction_uncertain,Cannot distinguish birds confidently
+7000,bird2,cross_identity_contamination,Reference correct; prediction includes both birds
+7000,bird4,cross_identity_contamination,Reference correct; prediction includes both birds
+7475,bird2,cross_identity_contamination,Reference correct; prediction includes both birds
+7475,bird4,cross_identity_contamination,Reference correct; prediction includes both birds

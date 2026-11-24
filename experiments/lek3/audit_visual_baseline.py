@@ -14,7 +14,7 @@ BASE = Path("/mnt/hatter/MPI_data/Sofia/lek3_502m_reference")
 BIRDS = ("bird1", "bird2", "bird3", "bird4")
 ERRORS = {"missing_prediction", "partial_mask", "cross_identity_contamination",
           "missing_prediction_after_return"}
-UNCERTAIN = {"reference_or_prediction_uncertain", "observation_unspecified"}
+UNCERTAIN = {"reference_or_prediction_uncertain", "observation_unspecified", "reference_invalid"}
 
 
 def read_csv(path):
@@ -22,7 +22,7 @@ def read_csv(path):
         return list(csv.DictReader(stream))
 
 
-def audit(base, source, output, observations):
+def audit(base, source, output, observations, overrides=None):
     runs = base / "baseline_regular30s_v1"
     scores = {}
     frames = defaultdict(list)
@@ -58,6 +58,18 @@ def audit(base, source, output, observations):
             for bird in birds:
                 decisions[i,bird] = row["review_outcome"]
 
+    if overrides:
+        override_rows = read_csv(overrides)
+        seen_overrides = set()
+        for row in override_rows:
+            key = int(row["global_index"]), row["bird"]
+            if key in seen_overrides or key[0] % 25 or key[1] not in BIRDS:
+                raise ValueError(f"Invalid or duplicate review override: {key}")
+            if row["review_outcome"] not in ERRORS | UNCERTAIN | {"visually_correct"}:
+                raise ValueError("Unknown review outcome")
+            seen_overrides.add(key)
+            decisions[key] = row["review_outcome"]
+
     rows = []
     frame_rows = []
     for i in range(0,7500,25):
@@ -83,6 +95,10 @@ def audit(base, source, output, observations):
                                uncertain=frame_uncertain>0))
 
     output.mkdir(parents=True,exist_ok=False)
+    import shutil
+    shutil.copyfile(observations, output/"baseline_visual_observations.csv")
+    if overrides:
+        shutil.copyfile(overrides, output/"review_overrides.csv")
     with (output/"review_vs_confidence.csv").open("w",newline="") as stream:
         writer=csv.DictWriter(stream,fieldnames=list(rows[0]))
         writer.writeheader();writer.writerows(rows)
@@ -152,5 +168,6 @@ if __name__=="__main__":
     ap.add_argument("--source",type=Path,default=ROOT/"experiments/lek3/reference_20m_35m")
     ap.add_argument("--output",type=Path,required=True)
     ap.add_argument("--observations",type=Path,default=Path(__file__).with_name("baseline_visual_observations.csv"))
+    ap.add_argument("--overrides",type=Path)
     args=ap.parse_args()
-    audit(args.base,args.source,args.output,args.observations)
+    audit(args.base,args.source,args.output,args.observations,args.overrides)
