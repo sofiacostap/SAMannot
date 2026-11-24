@@ -1,0 +1,29 @@
+first_global_index,last_global_index,birds,review_outcome,observation,sampling
+550,550,bird3;bird4,cross_identity_contamination,Yellow covers part of blue bird,one-second comparison samples; endpoints are reported sample indices
+575,575,bird4,missing_prediction,Blue bird visible without mask; investigate claimed unprompted status,one-second comparison samples; endpoints are reported sample indices
+600,650,bird4,partial_mask,"Reported at 600,625,650; brown tail omitted at 650",one-second comparison samples; endpoints are reported sample indices
+725,725,bird1,uninitialized_return,Red visible; bird1 unprompted in start-0 run,one-second comparison samples; endpoints are reported sample indices
+800,1475,bird2,uninitialized_return,Green repeatedly visible without mask; bird2 unprompted throughout start-750 run; intermediate visibility not framewise established,one-second comparison samples; endpoints are reported sample indices
+1075,1100,bird1,partial_mask,Red incomplete at both reported samples,one-second comparison samples; endpoints are reported sample indices
+1150,1150,bird1,missing_prediction,Visible tail unmasked,one-second comparison samples; endpoints are reported sample indices
+1175,1175,bird1,missing_prediction,Visible red bird unmasked,one-second comparison samples; endpoints are reported sample indices
+1225,1225,bird1,correct_absence,Red outside view,one-second comparison samples; endpoints are reported sample indices
+1250,1250,bird1,correct_recovery,Red returns masked,one-second comparison samples; endpoints are reported sample indices
+1275,1450,bird1,missing_prediction,Repeated sampled misses reported until change at 1475; exact endpoint unverified,one-second comparison samples; endpoints are reported sample indices
+1475,1475,bird1,correct_recovery,Red masked again,one-second comparison samples; endpoints are reported sample indices
+1475,1475,bird4,missing_prediction_after_return,Blue returns after three absent review samples; unmasked,one-second comparison samples; endpoints are reported sample indices
+1500,1500,all,correct_prompt_frame,New run starts with all four masks,one-second comparison samples; endpoints are reported sample indices
+2025,2025,bird2,correct_absence,Green outside view,one-second comparison samples; endpoints are reported sample indices
+2125,2125,bird2,correct_recovery,Green returned and masked,one-second comparison samples; endpoints are reported sample indices
+2400,2400,bird4,correct_absence,Blue outside view,one-second comparison samples; endpoints are reported sample indices
+2425,2425,bird4,observation_unspecified,Frame listed with no explicit outcome; confirm if needed,one-second comparison samples; endpoints are reported sample indices
+2450,2450,bird4,correct_recovery,Blue returned and masked,one-second comparison samples; endpoints are reported sample indices
+4050,4050,bird4,partial_mask,Other birds correct,one-second comparison samples; endpoints are reported sample indices
+4075,4100,bird4,missing_prediction,Reported at both one-second samples; all birds visible,one-second comparison samples; endpoints are reported sample indices
+4125,4375,bird4,partial_mask,Body masked; white head omitted at reviewed samples,one-second comparison samples; endpoints are reported sample indices
+4400,4400,bird4,correct,Wings spread; all masks correct,one-second comparison samples; endpoints are reported sample indices
+4425,4475,bird4,partial_mask,Other birds correct,one-second comparison samples; endpoints are reported sample indices
+5150,5150,bird2;bird4,cross_identity_contamination,Green covers green bird plus part of blue bird,one-second comparison samples; endpoints are reported sample indices
+5175,5175,all,correct,All four correctly masked,one-second comparison samples; endpoints are reported sample indices
+5550,5550,bird2;bird4,reference_or_prediction_uncertain,Close contact prevents reliable distinction,one-second comparison samples; endpoints are reported sample indices
+6775,7475,bird2;bird4,reference_or_prediction_uncertain,Green and blue blend in combined overlay; inspect per-bird masks before classifying,one-second comparison samples; endpoints are reported sample indices
